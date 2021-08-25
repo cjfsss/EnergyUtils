@@ -1,0 +1,3 @@
+include ':EnergyUtils'
+include ':app'
+rootProject.name = "EnergyUtils"
