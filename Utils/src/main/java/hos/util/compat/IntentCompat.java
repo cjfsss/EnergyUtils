@@ -97,12 +97,12 @@ public class IntentCompat {
 
     @Nullable
     public static Intent getLaunchTargetOpenFile(@NonNull Context context,@NonNull final String pkgName, @Nullable final String filePath) {
-        return getLaunchTargetOpenFile(context, context.getPackageName() + ".provider", pkgName, filePath);
+        return getLaunchTargetOpenFile(context,  pkgName, context.getPackageName() + ".provider",filePath);
     }
 
     @Nullable
     public static Intent getLaunchTargetOpenFile(@NonNull Context context,@NonNull final String pkgName, @Nullable final File file) {
-        return getLaunchTargetOpenFile(context, context.getPackageName() + ".provider", pkgName, file);
+        return getLaunchTargetOpenFile(context, pkgName,context.getPackageName() + ".provider",  file);
     }
 
     @Nullable

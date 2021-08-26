@@ -5,15 +5,15 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import hos.util.listener.bean.BeanEnd;
-import hos.util.listener.bean.BeanExpand;
-import hos.util.listener.bean.BeanPosition;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import hos.util.listener.bean.BeanEnd;
+import hos.util.listener.bean.BeanExpand;
+import hos.util.listener.bean.BeanPosition;
 
 /**
  * <p>Title: MapUtils </p>
@@ -82,7 +82,7 @@ public class MapUtils {
         if (object == null) {
             return null;
         }
-        String target = (String) object;
+        String target = String.valueOf(object);
         if (TextUtils.isEmpty(target) || TextUtils.equals(target, "null") || TextUtils.equals(target, "NULL")) {
             return null;
         }

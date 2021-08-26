@@ -50,8 +50,6 @@ uploadArchives{
         from androidJavadocs.destinationDir
     }
     task androidSourcesJar(type: Jar) {
-        exclude("META-INF/MANIFEST.MF")
-        exclude("META-INF")
         // 指定文档名称
         classifier = 'source'
         from android.sourceSets.main.java.sourceFiles
