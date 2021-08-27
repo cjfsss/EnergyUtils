@@ -17,6 +17,26 @@ import java.util.GregorianCalendar;
  */
 public class CalendarCompat {
 
+    /// 获取日期
+    public static Calendar getCalendar() {
+        return getCalendar(Calendar.getInstance());
+    }
+
+    /// 获取日期
+    public static Calendar getCalendar(long millis) {
+        GregorianCalendar gregorianCalendar = new GregorianCalendar();
+        gregorianCalendar.setTimeInMillis(millis);
+        return gregorianCalendar;
+    }
+
+    /// 获取日期
+    public static Calendar getCalendar(@Nullable Calendar calendar) {
+        if (calendar == null) {
+            return getCalendar(Calendar.getInstance());
+        }
+        return getCalendar(calendar.getTimeInMillis());
+    }
+
     /// 获取本月的每周多少天
     @NonNull
     public static String getWeekSizeForMonth(long millis) {
@@ -33,17 +53,17 @@ public class CalendarCompat {
     @NonNull
     public static String getWeekSizeForMonth(@Nullable Calendar cal) {
         if (cal == null) {
-            return getWeekSizeForMonth(Calendar.getInstance());
+            return getWeekSizeForMonth(getCalendar());
         }
-        int weekSize = getWeekSize(cal);
+        int weekSize = getWeekSize(getCalendar(cal));
         // 获取本月的第一个周日
-        Calendar firstWeekSundayTime = getFirstWeekSunday(cal);
+        Calendar firstWeekSundayTime = getFirstWeekSunday(getCalendar(cal));
         int fastWeekSize = firstWeekSundayTime.get(Calendar.DATE);
         // 获取本月的最后一天
-        Calendar lastTime = getLastWeek(cal);
+        Calendar lastTime = getLastWeek(getCalendar(cal));
         int lastDay = lastTime.get(Calendar.DATE);
         // 获取本月最后一周的星期一
-        Calendar lastMondayTime = getLastWeekMonday(cal);
+        Calendar lastMondayTime = getLastWeekMonday(getCalendar(cal));
         int lastMondayDay = lastMondayTime.get(Calendar.DATE);
         StringBuilder timeBuilder = new StringBuilder();
         timeBuilder.append(String.valueOf(fastWeekSize)).append(",");
@@ -64,11 +84,11 @@ public class CalendarCompat {
     @NonNull
     public static String convertWeekForMonthWeekSize(@Nullable Calendar cal, @NonNull String weekMonth) {
         if (cal == null) {
-            return convertWeekForMonthWeekSize(Calendar.getInstance(), weekMonth);
+            return convertWeekForMonthWeekSize(getCalendar(), weekMonth);
         }
         String[] weekMonthArray = weekMonth.split(",");
         StringBuilder builder = new StringBuilder();
-        int month = getMonth(cal);
+        int month = getMonth(getCalendar(cal));
         // 第一周(6.1-6.6),第二周(6.7-6.13),第三周(6.14-6.20),第四周(6.21-6.27),第五周(6.28-6.30)
         for (int i = 0; i < weekMonthArray.length; i++) {
             String indexZN;
@@ -91,7 +111,7 @@ public class CalendarCompat {
                 builder.append(",");
             }
             int weekSize = Integer.parseInt(weekMonthArray[i]);
-            Calendar firstWeek = getFirstWeek(cal);
+            Calendar firstWeek = getFirstWeek(getCalendar(cal));
             int day = firstWeek.get(Calendar.DAY_OF_MONTH);
             // 第日周(8.1-8.1),第一周(8.1-8.7),第二周(8.2-8.8),第三周(8.9-8.15),第四周(8.16-8.22),第五周(8.23-8
             if (i == 0) {
@@ -131,7 +151,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getFirstWeek(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getFirstWeek(Calendar.getInstance());
+            return getFirstWeek(getCalendar());
         }
         return getMonthFirstDay(dateTime);
     }
@@ -152,7 +172,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getFirstWeekSunday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getFirstWeekSunday(Calendar.getInstance());
+            return getFirstWeekSunday(getCalendar());
         }
         return getDateTimeSunday(getFirstWeek(dateTime));
     }
@@ -173,7 +193,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getLastWeek(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getLastWeek(Calendar.getInstance());
+            return getLastWeek(getCalendar());
         }
         return getMonthLastDay(dateTime);
     }
@@ -194,7 +214,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getLastWeekMonday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getLastWeekMonday(Calendar.getInstance());
+            return getLastWeekMonday(getCalendar());
         }
         return getDateTimeMonday(getLastWeek(dateTime));
     }
@@ -215,10 +235,10 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getSecondWeekSunday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getSecondWeekSunday(Calendar.getInstance());
+            return getSecondWeekSunday(getCalendar());
         }
         /// 获取本月第一周的周日
-        Calendar firstWeekDateTime = getFirstWeekSunday(dateTime);
+        Calendar firstWeekDateTime = getFirstWeekSunday(getCalendar(dateTime));
         firstWeekDateTime.add(Calendar.DATE, 7);
         return firstWeekDateTime;
     }
@@ -239,7 +259,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getThirdWeekMonday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getSecondWeekSunday(Calendar.getInstance());
+            return getSecondWeekSunday(getCalendar());
         }
 
         /// 获取本月第一周的周日
@@ -264,7 +284,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getThirdWeekSunday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getThirdWeekSunday(Calendar.getInstance());
+            return getThirdWeekSunday(getCalendar());
         }
 
         /// 获取本月第一周的周日
@@ -289,7 +309,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getFourthWeekMonday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getFourthWeekMonday(Calendar.getInstance());
+            return getFourthWeekMonday(getCalendar());
         }
 
         /// 获取本月第一周的周日
@@ -314,13 +334,13 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getFourthWeekSunday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getFourthWeekSunday(Calendar.getInstance());
+            return getFourthWeekSunday(getCalendar());
         }
         // 获取最后一周的周一
-        Calendar lastWeekMondayDateTime = getLastWeekMonday(dateTime);
+        Calendar lastWeekMondayDateTime = getLastWeekMonday(getCalendar(dateTime));
         int lastWeekMondayDateDay = lastWeekMondayDateTime.get(Calendar.DAY_OF_MONTH);
         // 获取第四周的周一
-        Calendar fourthWeekMondayDateTime = getFourthWeekMonday(dateTime);
+        Calendar fourthWeekMondayDateTime = getFourthWeekMonday(getCalendar(dateTime));
         int fourthWeekMondayDateDay = fourthWeekMondayDateTime.get(Calendar.DAY_OF_MONTH);
         if (lastWeekMondayDateDay == fourthWeekMondayDateDay) {
             // 第四周是最后一周,也就是本月的最后一天
@@ -328,7 +348,7 @@ public class CalendarCompat {
         }
         // 不是最后一周
         /// 获取本月第一周的周日
-        Calendar firstWeekDateTime = getFirstWeekSunday(dateTime);
+        Calendar firstWeekDateTime = getFirstWeekSunday(getCalendar(dateTime));
         firstWeekDateTime.add(Calendar.DATE, 21);
         return firstWeekDateTime;
     }
@@ -349,7 +369,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getFifthWeekMonday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getFifthWeekMonday(Calendar.getInstance());
+            return getFifthWeekMonday(getCalendar());
         }
 
         /// 获取本月第一周的周日
@@ -374,20 +394,20 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getFifthWeekSunday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getFifthWeekSunday(Calendar.getInstance());
+            return getFifthWeekSunday(getCalendar());
         }
         // 获取最后一周的周一
-        Calendar lastWeekMondayDateTime = getLastWeekMonday(dateTime);
+        Calendar lastWeekMondayDateTime = getLastWeekMonday(getCalendar(dateTime));
         int lastWeekMondayDateDay = lastWeekMondayDateTime.get(Calendar.DAY_OF_MONTH);
         // 获取第四周的周一
-        Calendar fourthWeekMondayDateTime = getFourthWeekMonday(dateTime);
+        Calendar fourthWeekMondayDateTime = getFourthWeekMonday(getCalendar(dateTime));
         int fourthWeekMondayDateDay = fourthWeekMondayDateTime.get(Calendar.DAY_OF_MONTH);
         if (fourthWeekMondayDateDay == lastWeekMondayDateDay) {
             // 第四周是最后一周,也就是本月的最后一天
             return getLastWeek(dateTime);
         }
         // 获取第五周的周一
-        Calendar fifthWeekMondayDateTime = getFifthWeekMonday(dateTime);
+        Calendar fifthWeekMondayDateTime = getFifthWeekMonday(getCalendar(dateTime));
         int fifthWeekMondayDateDay = fifthWeekMondayDateTime.get(Calendar.DAY_OF_MONTH);
         if (lastWeekMondayDateDay == fifthWeekMondayDateDay) {
             // 第五周是最后一周,也就是本月的最后一天
@@ -395,7 +415,7 @@ public class CalendarCompat {
         }
         // 不是最后一周
         /// 获取本月第一周的周日
-        Calendar firstWeekDateTime = getFirstWeekSunday(dateTime);
+        Calendar firstWeekDateTime = getFirstWeekSunday(getCalendar(dateTime));
         firstWeekDateTime.add(Calendar.DATE, 28);
         return firstWeekDateTime;
     }
@@ -416,7 +436,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getSixthWeekMonday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getSixthWeekMonday(Calendar.getInstance());
+            return getSixthWeekMonday(getCalendar());
         }
 
         /// 获取本月第一周的周日
@@ -441,7 +461,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getSixWeekSunday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getSixWeekSunday(Calendar.getInstance());
+            return getSixWeekSunday(getCalendar());
         }
         // 第六周是最后一周,也就是本月的最后一天
         return getLastWeek(dateTime);
@@ -486,11 +506,11 @@ public class CalendarCompat {
     /// 获取当前时间第几周的周一,限制本月
     @NonNull
     public static Calendar getWeekMondayForMonth(int week, @Nullable Calendar dateTime) {
-        Calendar monthFirstDay = getMonthFirstDay(dateTime);
+        Calendar monthFirstDay = getMonthFirstDay(getCalendar(dateTime));
         if (week == 1) {
             return monthFirstDay;
         }
-        int weekSize = getWeekSize(dateTime);
+        int weekSize = getWeekSize(getCalendar(dateTime));
         if (week == weekSize) {
             // 最后一周
             return getLastWeekMonday(dateTime);
@@ -539,12 +559,12 @@ public class CalendarCompat {
     /// 获取当前时间第几周的周日，限制本月
     @NonNull
     public static Calendar getWeekSundayForMonth(int week, @Nullable Calendar dateTime) {
-        Calendar monthFirstDay = getMonthFirstDay(dateTime);
+        Calendar monthFirstDay = getMonthFirstDay(getCalendar(dateTime));
         if (week == 1) {
             return getDateTimeSunday(monthFirstDay);
         }
+        int weekSize = getWeekSize(getCalendar(dateTime));
         Calendar firstWeekSunday = getDateTimeSunday(monthFirstDay);
-        int weekSize = getWeekSize(dateTime);
         if (week == weekSize) {
             // 最后一周
             return getMonthLastDay(dateTime);
@@ -569,7 +589,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getDateTimeMonday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getDateTimeSunday(Calendar.getInstance());
+            return getDateTimeSunday(getCalendar());
         }
         dateTime.setFirstDayOfWeek(Calendar.MONDAY);
         int weekday = dateTime.get(Calendar.DAY_OF_WEEK) - 1;
@@ -635,7 +655,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getDateTimeSunday(@Nullable Calendar cal) {
         if (cal == null) {
-            return getDateTimeSunday(Calendar.getInstance());
+            return getDateTimeSunday(getCalendar());
         }
         cal.setFirstDayOfWeek(Calendar.MONDAY);
         int weekday = cal.get(Calendar.DAY_OF_WEEK) - 1;
@@ -716,10 +736,10 @@ public class CalendarCompat {
     /// 获取当前月的周数
     public static int getWeekSize(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getWeekSize(Calendar.getInstance());
+            return getWeekSize(getCalendar());
         }
         // 获取本月的最后一个周一
-        Calendar lastWeekMondayTime = getLastWeekMonday(dateTime);
+        Calendar lastWeekMondayTime = getLastWeekMonday(getCalendar(dateTime));
         int lastWeekMondayDay = lastWeekMondayTime.get(Calendar.DAY_OF_MONTH);
         // 获取本月的第一个周日
         Calendar lastFirstWeekSundayTime = getFirstWeekSunday(dateTime);
@@ -754,7 +774,7 @@ public class CalendarCompat {
     /// 获取当前第几周
     public static int getCurrentWeek(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getCurrentWeek(Calendar.getInstance());
+            return getCurrentWeek(getCalendar());
         }
         // 设置周一是第一天
         dateTime.setFirstDayOfWeek(Calendar.MONDAY);
@@ -811,7 +831,7 @@ public class CalendarCompat {
         if (cal != null) {
             return cal.get(Calendar.MONTH) + 1;
         }
-        return getMonth(Calendar.getInstance());
+        return getMonth(getCalendar());
     }
 
     /// 获取月份
@@ -821,12 +841,12 @@ public class CalendarCompat {
 
     /// 获取月份
     public static int getMonthByMill() {
-        return getMonthByMill(Calendar.getInstance().getTimeInMillis());
+        return getMonthByMill(getCalendar().getTimeInMillis());
     }
 
     /// 获取月份
     public static int getMonthByMill(long millis) {
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = getCalendar();
         cal.setTimeInMillis(millis);
         return getMonth(cal);
     }
@@ -846,7 +866,7 @@ public class CalendarCompat {
 
     /// 获取当前月的天数
     public static int getMonthDaySize(long millis) {
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = getCalendar();
         cal.setTimeInMillis(millis);
         return getMonthDaySize(cal);
     }
@@ -881,7 +901,7 @@ public class CalendarCompat {
 
     @NonNull
     public static Calendar fromMillisecondsSinceEpoch(long millis) {
-        Calendar dateTime = Calendar.getInstance();
+        Calendar dateTime = getCalendar();
         dateTime.setTimeInMillis(millis);
         return dateTime;
     }
@@ -905,7 +925,7 @@ public class CalendarCompat {
             dateTime.add(Calendar.DATE, -1);
             return dateTime;
         }
-        return getYesterday(Calendar.getInstance());
+        return getYesterday(getCalendar());
     }
 
     /// 获取明天
@@ -927,7 +947,7 @@ public class CalendarCompat {
             dateTime.add(Calendar.DATE, 1);
             return dateTime;
         }
-        return getTomorrow(Calendar.getInstance());
+        return getTomorrow(getCalendar());
     }
 
     /// 获取后天
@@ -949,7 +969,7 @@ public class CalendarCompat {
             dateTime.add(Calendar.DATE, 2);
             return dateTime;
         }
-        return getAfterTomorrow(Calendar.getInstance());
+        return getAfterTomorrow(getCalendar());
     }
 
     /// 获取前天
@@ -971,7 +991,7 @@ public class CalendarCompat {
             dateTime.add(Calendar.DATE, -2);
             return dateTime;
         }
-        return getBeforeYesterday(Calendar.getInstance());
+        return getBeforeYesterday(getCalendar());
     }
 
 
@@ -994,7 +1014,7 @@ public class CalendarCompat {
             dateTime.add(Calendar.MONTH, -1);
             return dateTime;
         }
-        return getYesterdayMonth(Calendar.getInstance());
+        return getYesterdayMonth(getCalendar());
     }
 
     /// 获取明天
@@ -1016,7 +1036,7 @@ public class CalendarCompat {
             dateTime.add(Calendar.MONTH, 1);
             return dateTime;
         }
-        return getTomorrowMonth(Calendar.getInstance());
+        return getTomorrowMonth(getCalendar());
     }
 
     /// 获取后天
@@ -1038,7 +1058,7 @@ public class CalendarCompat {
             dateTime.add(Calendar.MONTH, 2);
             return dateTime;
         }
-        return getAfterTomorrowMonth(Calendar.getInstance());
+        return getAfterTomorrowMonth(getCalendar());
     }
 
     /// 获取前天
@@ -1060,7 +1080,7 @@ public class CalendarCompat {
             dateTime.add(Calendar.MONTH, -2);
             return dateTime;
         }
-        return getBeforeYesterdayMonth(Calendar.getInstance());
+        return getBeforeYesterdayMonth(getCalendar());
     }
 
     /// 获取昨天
@@ -1082,7 +1102,7 @@ public class CalendarCompat {
             dateTime.add(Calendar.WEEK_OF_MONTH, -1);
             return dateTime;
         }
-        return getYesterdayWeek(Calendar.getInstance());
+        return getYesterdayWeek(getCalendar());
     }
 
     /// 获取明天
@@ -1104,7 +1124,7 @@ public class CalendarCompat {
             dateTime.add(Calendar.WEEK_OF_MONTH, 1);
             return dateTime;
         }
-        return getTomorrowWeek(Calendar.getInstance());
+        return getTomorrowWeek(getCalendar());
     }
 
     /// 获取后天
@@ -1126,7 +1146,7 @@ public class CalendarCompat {
             dateTime.add(Calendar.WEEK_OF_MONTH, 2);
             return dateTime;
         }
-        return getAfterTomorrowWeek(Calendar.getInstance());
+        return getAfterTomorrowWeek(getCalendar());
     }
 
     /// 获取前天
@@ -1148,6 +1168,6 @@ public class CalendarCompat {
             dateTime.add(Calendar.WEEK_OF_MONTH, -2);
             return dateTime;
         }
-        return getBeforeYesterdayWeek(Calendar.getInstance());
+        return getBeforeYesterdayWeek(getCalendar());
     }
 }
