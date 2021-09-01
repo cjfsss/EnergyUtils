@@ -73,7 +73,7 @@ public class CalendarConvert {
     public static String getNowString(@NonNull final String format) {
         return millis2String(System.currentTimeMillis(), format);
     }
-    
+
     /**
      * Milliseconds to the formatted time string.
      * <p>The pattern is {@code yyyy-MM-dd HH:mm:ss}.</p>
