@@ -385,7 +385,7 @@ public class StringUtils {
         if (value == null || TextUtils.isEmpty(toNULL(value))) {
             return 0;
         }
-        return Integer.parseInt(value);
+        return Integer.parseInt(deleteEndZero(value));
     }
 
     /**
@@ -511,20 +511,69 @@ public class StringUtils {
     }
 
     @Nullable
-    public static String toNULL(@Nullable CharSequence target) {
-        if (target == null || TextUtils.isEmpty(target) || TextUtils.equals(target, "null")
-                || TextUtils.equals(target, "NULL")) {
+    public static String toNULL(@Nullable Object target) {
+        if (target == null) {
             return null;
+        }
+        if (target instanceof String) {
+            String targetCase = String.valueOf(target);
+            if (TextUtils.isEmpty(targetCase) || TextUtils.equals(targetCase, "null") || TextUtils.equals(targetCase, "NULL")) {
+                return null;
+            }
+            return targetCase;
+        }
+        if (target instanceof Double) {
+            String targetCase = ((Double) target).toString();
+            if (TextUtils.isEmpty(targetCase) || TextUtils.equals(targetCase, "null") || TextUtils.equals(targetCase, "NULL")) {
+                return null;
+            }
+            return targetCase;
+        }
+        if (target instanceof Integer) {
+            String targetCase = ((Integer) target).toString();
+            if (TextUtils.isEmpty(targetCase) || TextUtils.equals(targetCase, "null") || TextUtils.equals(targetCase, "NULL")) {
+                return null;
+            }
+            return targetCase;
+        }
+        if (target instanceof Float) {
+            String targetCase = ((Float) target).toString();
+            if (TextUtils.isEmpty(targetCase) || TextUtils.equals(targetCase, "null") || TextUtils.equals(targetCase, "NULL")) {
+                return null;
+            }
+            return targetCase;
+        }
+        if (target instanceof Long) {
+            String targetCase = ((Long) target).toString();
+            if (TextUtils.isEmpty(targetCase) || TextUtils.equals(targetCase, "null") || TextUtils.equals(targetCase, "NULL")) {
+                return null;
+            }
+            return targetCase;
+        }
+        if (target instanceof Boolean) {
+            String targetCase = ((Boolean) target).toString();
+            if (TextUtils.isEmpty(targetCase) || TextUtils.equals(targetCase, "null") || TextUtils.equals(targetCase, "NULL")) {
+                return null;
+            }
+            return targetCase;
+        }
+        if (target instanceof Short) {
+            String targetCase = ((Short) target).toString();
+            if (TextUtils.isEmpty(targetCase) || TextUtils.equals(targetCase, "null") || TextUtils.equals(targetCase, "NULL")) {
+                return null;
+            }
+            return targetCase;
         }
         return target.toString();
     }
 
     @NonNull
-    public static String toEmpty(@Nullable CharSequence target) {
-        if (toNULL(target) == null) {
+    public static String toEmpty(@Nullable Object target) {
+        String toNULL = toNULL(target);
+        if (toNULL == null) {
             return "";
         }
-        return target == null ? "" : target.toString();
+        return toNULL;
     }
 
     @NonNull

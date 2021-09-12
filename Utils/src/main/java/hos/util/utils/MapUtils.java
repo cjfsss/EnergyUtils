@@ -1,7 +1,5 @@
 package hos.util.utils;
 
-import android.text.TextUtils;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -82,11 +80,7 @@ public class MapUtils {
         if (object == null) {
             return null;
         }
-        String target = String.valueOf(object);
-        if (TextUtils.isEmpty(target) || TextUtils.equals(target, "null") || TextUtils.equals(target, "NULL")) {
-            return null;
-        }
-        return target;
+        return StringUtils.toNULL(object);
     }
 
     @Nullable
@@ -105,7 +99,7 @@ public class MapUtils {
 
     @NonNull
     public static <K, V> String getEmpty(@Nullable Map<K, V> map, @NonNull String key, @Nullable String value) {
-        String toNull = get(map, key, "");
+        String toNull = get(map, key, value);
         if (toNull == null) {
             return value == null ? "" : value;
         }
