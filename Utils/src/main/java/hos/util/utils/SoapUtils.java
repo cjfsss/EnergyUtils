@@ -19,10 +19,20 @@ public class SoapUtils {
             return null;
         }
         return body.replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "")
-                .replaceAll("<string xmlns=\"http://tempuri.org/\">", "")
-                .replaceAll("</string>", "")
                 .replaceAll("\n", "")
                 .replaceAll("\t", "")
-                .replaceAll("\r", "").trim();
+                .replaceAll("\r", "")
+                .replaceAll("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "")
+                .replaceAll("<boolean xmlns=\"http://tempuri.org/\">", "")
+                .replaceAll("<long xmlns=\"http://tempuri.org/\">", "")
+                .replaceAll("<double xmlns=\"http://tempuri.org/\">", "")
+                .replaceAll("<int xmlns=\"http://tempuri.org/\">", "")
+                .replaceAll("<string xmlns=\"http://tempuri.org/\">", "")
+                .replaceAll("</string>", "")
+                .replaceAll("</int>", "")
+                .replaceAll("</double>", "")
+                .replaceAll("</long>", "")
+                .replaceAll("</boolean>", "")
+                .replaceAll("</xml>", "").trim();
     }
 }

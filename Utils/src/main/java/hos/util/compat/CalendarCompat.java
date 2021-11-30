@@ -589,7 +589,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getDateTimeMonday(@Nullable Calendar dateTime) {
         if (dateTime == null) {
-            return getDateTimeSunday(getCalendar());
+            return getDateTimeMonday(getCalendar());
         }
         dateTime.setFirstDayOfWeek(Calendar.MONDAY);
         int weekday = dateTime.get(Calendar.DAY_OF_WEEK) - 1;
@@ -711,7 +711,7 @@ public class CalendarCompat {
     @NonNull
     public static Calendar getMonthDay(@Nullable Calendar cal, int day) {
         if (cal == null) {
-            return getMonthDay(cal, day);
+            return getMonthDay(getCalendar(), day);
         }
         if (day < 1) {
             day = 1;
