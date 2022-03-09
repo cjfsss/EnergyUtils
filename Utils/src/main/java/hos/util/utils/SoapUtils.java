@@ -33,6 +33,21 @@ public class SoapUtils {
                 .replaceAll("</double>", "")
                 .replaceAll("</long>", "")
                 .replaceAll("</boolean>", "")
-                .replaceAll("</xml>", "").trim();
+                .replaceAll("</xml>", "")
+                .replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "")
+                .replace("\n", "")
+                .replace("\t", "")
+                .replace("\r", "")
+                .replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>", "")
+                .replace("<boolean xmlns=\"http://tempuri.org/\">", "")
+                .replace("<long xmlns=\"http://tempuri.org/\">", "")
+                .replace("<double xmlns=\"http://tempuri.org/\">", "")
+                .replace("<int xmlns=\"http://tempuri.org/\">", "")
+                .replace("<string xmlns=\"http://tempuri.org/\">", "")
+                .replace("</string>", "")
+                .replace("</double>", "")
+                .replace("</long>", "")
+                .replace("</boolean>", "")
+                .replace("</xml>", "").trim();
     }
 }

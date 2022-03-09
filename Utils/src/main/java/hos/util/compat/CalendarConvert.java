@@ -45,6 +45,7 @@ public class CalendarConvert {
         }
         return simpleDateFormat;
     }
+
     /**
      * Return the current time in milliseconds.
      *
@@ -74,6 +75,16 @@ public class CalendarConvert {
         return millis2String(System.currentTimeMillis(), format);
     }
 
+    //// 获取当前的时间 Now Date Str.(yyyy-MM-dd 00:00:00)
+    static String getNowStringStart() {
+        return getNowString("yyyy-MM-dd") + " 00:00:00";
+    }
+
+    //// 获取当前的时间 Now Date Str.(yyyy-MM-dd 00:00:00)
+    static String getNowStringEnd() {
+        return getNowString("yyyy-MM-dd") + " 23:59:59";
+    }
+
     /**
      * Milliseconds to the formatted time string.
      * <p>The pattern is {@code yyyy-MM-dd HH:mm:ss}.</p>
@@ -94,6 +105,14 @@ public class CalendarConvert {
      */
     public static String millis2String(long millis, @NonNull final String pattern) {
         return millis2String(millis, getSafeDateFormat(pattern));
+    }
+
+    public static String millis2StringStart(long millis) {
+        return millis2String(millis, getSafeDateFormat("yyyy-MM-dd")) + " 00:00:00";
+    }
+
+    public static String millis2StringEnd(long millis) {
+        return millis2String(millis, getSafeDateFormat("yyyy-MM-dd")) + " 23:59:59";
     }
 
     /**
@@ -138,6 +157,14 @@ public class CalendarConvert {
      */
     public static String calendar2String(final @NonNull Calendar calendar, @NonNull final DateFormat format) {
         return millis2String(calendar.getTimeInMillis(), format);
+    }
+
+    public static String calendar2StringStart(Calendar calendar) {
+        return calendar2String(calendar, "yyyy-MM-dd") + " 00:00:00";
+    }
+
+    public static String calendar2StringEnd(Calendar calendar) {
+        return calendar2String(calendar, "yyyy-MM-dd") + " 23:59:59";
     }
 
     /**
