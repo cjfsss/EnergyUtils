@@ -49,9 +49,9 @@ public class ResAttributeContext {
         }
     }
 
-    public static int getColorPrimary(@NonNull Context context) {
-        return getAttribute(context, R.attr.colorPrimary).data;
-    }
+//    public static int getColorPrimary(@NonNull Context context) {
+//        return getAttribute(context, R.attr.colorPrimary).data;
+//    }
 
     /**
      * 获取主题中的字符串资源属性

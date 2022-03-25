@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 
 import java.io.File;
 
+import hos.util.listener.UriCallback;
+
 /**
  * <p>Title: FileCompat </p>
  * <p>Description:  </p>
@@ -163,20 +165,10 @@ public class FileCompat {
         }
     }
 
-    public static boolean getLaunchTargetOpenFile(@NonNull Context context,@NonNull final String pkgName, @Nullable final String filePath) {
+    public static boolean getLaunchTargetOpenFile(@NonNull Context context, @NonNull final String pkgName,
+                                                  @Nullable final String filePath, @NonNull UriCallback callback) {
         try {
-            Intent launchOpenFile = IntentCompat.getLaunchTargetOpenFile(context,pkgName, filePath);
-            context.startActivity(launchOpenFile);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public static boolean getLaunchTargetOpenFile(@NonNull Context context,@NonNull final String pkgName, @Nullable final File file) {
-        try {
-            Intent launchOpenFile = IntentCompat.getLaunchTargetOpenFile(context,pkgName, file);
+            Intent launchOpenFile = IntentCompat.getLaunchTargetOpenFile(context, pkgName, filePath, callback);
             context.startActivity(launchOpenFile);
             return true;
         } catch (Exception e) {
@@ -186,9 +178,9 @@ public class FileCompat {
     }
 
     public static boolean getLaunchTargetOpenFile(@NonNull Context context, @NonNull final String pkgName,
-                                                  @NonNull String authority, @Nullable final String filePath) {
+                                                  @Nullable final File file, @NonNull UriCallback callback) {
         try {
-            Intent launchOpenFile = IntentCompat.getLaunchTargetOpenFile(context, pkgName, authority, filePath);
+            Intent launchOpenFile = IntentCompat.getLaunchTargetOpenFile(context, pkgName, file, callback);
             context.startActivity(launchOpenFile);
             return true;
         } catch (Exception e) {
@@ -197,10 +189,9 @@ public class FileCompat {
         }
     }
 
-    public static boolean getLaunchTargetOpenFile(@NonNull Context context, @NonNull final String pkgName,
-                                                  @NonNull String authority, @Nullable final File file) {
+    public static boolean getLaunchOpenFile(@NonNull Context context, @NonNull File file, @NonNull UriCallback callback) {
         try {
-            Intent launchOpenFile = IntentCompat.getLaunchTargetOpenFile(context, pkgName, authority, file);
+            Intent launchOpenFile = IntentCompat.getLaunchOpenFile(context, file, callback);
             context.startActivity(launchOpenFile);
             return true;
         } catch (Exception e) {
@@ -209,9 +200,9 @@ public class FileCompat {
         }
     }
 
-    public static boolean getLaunchOpenFile(@NonNull Context context,@Nullable String file) {
+    public static boolean getLaunchOpenFile(@NonNull Context context, @Nullable String filePath, @NonNull UriCallback callback) {
         try {
-            Intent launchOpenFile = IntentCompat.getLaunchOpenFile(context,file);
+            Intent launchOpenFile = IntentCompat.getLaunchOpenFile(context, filePath, callback);
             context.startActivity(launchOpenFile);
             return true;
         } catch (Exception e) {
@@ -220,42 +211,9 @@ public class FileCompat {
         }
     }
 
-    public static boolean getLaunchOpenFile(@NonNull Context context,@Nullable File file) {
+    public static boolean openFile(@NonNull Context context, @NonNull File file, @NonNull UriCallback callback) {
         try {
-            Intent launchOpenFile = IntentCompat.getLaunchOpenFile(context,file);
-            context.startActivity(launchOpenFile);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public static boolean getLaunchOpenFile(@NonNull Context context, @NonNull String authority, @NonNull File file) {
-        try {
-            Intent launchOpenFile = IntentCompat.getLaunchOpenFile(context,authority, file);
-            context.startActivity(launchOpenFile);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public static boolean getLaunchOpenFile(@NonNull Context context, @NonNull String authority, @Nullable String filePath) {
-        try {
-            Intent launchOpenFile = IntentCompat.getLaunchOpenFile(context, authority, filePath);
-            context.startActivity(launchOpenFile);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public static boolean openFile(@NonNull Context context, @NonNull String authority, @NonNull File file) {
-        try {
-            Intent launchOpenFile = IntentCompat.getLaunchOpenFile(context, authority, file);
+            Intent launchOpenFile = IntentCompat.getLaunchOpenFile(context, file, callback);
             context.startActivity(launchOpenFile);
             return true;
         } catch (Exception e) {
@@ -265,9 +223,9 @@ public class FileCompat {
     }
 
 
-    public static boolean openWPS(@NonNull Context context, @NonNull String filePath) {
+    public static boolean openWPS(@NonNull Context context, @Nullable String filePath, @NonNull UriCallback callback) {
         try {
-            context.startActivity(IntentCompat.getLaunchOpenWPS(context, filePath));
+            context.startActivity(IntentCompat.getLaunchOpenWPS(context, filePath, callback));
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -275,29 +233,10 @@ public class FileCompat {
         }
     }
 
-    public static boolean openWPS(@NonNull Context context, @NonNull String authority, @Nullable String filePath) {
-        try {
-            context.startActivity(IntentCompat.getLaunchOpenWPS(context, authority, filePath));
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
-    public static boolean openWPS(@NonNull Context context, @NonNull File file) {
+    public static boolean openWPS(@NonNull Context context, @NonNull File file, @NonNull UriCallback callback) {
         try {
-            context.startActivity(IntentCompat.getLaunchOpenWPS(context,file));
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public static boolean openWPS(@NonNull Context context, @NonNull String authority, @NonNull File file) {
-        try {
-            context.startActivity(IntentCompat.getLaunchOpenWPS(context,authority,file));
+            context.startActivity(IntentCompat.getLaunchOpenWPS(context, file, callback));
             return true;
         } catch (Exception e) {
             e.printStackTrace();

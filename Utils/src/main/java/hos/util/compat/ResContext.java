@@ -20,7 +20,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
-import androidx.core.content.ContextCompat;
 
 
 /**
@@ -89,17 +88,28 @@ public class ResContext {
 
     @Nullable
     public static Drawable getDrawable(@NonNull Context context, @DrawableRes int id) {
-        return ContextCompat.getDrawable(context, id);
+        if (Build.VERSION.SDK_INT >= 21) {
+            return context.getDrawable(id);
+        }
+        return context.getResources().getDrawable(id);
     }
 
     @Nullable
     public static ColorStateList getColorStateList(@NonNull Context context, @ColorRes int id) {
-        return ContextCompat.getColorStateList(context, id);
+        if (Build.VERSION.SDK_INT >= 23) {
+            return context.getColorStateList(id);
+        } else {
+            return context.getResources().getColorStateList(id);
+        }
     }
 
     @ColorInt
     public static int getColor(Context context, @ColorRes int id) {
-        return ContextCompat.getColor(context, id);
+        if (Build.VERSION.SDK_INT >= 23) {
+            return context.getColor(id);
+        } else {
+            return context.getResources().getColor(id);
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -116,4 +126,5 @@ public class ResContext {
         return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >=
                 Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
+
 }

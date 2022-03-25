@@ -16,12 +16,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import hos.util.compat.TextViewContext;
 import hos.util.listener.OnTargetListener;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * <p>Title: ViewUtils </p>
@@ -559,39 +560,44 @@ public class ViewUtils {
         if (measuredWidth == 0 || measuredHeight == 0) {
             throw new RuntimeException("调用该方法时，请确保View已经测量完毕，如果宽高为0，则抛出异常以提醒！");
         }
-        if (view instanceof RecyclerView) {
-            RecyclerView recyclerView = (RecyclerView) view;
-            recyclerView.scrollToPosition(0);
-            int width = recyclerView.getWidth();
-            recyclerView.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-            Bitmap bmp = Bitmap.createBitmap(width, measuredHeight, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bmp);
-            //draw default bg, otherwise will be black
-            Drawable background = recyclerView.getBackground();
-            if (background != null) {
-                background.setBounds(0, 0, width, measuredHeight);
-                background.draw(canvas);
-            } else {
-                canvas.drawColor(Color.WHITE);
-            }
-            recyclerView.draw(canvas);
-            //恢复高度
-            recyclerView.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
-                    View.MeasureSpec.makeMeasureSpec(recyclerView.getHeight(), View.MeasureSpec.AT_MOST));
-            return bmp;
+        Bitmap screenshot = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(screenshot);
+        Drawable background = view.getBackground();
+        if (background != null) {
+            background.setBounds(0, 0, view.getWidth(), measuredHeight);
+            background.draw(canvas);
         } else {
-            Bitmap screenshot = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(screenshot);
-            Drawable background = view.getBackground();
-            if (background != null) {
-                background.setBounds(0, 0, view.getWidth(), measuredHeight);
-                background.draw(canvas);
-            } else {
-                canvas.drawColor(Color.WHITE);
-            }
-            view.draw(canvas);// 将 view 画到画布上
-            return screenshot;
+            canvas.drawColor(Color.WHITE);
         }
+        view.draw(canvas);// 将 view 画到画布上
+        return screenshot;
+    }
+
+    /**
+     * 获取指定类型的子View
+     *
+     * @param group viewGroup
+     * @param cls   如：RecyclerView.class
+     * @param <T>
+     * @return 指定类型的View
+     */
+    public static <T> T findTypeView(@Nullable ViewGroup group, Class<T> cls) {
+        if (group == null) {
+            return null;
+        }
+        Deque<View> deque = new ArrayDeque<>();
+        deque.add(group);
+        while (!deque.isEmpty()) {
+            View node = deque.removeFirst();
+            if (cls.isInstance(node)) {
+                return cls.cast(node);
+            } else if (node instanceof ViewGroup) {
+                ViewGroup container = (ViewGroup) node;
+                for (int i = 0, count = container.getChildCount(); i < count; i++) {
+                    deque.add(container.getChildAt(i));
+                }
+            }
+        }
+        return null;
     }
 }

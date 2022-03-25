@@ -9,7 +9,6 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 
 /**
  * <p>Title: StateListUtils </p>
@@ -94,10 +93,10 @@ public class StateListContext {
     public static StateListDrawable createSelector(Context context, @DrawableRes int idNormal, @DrawableRes int idPressed, @DrawableRes int idFocused,
                                                    @DrawableRes int idUnable) {
 
-        Drawable normal = idNormal == -1 ? null : ActivityCompat.getDrawable(context, idNormal);
-        Drawable pressed = idPressed == -1 ? null : ActivityCompat.getDrawable(context, idPressed);
-        Drawable focused = idFocused == -1 ? null : ActivityCompat.getDrawable(context, idFocused);
-        Drawable unable = idUnable == -1 ? null : ActivityCompat.getDrawable(context, idUnable);
+        Drawable normal = idNormal == -1 ? null : ResContext.getDrawable(context, idNormal);
+        Drawable pressed = idPressed == -1 ? null : ResContext.getDrawable(context, idPressed);
+        Drawable focused = idFocused == -1 ? null : ResContext.getDrawable(context, idFocused);
+        Drawable unable = idUnable == -1 ? null : ResContext.getDrawable(context, idUnable);
         return createSelector(normal, pressed, focused, unable);
     }
 

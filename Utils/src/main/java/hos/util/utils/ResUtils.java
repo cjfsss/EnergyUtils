@@ -17,8 +17,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 
-import hos.core.AppCompatApplication;
-import hos.util.compat.ResAttributeContext;
+
+import hos.core.AppCompat;
 import hos.util.compat.ResContext;
 
 
@@ -34,18 +34,18 @@ import hos.util.compat.ResContext;
 public class ResUtils {
 
     private static Application getApplication() {
-        return AppCompatApplication.getAppCompatApplication();
+        return AppCompat.getApp();
     }
 
 
-    /**
-     * 获取colorPrimary的颜色,需要V7包的支持
-     *
-     * @return 0xAARRGGBB
-     */
-    public static int getColorPrimary() {
-        return ResAttributeContext.getColorPrimary(getApplication());
-    }
+//    /**
+//     * 获取colorPrimary的颜色,需要V7包的支持
+//     *
+//     * @return 0xAARRGGBB
+//     */
+//    public static int getColorPrimary() {
+//        return ResAttributeContext.getColorPrimary(getApplication());
+//    }
 
     /**
      * 判断是否是平板

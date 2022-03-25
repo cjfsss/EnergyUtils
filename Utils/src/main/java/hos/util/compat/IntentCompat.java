@@ -11,13 +11,13 @@ import android.provider.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
-
-import hos.util.utils.StringUtils;
-import hos.util.wps.WpsParams;
 
 import java.io.File;
 import java.util.List;
+
+import hos.util.listener.UriCallback;
+import hos.util.utils.StringUtils;
+import hos.util.wps.WpsParams;
 
 /**
  * <p>Title: IntentUtils </p>
@@ -37,7 +37,7 @@ public class IntentCompat {
      * @return the name of launcher activity
      */
     @NonNull
-    public static String getLauncherActivity(@NonNull Context context,@NonNull final String pkg) {
+    public static String getLauncherActivity(@NonNull Context context, @NonNull final String pkg) {
         if (StringUtils.isSpace(pkg)) return "";
         Intent intent = new Intent(Intent.ACTION_MAIN, null);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -57,8 +57,8 @@ public class IntentCompat {
      * @return the intent of launch app
      */
     @Nullable
-    public static Intent getLaunchAppIntent(@NonNull Context context,final String pkgName) {
-        String launcherActivity = getLauncherActivity(context,pkgName);
+    public static Intent getLaunchAppIntent(@NonNull Context context, final String pkgName) {
+        String launcherActivity = getLauncherActivity(context, pkgName);
         if (StringUtils.isSpace(launcherActivity)) return null;
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -96,28 +96,18 @@ public class IntentCompat {
     }
 
     @Nullable
-    public static Intent getLaunchTargetOpenFile(@NonNull Context context,@NonNull final String pkgName, @Nullable final String filePath) {
-        return getLaunchTargetOpenFile(context,  pkgName, context.getPackageName() + ".provider",filePath);
-    }
-
-    @Nullable
-    public static Intent getLaunchTargetOpenFile(@NonNull Context context,@NonNull final String pkgName, @Nullable final File file) {
-        return getLaunchTargetOpenFile(context, pkgName,context.getPackageName() + ".provider",  file);
-    }
-
-    @Nullable
     public static Intent getLaunchTargetOpenFile(@NonNull Context context, @NonNull final String pkgName,
-                                                 @NonNull String authority, @Nullable final String filePath) {
+                                                 @Nullable final String filePath, @NonNull UriCallback callback) {
         if (StringUtils.toNULL(filePath) == null) {
             return null;
         }
-        return getLaunchTargetOpenFile(context, authority, pkgName, new File(filePath));
+        return getLaunchTargetOpenFile(context, pkgName, new File(filePath), callback);
     }
 
     @Nullable
     public static Intent getLaunchTargetOpenFile(@NonNull Context context, @NonNull final String pkgName,
-                                                 @NonNull String authority, @Nullable final File file) {
-        Intent intent = getLaunchAppIntent(context,pkgName);
+                                                 @Nullable final File file, @NonNull UriCallback callback) {
+        Intent intent = getLaunchAppIntent(context, pkgName);
         if (intent == null) {
             return null;
         }
@@ -126,7 +116,7 @@ public class IntentCompat {
             // 加入读取权限 android 7.0以上时，URI不能直接暴露
             intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            uri = FileProvider.getUriForFile(context, authority, file);
+            uri = callback.getUriForFile(context, callback.getAuthority(context), file);
         } else {
             uri = Uri.fromFile(file);
         }
@@ -138,25 +128,15 @@ public class IntentCompat {
     }
 
     @Nullable
-    public static Intent getLaunchOpenFile(@NonNull Context context,@Nullable String filePath) {
-        return getLaunchOpenFile(context, context.getPackageName() + ".provider", filePath);
-    }
-
-    @NonNull
-    public static Intent getLaunchOpenFile(@NonNull Context context,@Nullable File file) {
-        return getLaunchOpenFile(context, context.getPackageName() + ".provider", file);
-    }
-
-    @Nullable
-    public static Intent getLaunchOpenFile(@NonNull Context context, @NonNull String authority, @Nullable String filePath) {
+    public static Intent getLaunchOpenFile(@NonNull Context context, @Nullable String filePath, @NonNull UriCallback callback) {
         if (StringUtils.toNULL(filePath) == null) {
             return null;
         }
-        return getLaunchOpenFile(context, authority, new File(filePath));
+        return getLaunchOpenFile(context, new File(filePath), callback);
     }
 
     @NonNull
-    public static Intent getLaunchOpenFile(@NonNull Context context, @NonNull String authority, @NonNull File file) {
+    public static Intent getLaunchOpenFile(@NonNull Context context, @NonNull File file, @NonNull UriCallback callback) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         String type = FileCompat.getFileTypeString(file.getAbsolutePath());
         final Uri uri;
@@ -164,7 +144,7 @@ public class IntentCompat {
             // 加入读取权限
             intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            uri = FileProvider.getUriForFile(context, authority, file);
+            uri = callback.getUriForFile(context, callback.getAuthority(context), file);
         } else {
             uri = Uri.fromFile(file);
         }
@@ -174,28 +154,18 @@ public class IntentCompat {
     }
 
     @Nullable
-    public static Intent getLaunchOpenWPS(@NonNull Context context, @NonNull String file) {
-        return getLaunchOpenWPS(context, context.getPackageName() + ".provider", file);
-    }
-
-    @Nullable
-    public static Intent getLaunchOpenWPS(@NonNull Context context, @NonNull String authority, @Nullable String filePath) {
+    public static Intent getLaunchOpenWPS(@NonNull Context context, @Nullable String filePath, @NonNull UriCallback callback) {
         if (StringUtils.toNULL(filePath) == null) {
             return null;
         }
-        return getLaunchOpenWPS(context, authority, new File(filePath));
+        return getLaunchOpenWPS(context, new File(filePath), callback);
     }
 
     @Nullable
-    public static Intent getLaunchOpenWPS(@NonNull Context context, @NonNull File file) {
-        return getLaunchOpenWPS(context, context.getPackageName() + ".provider", file);
-    }
-
-    @Nullable
-    public static Intent getLaunchOpenWPS(@NonNull Context context, @NonNull String authority, @NonNull File file) {
+    public static Intent getLaunchOpenWPS(@NonNull Context context, @NonNull File file, @NonNull UriCallback callback) {
         // wps存在,打开WPS
         Intent intent = IntentCompat.getLaunchTargetOpenFile(
-                context, WpsParams.PackageName.NORMAL, authority, file);
+                context, WpsParams.PackageName.NORMAL, file, callback);
         if (intent == null) {
             return null;
         }
@@ -239,5 +209,26 @@ public class IntentCompat {
     @NonNull
     public static Intent getLaunchUrl(@NonNull String url) {
         return new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+    }
+
+
+    public static boolean launchUrl(@NonNull Context context, @NonNull String url) {
+        try {
+            context.startActivity(IntentCompat.getLaunchUrl(url));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean launchMarket(@NonNull Context context, @NonNull String packageName) {
+        try {
+            context.startActivity(IntentCompat.getLaunchMarket(packageName));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
