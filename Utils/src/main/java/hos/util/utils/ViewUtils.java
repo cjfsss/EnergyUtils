@@ -3,7 +3,9 @@ package hos.util.utils;
 import android.animation.Animator;
 import android.animation.IntEvaluator;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -597,6 +599,26 @@ public class ViewUtils {
                     deque.add(container.getChildAt(i));
                 }
             }
+        }
+        return null;
+    }
+
+    public static boolean isActivityDestroyed(Context context) {
+        Activity activity = findActivity(context);
+        if (activity != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                return activity.isDestroyed() || activity.isFinishing();
+            }
+            return activity.isFinishing();
+        }
+        return true;
+    }
+
+    @Nullable
+    public static Activity findActivity(Context context) {
+        if (context instanceof Activity) return (Activity) context;
+        else if (context instanceof ContextWrapper) {
+            return findActivity(((ContextWrapper) context).getBaseContext());
         }
         return null;
     }

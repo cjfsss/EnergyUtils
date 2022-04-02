@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import java.io.File;
 import java.util.List;
 
+import hos.core.AppCompat;
 import hos.util.listener.UriCallback;
 import hos.util.utils.StringUtils;
 import hos.util.wps.WpsParams;
@@ -29,6 +30,17 @@ import hos.util.wps.WpsParams;
  * @date : 2021/7/12 13:45
  */
 public class IntentCompat {
+
+    //拉起浏览器
+    public static void startActivity4Browser(String url) {
+        Uri uri = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //这个目的是为了 防止在部分机型上面 拉不起浏览器，，比说华为
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        // 是为了 使用applicaiton  context 启动activity 不会报错
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        AppCompat.getApp().startActivity(intent);
+    }
 
     /**
      * Return the name of launcher activity.

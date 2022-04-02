@@ -47,19 +47,6 @@ public class ResUtils {
 //        return ResAttributeContext.getColorPrimary(getApplication());
 //    }
 
-    /**
-     * 判断是否是平板
-     *
-     * @return {@code true}: 是<br>{@code false}: 否
-     */
-    public static boolean isTablet(Context context) {
-        if (context == null) {
-            context = getApplication();
-        }
-        return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >=
-                Configuration.SCREENLAYOUT_SIZE_LARGE;
-    }
-
 
     /**
      * 获取字符串
