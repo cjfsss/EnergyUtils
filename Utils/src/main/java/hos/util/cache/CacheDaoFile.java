@@ -2,6 +2,10 @@ package hos.util.cache;
 
 import java.io.File;
 
+import hos.util.func.Function1;
+import hos.util.singleton.ISingletonWrapper;
+import hos.util.singleton.SingletonWeakManager;
+
 /**
  * <p>Title: CacheDaoImpl </p>
  * <p>Description:  </p>
@@ -11,7 +15,16 @@ import java.io.File;
  * @version : 1.0
  * @date : 2022/4/2 17:49
  */
-public class CacheDaoFile implements CacheDao {
+public class CacheDaoFile implements CacheDao, ISingletonWrapper {
+
+    public static CacheDaoFile get() {
+        return SingletonWeakManager.get().getInstance(CacheDaoFile.class, new Function1<Class<CacheDaoFile>, CacheDaoFile>() {
+            @Override
+            public CacheDaoFile invoke(Class<CacheDaoFile> cacheDao) {
+                return new CacheDaoFile();
+            }
+        });
+    }
 
     @Override
     public Cache getCache(String key) {
@@ -22,8 +35,7 @@ public class CacheDaoFile implements CacheDao {
 
     @Override
     public boolean deleteCache(Cache cache) {
-        File cacheFile = CacheUtils.getCacheFile(cache);
-        return CacheUtils.deleteFile(cacheFile);
+        return deleteCache(cache.getKey());
     }
 
     @Override
