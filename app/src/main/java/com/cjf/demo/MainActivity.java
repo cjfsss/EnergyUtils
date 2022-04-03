@@ -1,5 +1,6 @@
 package com.cjf.demo;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.cjf.demo.databinding.ActivityMainBinding;
 
 import hos.util.cache.StorageFile;
 import hos.util.cache.StorageSp;
+import hos.util.fps.FpsMonitor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            FpsMonitor.toggle();
+        }
         activityMainBinding.btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

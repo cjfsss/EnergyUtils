@@ -1,5 +1,6 @@
 package hos.util.fps;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -34,13 +35,14 @@ import hos.util.utils.ResUtils;
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class FpsMonitor {
 
-    private FpsViewer fpsViewer = new FpsViewer();
+    @SuppressLint("StaticFieldLeak")
+    private static final FpsViewer fpsViewer = new FpsViewer();
 
-    public void toggle() {
+    public static void toggle() {
         fpsViewer.toggle();
     }
 
-    public void listener(FpsCallback callback) {
+    public static void listener(FpsCallback callback) {
         fpsViewer.addListener(callback);
     }
 
@@ -73,7 +75,7 @@ public class FpsMonitor {
             fpsView.setPadding(dp2, dp2, dp2, dp2);
             fpsView.setBackgroundResource(android.R.color.darker_gray);
             fpsView.setTextColor(ResUtils.getColor(android.R.color.white));
-            fpsView.setShadowLayer(4, 6, 6, Color.parseColor("#7000"));
+            fpsView.setShadowLayer(4, 6, 6, Color.parseColor("#700000"));
             return fpsView;
         }
 
