@@ -27,6 +27,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = false
+    }
 }
 
 dependencies {
@@ -38,4 +42,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(path: ':Utils')
+    implementation 'androidx.annotation:annotation:1.3.0'
+    implementation 'com.github.cjfsss:EnergyCore:0.0.4'
 }

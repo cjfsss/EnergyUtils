@@ -7,6 +7,7 @@ import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Type;
 import java.util.Objects;
 
@@ -52,8 +53,8 @@ public interface NetConverter {
             if (succeed == File.class) {
                 return (R) response;
             }
-            if (succeed == Byte.class) {
-                return (R) Byte.valueOf(response.toString());
+            if (succeed instanceof GenericArrayType &&succeed == Byte.class) {
+                return (R) response;
             }
             if (succeed == Boolean.class) {
                 return (R) Boolean.valueOf(response.toString());
