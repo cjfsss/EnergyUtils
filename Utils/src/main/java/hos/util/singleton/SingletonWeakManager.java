@@ -4,6 +4,7 @@ package hos.util.singleton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.lang.ref.WeakReference;
 import java.util.WeakHashMap;
 
 import hos.util.func.Function1;
@@ -14,7 +15,7 @@ import hos.util.func.Function1;
  */
 public final class SingletonWeakManager implements ISingletonManager {
 
-    private WeakHashMap<Class<?>, ISingletonWrapper> mMap;
+    private WeakHashMap<Class<?>, WeakReference<ISingletonWrapper>> mMap;
 
     private SingletonWeakManager() {
     }
@@ -42,11 +43,15 @@ public final class SingletonWeakManager implements ISingletonManager {
 
     @Nullable
     private <P extends ISingletonWrapper> P getInstance(Class<P> key) {
-        ISingletonWrapper singletonWrapper = get().getSingletonWrappers().get(key);
+        WeakReference<ISingletonWrapper> singletonWrapper = get().getSingletonWrappers().get(key);
         if (singletonWrapper == null) {
             return null;
         }
-        return key.cast(singletonWrapper);
+        ISingletonWrapper wrapper = singletonWrapper.get();
+        if (wrapper == null) {
+            return null;
+        }
+        return key.cast(wrapper);
     }
 
     /**
@@ -67,7 +72,7 @@ public final class SingletonWeakManager implements ISingletonManager {
 
 
     @NonNull
-    private WeakHashMap<Class<?>, ISingletonWrapper> getSingletonWrappers() {
+    private WeakHashMap<Class<?>, WeakReference<ISingletonWrapper>> getSingletonWrappers() {
         if (mMap != null) {
             return mMap;
         }
@@ -76,7 +81,7 @@ public final class SingletonWeakManager implements ISingletonManager {
 
     private <P extends ISingletonWrapper> void register(@NonNull Class<P> key,
                                                         @NonNull ISingletonWrapper ifWrapper) {
-        get().getSingletonWrappers().put(key, ifWrapper);
+        get().getSingletonWrappers().put(key, new WeakReference<>(ifWrapper));
     }
 
 

@@ -46,4 +46,8 @@ public class StorageFile {
         return cacheDao.deleteCache(key);
     }
 
+    public static boolean clear() {
+        return CacheUtils.clearCache();
+    }
+
 }

@@ -85,5 +85,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        activityMainBinding.btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long start = System.currentTimeMillis();
+                boolean clearSp = StorageSp.clear();
+                boolean clearFile = StorageFile.clear();
+                long end = System.currentTimeMillis();
+                Log.i("TAG", "time: " + (end - start));
+                Toast.makeText(MainActivity.this, "结果：sp:" + clearSp + " file:" + clearFile, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

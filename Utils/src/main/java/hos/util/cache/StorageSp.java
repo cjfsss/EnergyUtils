@@ -46,4 +46,8 @@ public class StorageSp {
         return cacheDao.deleteCache(key);
     }
 
+    public static boolean clear() {
+        CacheDao cacheDao = CacheDaoSharedPreferences.get();
+        return cacheDao.clear();
+    }
 }

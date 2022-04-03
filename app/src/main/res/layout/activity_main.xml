@@ -41,4 +41,10 @@
         android:layout_height="wrap_content"
         android:text="读取对象SP" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="清除缓存" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>

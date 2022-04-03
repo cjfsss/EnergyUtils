@@ -18,4 +18,6 @@ public interface CacheDao {
     boolean deleteCache(String key);
 
     boolean saveCache(Cache cache);
+
+    boolean clear();
 }

@@ -18,7 +18,7 @@ import hos.util.singleton.SingletonWeakManager;
  * @version : 1.0
  * @date : 2022/4/2 17:49
  */
-public class CacheDaoSharedPreferences implements CacheDao, ISingletonWrapper {
+class CacheDaoSharedPreferences implements CacheDao, ISingletonWrapper {
 
     private SharedPreferences sp() {
         return AppCompat.getApp().getSharedPreferences("cache", Context.MODE_PRIVATE);
@@ -73,6 +73,21 @@ public class CacheDaoSharedPreferences implements CacheDao, ISingletonWrapper {
                 sp().edit().putString(cache.getKey(), new String(data)).apply();
             } else {
                 sp().edit().putString(cache.getKey(), new String(data)).commit();
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean clear() {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+                sp().edit().clear().apply();
+            } else {
+                sp().edit().clear().commit();
             }
             return true;
         } catch (Exception e) {

@@ -14,6 +14,7 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -37,12 +38,17 @@ import hos.util.listener.OnProgressUpdateListener;
  */
 public class CacheUtils {
 
-    public static File getCacheFile(Cache cache) {
+    static boolean clearCache() {
+        File cacheDir = AppCompat.getApp().getCacheDir();
+        return deleteAllInDir(cacheDir.getAbsolutePath() + File.separator + "cache");
+    }
+
+    static File getCacheFile(Cache cache) {
         return getCacheFile(cache.getKey());
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static File getCacheFile(String key) {
+     static File getCacheFile(String key) {
         File cacheDir = AppCompat.getApp().getCacheDir();
         File cacheFile = new File(cacheDir.getAbsolutePath() + File.separator + "cache", key + ".cache");
         if (!isFileExists(cacheFile)) {
@@ -209,6 +215,84 @@ public class CacheUtils {
         return file != null && (!file.exists() || file.isFile() && file.delete());
     }
 
+    /**
+     * Delete the all in directory.
+     *
+     * @param dirPath The path of directory.
+     * @return {@code true}: success<br>{@code false}: fail
+     */
+    public static boolean deleteAllInDir(final String dirPath) {
+        return deleteAllInDir(new File(dirPath));
+    }
+
+    /**
+     * Delete the all in directory.
+     *
+     * @param dir The directory.
+     * @return {@code true}: success<br>{@code false}: fail
+     */
+    public static boolean deleteAllInDir(final File dir) {
+        return deleteFilesInDirWithFilter(dir, new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                return true;
+            }
+        });
+    }
+
+
+    /**
+     * Delete all files that satisfy the filter in directory.
+     *
+     * @param dir    The directory.
+     * @param filter The filter.
+     * @return {@code true}: success<br>{@code false}: fail
+     */
+    public static boolean deleteFilesInDirWithFilter(final File dir, final FileFilter filter) {
+        if (dir == null || filter == null) return false;
+        // dir doesn't exist then return true
+        if (!dir.exists()) return true;
+        // dir isn't a directory then return false
+        if (!dir.isDirectory()) return false;
+        File[] files = dir.listFiles();
+        if (files != null && files.length != 0) {
+            for (File file : files) {
+                if (filter.accept(file)) {
+                    if (file.isFile()) {
+                        if (!file.delete()) return false;
+                    } else if (file.isDirectory()) {
+                        if (!deleteDir(file)) return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Delete the directory.
+     *
+     * @param dir The directory.
+     * @return {@code true}: success<br>{@code false}: fail
+     */
+    private static boolean deleteDir(final File dir) {
+        if (dir == null) return false;
+        // dir doesn't exist then return true
+        if (!dir.exists()) return true;
+        // dir isn't a directory then return false
+        if (!dir.isDirectory()) return false;
+        File[] files = dir.listFiles();
+        if (files != null && files.length > 0) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    if (!file.delete()) return false;
+                } else if (file.isDirectory()) {
+                    if (!deleteDir(file)) return false;
+                }
+            }
+        }
+        return dir.delete();
+    }
 
     /**
      * Write file from bytes by stream.

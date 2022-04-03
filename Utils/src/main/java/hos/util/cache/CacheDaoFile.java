@@ -15,7 +15,7 @@ import hos.util.singleton.SingletonWeakManager;
  * @version : 1.0
  * @date : 2022/4/2 17:49
  */
-public class CacheDaoFile implements CacheDao, ISingletonWrapper {
+class CacheDaoFile implements CacheDao, ISingletonWrapper {
 
     public static CacheDaoFile get() {
         return SingletonWeakManager.get().getInstance(CacheDaoFile.class, new Function1<Class<CacheDaoFile>, CacheDaoFile>() {
@@ -48,5 +48,10 @@ public class CacheDaoFile implements CacheDao, ISingletonWrapper {
     public boolean saveCache(Cache cache) {
         File cacheFile = CacheUtils.getCacheFile(cache);
         return CacheUtils.writeFileFromBytesByStream(cacheFile,cache.getData());
+    }
+
+    @Override
+    public boolean clear() {
+        return CacheUtils.clearCache();
     }
 }
