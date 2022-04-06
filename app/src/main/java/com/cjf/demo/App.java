@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 
 import hos.core.ActivityManager;
 import hos.core.AppCompat;
+import hos.util.carash.CrashHandler;
 import hos.util.log.HiConsolePrinter;
 import hos.util.log.HiLog;
 import hos.util.log.HiLogConfig;
@@ -25,8 +26,9 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        AppCompat.getInstance().init(this);
-        ActivityManager.getInstance().init(this);
+        AppCompat.init(this);
+        ActivityManager.init(this);
+        CrashHandler.init();
         HiLogManager.init(new HiLogConfig() {
             @Override
             public JsonParser injectJsonParser() {
