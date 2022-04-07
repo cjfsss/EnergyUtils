@@ -2,6 +2,7 @@ package com.cjf.demo;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -11,6 +12,9 @@ import androidx.core.view.ViewCompat;
 
 import com.cjf.demo.databinding.ActivityMainBinding;
 
+import hos.location.LocationSource;
+import hos.location.LocationSourceAndroidData;
+import hos.location.LocationSourceAndroidDataCache;
 import hos.util.cache.StorageFile;
 import hos.util.cache.StorageSp;
 import hos.util.fps.FpsMonitor;
@@ -19,11 +23,15 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding activityMainBinding;
 
+    private LocationSource locationSource = null;
+    private LocationSource.Location location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(activityMainBinding.getRoot());
+        locationSource = new LocationSourceAndroidDataCache(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             FpsMonitor.toggle();
         }
@@ -46,7 +54,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 long start = System.currentTimeMillis();
                 User user = new User(System.currentTimeMillis(), "张三", "12345678", false);
-                boolean isSuccess = StorageFile.saveCache("user", user);
+                if (location == null) {
+                    location = locationSource.getLocation();
+                }
+                boolean isSuccess = StorageFile.saveCache("location", location);
+                if (location instanceof LocationSourceAndroidData.LocationData) {
+                    StorageFile.saveCache("androidLocation", (Parcelable) ((LocationSourceAndroidData.LocationData) location).getLocation());
+                }
                 long end = System.currentTimeMillis();
                 Log.i("TAG", "time: " + (end - start));
                 Toast.makeText(MainActivity.this, "是否成功：" + isSuccess, Toast.LENGTH_SHORT).show();
@@ -56,10 +70,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 long start = System.currentTimeMillis();
-                User value = StorageFile.getCache("user");
+                LocationSource.Location value = StorageFile.getCache("location", LocationSource.Location.CREATOR);
                 long end = System.currentTimeMillis();
                 Log.i("TAG", "time: " + (end - start));
                 if (value != null) {
+                    android.location.Location androidLocation = StorageFile.getCache("androidLocation", android.location.Location.CREATOR);
+                    if (androidLocation == null) {
+                        value = new LocationSourceAndroidData.LocationData(value);
+                    } else {
+                        value = new LocationSourceAndroidData.LocationData(value, androidLocation);
+                    }
                     Toast.makeText(MainActivity.this, "结果：" + value.toString(), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, "结果：失败", Toast.LENGTH_SHORT).show();
@@ -102,5 +122,18 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "结果：sp:" + clearSp + " file:" + clearFile, Toast.LENGTH_SHORT).show();
             }
         });
+        locationSource.addLocationChangedListener(new LocationSource.LocationChangedListener() {
+            @Override
+            public void locationChanged(LocationSource.LocationChangedEvent locationChangedEvent) {
+                location = locationChangedEvent.getLocation();
+            }
+        });
+        locationSource.startLocation();
+    }
+
+    @Override
+    protected void onDestroy() {
+        locationSource.stopLocation();
+        super.onDestroy();
     }
 }
