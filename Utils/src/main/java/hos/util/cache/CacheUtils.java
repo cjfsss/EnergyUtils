@@ -4,6 +4,8 @@ import android.content.ContentResolver;
 import android.content.res.AssetFileDescriptor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -456,6 +458,32 @@ public class CacheUtils {
             }
         }
         return null;
+    }
+
+    /**
+     * Parcelable to bytes.
+     */
+    public static byte[] parcelable2Bytes(final Parcelable parcelable) {
+        if (parcelable == null) return null;
+        Parcel parcel = Parcel.obtain();
+        parcelable.writeToParcel(parcel, 0);
+        byte[] bytes = parcel.marshall();
+        parcel.recycle();
+        return bytes;
+    }
+
+    /**
+     * Bytes to Parcelable
+     */
+    public static <T> T bytes2Parcelable(final byte[] bytes,
+                                         final Parcelable.Creator<T> creator) {
+        if (bytes == null) return null;
+        Parcel parcel = Parcel.obtain();
+        parcel.unmarshall(bytes, 0, bytes.length);
+        parcel.setDataPosition(0);
+        T result = creator.createFromParcel(parcel);
+        parcel.recycle();
+        return result;
     }
 
 }

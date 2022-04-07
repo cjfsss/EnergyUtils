@@ -38,7 +38,7 @@ class FrameMonitor implements Choreographer.FrameCallback {
             frameCount++;
             if (timeSpan > 1000) {
                 double fps = frameCount * 1000 / (timeSpan * 1.0D);
-                HiLog.e("FrameMonitor", fps);
+//                HiLog.e("FrameMonitor", fps);
                 if (listeners != null) {
                     for (FpsMonitor.FpsCallback listener : listeners) {
                         listener.onFrame(fps);
