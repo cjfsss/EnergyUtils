@@ -18,19 +18,6 @@ import java.io.File;
  */
 public interface UriCallback {
 
-    Uri getUriForFile(@NonNull Context context, @NonNull String authority,
-                      @NonNull File file);
+    Uri getUriForFile(@NonNull Context context, @NonNull File file);
 
-    @NonNull
-    String getAuthority(@NonNull Context context);
-
-    interface UriCallbackFile extends UriCallback {
-        @NonNull
-        @Override
-        default String getAuthority(@NonNull Context context) {
-            return context.getPackageName() + ".provider";
-        }
-
-        ;
-    }
 }
