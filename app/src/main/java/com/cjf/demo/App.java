@@ -8,7 +8,6 @@ import hos.core.ActivityManager;
 import hos.core.AppCompat;
 import hos.util.carash.CrashHandler;
 import hos.util.log.HiConsolePrinter;
-import hos.util.log.HiLog;
 import hos.util.log.HiLogConfig;
 import hos.util.log.HiLogManager;
 
@@ -22,7 +21,6 @@ import hos.util.log.HiLogManager;
  * @date : 2022/4/3 10:17
  */
 public class App extends Application {
-
 
     @Override
     public void onCreate() {
