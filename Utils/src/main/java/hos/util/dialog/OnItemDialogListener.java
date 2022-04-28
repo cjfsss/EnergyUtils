@@ -1,7 +1,5 @@
 package hos.util.dialog;
 
-import hos.util.listener.OnTargetListener;
-
 /**
  * <p>Title: OnItemDialogListener </p>
  * <p>Description:  </p>
