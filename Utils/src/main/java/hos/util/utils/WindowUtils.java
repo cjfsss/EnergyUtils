@@ -116,4 +116,29 @@ public class WindowUtils {
         }
         window.setAttributes(wlp);
     }
+
+    /**
+     * @param window 框口
+     */
+    public static void applyFull(Window window) {
+        applyFull(window, 0);
+    }
+
+    /**
+     * @param window 框口
+     */
+    public static void applyFull(Window window, @StyleRes int resId) {
+        // 设置宽度为屏宽、位置靠近屏幕底部
+        window.setBackgroundDrawableResource(android.R.color.white);
+        window.getDecorView().setPadding(0, 0, 0, 0);
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        wlp.gravity = Gravity.CENTER;
+        wlp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        wlp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        // 设置动画
+        if (resId != 0) {
+            window.setWindowAnimations(resId);
+        }
+        window.setAttributes(wlp);
+    }
 }
