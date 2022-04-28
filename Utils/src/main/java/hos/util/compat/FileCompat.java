@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 import java.io.File;
 
+import hos.core.AppCompat;
 import hos.util.listener.UriCallback;
 
 /**
@@ -165,8 +166,8 @@ public class FileCompat {
         }
     }
 
-    public static boolean getLaunchTargetOpenFile(@NonNull Context context, @NonNull final String pkgName,
-                                                  @Nullable final String filePath, @NonNull UriCallback callback) {
+    public static boolean openTargetFile(@NonNull Context context, @NonNull final String pkgName,
+                                         @Nullable final String filePath, @NonNull UriCallback callback) {
         try {
             Intent launchOpenFile = IntentCompat.getLaunchTargetOpenFile(context, pkgName, filePath, callback);
             context.startActivity(launchOpenFile);
@@ -177,8 +178,8 @@ public class FileCompat {
         }
     }
 
-    public static boolean getLaunchTargetOpenFile(@NonNull Context context, @NonNull final String pkgName,
-                                                  @Nullable final File file, @NonNull UriCallback callback) {
+    public static boolean openTargetFile(@NonNull Context context, @NonNull final String pkgName,
+                                         @Nullable final File file, @NonNull UriCallback callback) {
         try {
             Intent launchOpenFile = IntentCompat.getLaunchTargetOpenFile(context, pkgName, file, callback);
             context.startActivity(launchOpenFile);
@@ -189,18 +190,7 @@ public class FileCompat {
         }
     }
 
-    public static boolean getLaunchOpenFile(@NonNull Context context, @NonNull File file, @NonNull UriCallback callback) {
-        try {
-            Intent launchOpenFile = IntentCompat.getLaunchOpenFile(context, file, callback);
-            context.startActivity(launchOpenFile);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public static boolean getLaunchOpenFile(@NonNull Context context, @Nullable String filePath, @NonNull UriCallback callback) {
+    public static boolean openFile(@NonNull Context context, @Nullable String filePath, @NonNull UriCallback callback) {
         try {
             Intent launchOpenFile = IntentCompat.getLaunchOpenFile(context, filePath, callback);
             context.startActivity(launchOpenFile);
@@ -243,4 +233,63 @@ public class FileCompat {
             return false;
         }
     }
+
+
+    public static boolean openBrowser(@NonNull Context context, @NonNull String url) {
+        try {
+            context.startActivity(IntentCompat.getLaunchUrl(url));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean openMarket(@NonNull Context context, @NonNull String packageName) {
+        try {
+            context.startActivity(IntentCompat.getLaunchMarket(packageName));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean openTargetFile(@NonNull final String pkgName,
+                                         @Nullable final String filePath, @NonNull UriCallback callback) {
+        return openTargetFile(AppCompat.getApp(), pkgName, filePath, callback);
+    }
+
+    public static boolean openTargetFile(@NonNull final String pkgName,
+                                         @Nullable final File file, @NonNull UriCallback callback) {
+        return openTargetFile(AppCompat.getApp(), pkgName, file, callback);
+    }
+
+    public static boolean openFile(@Nullable String filePath, @NonNull UriCallback callback) {
+        return openFile(AppCompat.getApp(), filePath, callback);
+    }
+
+    public static boolean openFile(@NonNull File file, @NonNull UriCallback callback) {
+        return openFile(AppCompat.getApp(), file, callback);
+    }
+
+
+    public static boolean openWPS(@Nullable String filePath, @NonNull UriCallback callback) {
+        return openWPS(AppCompat.getApp(), filePath, callback);
+    }
+
+
+    public static boolean openWPS(@NonNull File file, @NonNull UriCallback callback) {
+        return openWPS(AppCompat.getApp(), file, callback);
+    }
+
+
+    public static boolean openBrowser(@NonNull String url) {
+        return openBrowser(AppCompat.getApp(), url);
+    }
+
+    public static boolean openMarket(@NonNull String packageName) {
+        return openMarket(AppCompat.getApp(), packageName);
+    }
+
 }
