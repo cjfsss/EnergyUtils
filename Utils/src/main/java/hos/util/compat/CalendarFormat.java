@@ -13,6 +13,7 @@ public interface CalendarFormat {
 
     String full = "yyyy-MM-dd HH:mm:ss";
     String y_mo_d_h_m = "yyyy-MM-dd HH:mm";
+    String y_mo_d_h = "yyyy-MM-dd HH";
     String y_mo_d = "yyyy-MM-dd";
     String y_mo = "yyyy-MM";
     String y = "yyyy";
