@@ -2,6 +2,8 @@ package hos.util.dialog;
 
 import android.widget.ListAdapter;
 
+import hos.util.listener.OnTargetListener;
+
 /**
  * <p>Title: ChoiceDialogImpl </p>
  * <p>Description:  </p>
@@ -18,6 +20,11 @@ public abstract class ChoiceDialogImpl<P extends ChoiceDialogImpl<P>> extends Di
     protected int checkedPosition;
     protected int[] checkedPositions;
     protected OnItemDialogListener<P> listener;
+
+    protected CharSequence confirm;
+    protected CharSequence cancel;
+    protected OnTargetListener<P> confirmFunction;
+    protected OnTargetListener<P> cancelFunction;
 
     @Override
     public P setItem(int itemId) {
@@ -56,12 +63,28 @@ public abstract class ChoiceDialogImpl<P extends ChoiceDialogImpl<P>> extends Di
     }
 
     @Override
+    public P setConfirm(CharSequence confirm, OnTargetListener<P> confirmFunction) {
+        this.confirm = confirm;
+        this.confirmFunction = confirmFunction;
+        return (P) this;
+    }
+
+    @Override
+    public P setCancel(CharSequence cancel, OnTargetListener<P> cancelFunction) {
+        this.cancel = cancel;
+        this.cancelFunction = cancelFunction;
+        return (P) this;
+    }
+
+    @Override
     @Deprecated
     public void setProgress(int value) {
 
     }
 
-    public void clear(){
+    public void clear() {
         listener = null;
+        confirmFunction = null;
+        cancelFunction = null;
     }
 }

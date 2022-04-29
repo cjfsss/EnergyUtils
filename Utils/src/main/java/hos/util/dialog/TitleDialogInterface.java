@@ -23,6 +23,14 @@ public interface TitleDialogInterface<P extends TitleDialogInterface<P>> extends
 
     P setConfirm(CharSequence confirm, final OnTargetListener<P> confirmFunction);
 
+    default P setConfirm(final OnTargetListener<P> confirmFunction) {
+        return setConfirm("确定", confirmFunction);
+    }
+
+    default P setCancel(final OnTargetListener<P> cancelFunction) {
+        return setCancel("取消", cancelFunction);
+    }
+
     default P setConfirm(@StringRes int confirmId, final OnTargetListener<P> confirmFunction) {
         return setConfirm(ResUtils.getString(confirmId), confirmFunction);
     }
@@ -40,50 +48,50 @@ public interface TitleDialogInterface<P extends TitleDialogInterface<P>> extends
     }
 
     default P showTip(CharSequence title, final OnTargetListener<P> confirmFunction) {
-        return setTitle(title).setConfirm("确定", confirmFunction);
+        return setTitle(title).setConfirm(confirmFunction);
     }
 
     default P showTip(@StringRes int title, final OnTargetListener<P> confirmFunction) {
-        return setTitle(title).setConfirm("确定", confirmFunction);
+        return setTitle(title).setConfirm(confirmFunction);
     }
 
     default P showContent(CharSequence title, CharSequence content, final OnTargetListener<P> confirmFunction) {
-        return setTitle(title).setContent(content).setConfirm("确定", confirmFunction);
+        return setTitle(title).setContent(content).setConfirm(confirmFunction);
     }
 
     default P showContent(@StringRes int title, @StringRes int contentId, final OnTargetListener<P> confirmFunction) {
-        return setTitle(title).setContent(contentId).setConfirm("确定", confirmFunction);
+        return setTitle(title).setContent(contentId).setConfirm(confirmFunction);
     }
 
     default P showContent(CharSequence content, final OnTargetListener<P> confirmFunction) {
-        return setTitle("温馨提示").setContent(content).setConfirm("确定", confirmFunction);
+        return setTitle("温馨提示").setContent(content).setConfirm(confirmFunction);
     }
 
     default P showContent(@StringRes int contentId, final OnTargetListener<P> confirmFunction) {
-        return setTitle("温馨提示").setContent(contentId).setConfirm("确定", confirmFunction);
+        return setTitle("温馨提示").setContent(contentId).setConfirm(confirmFunction);
     }
 
     default P showTip(CharSequence title, final OnTargetListener<P> confirmFunction, final OnTargetListener<P> cancelFunction) {
-        return setTitle(title).setConfirm("确定", confirmFunction).setCancel("取消", cancelFunction);
+        return setTitle(title).setConfirm(confirmFunction).setCancel(cancelFunction);
     }
 
     default P showTip(@StringRes int title, final OnTargetListener<P> confirmFunction, final OnTargetListener<P> cancelFunction) {
-        return setTitle(title).setConfirm("确定", confirmFunction).setCancel("取消", cancelFunction);
+        return setTitle(title).setConfirm(confirmFunction).setCancel(cancelFunction);
     }
 
     default P showContent(CharSequence title, CharSequence content, final OnTargetListener<P> confirmFunction, final OnTargetListener<P> cancelFunction) {
-        return setTitle(title).setContent(content).setConfirm("确定", confirmFunction).setCancel("取消", cancelFunction);
+        return setTitle(title).setContent(content).setConfirm(confirmFunction).setCancel(cancelFunction);
     }
 
     default P showContent(@StringRes int title, @StringRes int contentId, final OnTargetListener<P> confirmFunction, final OnTargetListener<P> cancelFunction) {
-        return setTitle(title).setContent(contentId).setConfirm("确定", confirmFunction).setCancel("取消", cancelFunction);
+        return setTitle(title).setContent(contentId).setConfirm(confirmFunction).setCancel(cancelFunction);
     }
 
     default P showContent(CharSequence content, final OnTargetListener<P> confirmFunction, final OnTargetListener<P> cancelFunction) {
-        return setTitle("温馨提示").setContent(content).setConfirm("确定", confirmFunction).setCancel("取消", cancelFunction);
+        return setTitle("温馨提示").setContent(content).setConfirm(confirmFunction).setCancel(cancelFunction);
     }
 
     default P showContent(@StringRes int contentId, final OnTargetListener<P> confirmFunction, final OnTargetListener<P> cancelFunction) {
-        return setTitle("温馨提示").setContent(contentId).setConfirm("确定", confirmFunction).setCancel("取消", cancelFunction);
+        return setTitle("温馨提示").setContent(contentId).setConfirm(confirmFunction).setCancel(cancelFunction);
     }
 }
