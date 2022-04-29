@@ -24,6 +24,7 @@ public interface CalendarFormat {
 
     String zh_full = "yyyy年MM月dd日 HH时mm分ss秒";
     String zh_y_mo_d_h_m = "yyyy年MM月dd日 HH时mm分";
+    String zh_y_mo_d_h = "yyyy年MM月dd日 HH时";
     String zh_y_mo_d = "yyyy年MM月dd日";
     String zh_y_mo = "yyyy年MM月";
     String zh_y = "yyyy年";
