@@ -1,9 +1,12 @@
 package hos.util.utils;
 
+import android.util.Pair;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -191,5 +194,31 @@ public class MapUtils {
     @Nullable
     public static <K, V> String getTime(@Nullable Map<K, V> map, @NonNull String key) {
         return getTime(map, key, null);
+    }
+
+    @Nullable
+    public static List<Pair<String, Object>> toPair(@Nullable Map<String, Object> map) {
+        if (map == null) {
+            return null;
+        }
+        Set<String> keySet = map.keySet();
+        List<Pair<String, Object>> list = new ArrayList<>();
+        for (String key : keySet) {
+            list.add(new Pair<String, Object>(key, map.get(key)));
+        }
+        return list;
+    }
+
+    @SafeVarargs
+    @Nullable
+    public static Map<String, Object> toMap(@Nullable Pair<String, Object>... pairs) {
+        if (pairs == null) {
+            return null;
+        }
+        Map<String, Object> map = new HashMap<>();
+        for (Pair<String, Object> pair : pairs) {
+            map.put(pair.first, pair.second);
+        }
+        return map;
     }
 }
