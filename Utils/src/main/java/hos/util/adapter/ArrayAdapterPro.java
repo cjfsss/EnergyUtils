@@ -79,7 +79,7 @@ public class ArrayAdapterPro<T> extends ArrayAdapter<T> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View target = super.getView(position, convertView, parent);
-        if (target instanceof TextView && mTextColor != 0) {
+        if (target instanceof TextView) {
             ((TextView) target).setTextColor(mTextColor);
         }
         return target;
@@ -88,7 +88,7 @@ public class ArrayAdapterPro<T> extends ArrayAdapter<T> {
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View target = super.getDropDownView(position, convertView, parent);
-        if (target instanceof TextView && mTextColor != 0) {
+        if (target instanceof TextView) {
             ((TextView) target).setTextColor(mTextColor);
         }
         return target;
