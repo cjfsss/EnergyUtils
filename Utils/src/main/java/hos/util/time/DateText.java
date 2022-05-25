@@ -16,6 +16,7 @@ import java.util.Calendar;
 import hos.util.compat.CalendarCompat;
 import hos.util.compat.CalendarConvert;
 import hos.util.compat.CalendarFormat;
+import hos.util.toast.ToastX;
 
 
 /**
@@ -73,6 +74,20 @@ public class DateText extends TimeView {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        if (isThisDay()) {
+                            if (calendar.get(Calendar.YEAR) != year) {
+                                ToastX.showShort("请选择当天的日期");
+                                return;
+                            }
+                            if (calendar.get(Calendar.MONTH) != month) {
+                                ToastX.showShort("请选择当天的日期");
+                                return;
+                            }
+                            if (calendar.get(Calendar.DAY_OF_MONTH) != dayOfMonth) {
+                                ToastX.showShort("请选择当天的日期");
+                                return;
+                            }
+                        }
                         calendar.set(Calendar.YEAR, year);
                         calendar.set(Calendar.MONTH, month);
                         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -99,25 +114,5 @@ public class DateText extends TimeView {
         ).show();
     }
 
-    private boolean isTime(String format) {
-        if (TextUtils.equals(format, CalendarFormat.full)) {
-            return true;
-        }
-        if (TextUtils.equals(format, CalendarFormat.y_mo_d_h_m)) {
-            return true;
-        }
-        if (TextUtils.equals(format, CalendarFormat.y_mo_d_h)) {
-            return true;
-        }
-        if (TextUtils.equals(format, CalendarFormat.zh_full)) {
-            return true;
-        }
-        if (TextUtils.equals(format, CalendarFormat.zh_y_mo_d_h_m)) {
-            return true;
-        }
-        if (TextUtils.equals(format, CalendarFormat.zh_y_mo_d_h)) {
-            return true;
-        }
-        return false;
-    }
+
 }

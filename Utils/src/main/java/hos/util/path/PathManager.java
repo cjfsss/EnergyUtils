@@ -400,7 +400,12 @@ public class PathManager {
     public static String getExternalAndroid() {
         // /storage/emulated/0/Android/data/com.learn.test
         @Nullable
-        File file = getApplication().getExternalCacheDir();
+        File file = null;
+        try {
+            file = getApplication().getExternalCacheDir();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (file == null) {
             // 没有外部储存的话
             return getInterior();

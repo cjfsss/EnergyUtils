@@ -17,11 +17,17 @@ import androidx.annotation.Nullable;
  */
 public class StorageFile {
     public static <T> boolean saveCache(@NonNull String key, T body) {
+        if (body == null) {
+            return true;
+        }
         byte[] bytes;
         if (body instanceof Parcelable) {
             bytes = CacheUtils.parcelable2Bytes((Parcelable) body);
         } else {
             bytes = CacheUtils.toByteArray(body);
+        }
+        if (bytes == null || bytes.length == 0) {
+            return true;
         }
         byte[] encode = Base64.encode(bytes, Base64.NO_WRAP);
         Cache cache = new Cache(key, encode);
@@ -34,10 +40,13 @@ public class StorageFile {
     public static <T> T getCache(@NonNull String key, final Parcelable.Creator<T> creator) {
         CacheDao cacheDao = CacheDaoFile.get();
         Cache cache = cacheDao.getCache(key);
-        if (cache == null) {
+        if (cache == null || cache.getData() == null) {
             return null;
         }
         byte[] decode = Base64.decode(cache.getData(), Base64.NO_WRAP);
+        if (decode == null || decode.length == 0) {
+            return null;
+        }
         return CacheUtils.bytes2Parcelable(decode, creator);
     }
 
@@ -46,10 +55,13 @@ public class StorageFile {
     public static <T> T getCache(@NonNull String key) {
         CacheDao cacheDao = CacheDaoFile.get();
         Cache cache = cacheDao.getCache(key);
-        if (cache == null) {
+        if (cache == null || cache.getData() == null) {
             return null;
         }
         byte[] decode = Base64.decode(cache.getData(), Base64.NO_WRAP);
+        if (decode == null || decode.length == 0) {
+            return null;
+        }
         return (T) CacheUtils.toObject(decode);
     }
 

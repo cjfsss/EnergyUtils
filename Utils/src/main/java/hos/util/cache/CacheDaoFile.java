@@ -28,9 +28,20 @@ class CacheDaoFile implements CacheDao, ISingletonWrapper {
 
     @Override
     public Cache getCache(String key) {
-        File cacheFile = CacheUtils.getCacheFile(key);
-        byte[] bytes = CacheUtils.readFile2BytesByStream(cacheFile);
-        return new Cache(key, bytes);
+        try {
+            File cacheFile = CacheUtils.getCacheFile(key);
+            if (!CacheUtils.isFileExists(cacheFile)) {
+                return null;
+            }
+            byte[] bytes = CacheUtils.readFile2BytesByStream(cacheFile);
+            if (bytes == null || bytes.length == 0) {
+                return null;
+            }
+            return new Cache(key, bytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -40,18 +51,33 @@ class CacheDaoFile implements CacheDao, ISingletonWrapper {
 
     @Override
     public boolean deleteCache(String key) {
-        File cacheFile = CacheUtils.getCacheFile(key);
-        return CacheUtils.deleteFile(cacheFile);
+        try {
+            File cacheFile = CacheUtils.getCacheFile(key);
+            return CacheUtils.deleteFile(cacheFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean saveCache(Cache cache) {
-        File cacheFile = CacheUtils.getCacheFile(cache);
-        return CacheUtils.writeFileFromBytesByStream(cacheFile,cache.getData());
+        try {
+            File cacheFile = CacheUtils.getCacheFile(cache);
+            return CacheUtils.writeFileFromBytesByStream(cacheFile, cache.getData());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean clear() {
-        return CacheUtils.clearCache();
+        try {
+            return CacheUtils.clearCache();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

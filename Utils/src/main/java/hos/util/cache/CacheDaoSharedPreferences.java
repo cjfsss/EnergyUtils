@@ -36,6 +36,9 @@ class CacheDaoSharedPreferences implements CacheDao, ISingletonWrapper {
     @Override
     public Cache getCache(String key) {
         String value = sp().getString(key, "");
+        if (value == null) {
+            return null;
+        }
         return new Cache(key, value.getBytes());
     }
 

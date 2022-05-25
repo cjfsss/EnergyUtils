@@ -1,6 +1,7 @@
 package hos.util.time;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ public abstract class TimeView extends TextView {
 
     private String format = CalendarFormat.full;
     private boolean isFull = true;
+    private boolean isThisDay = false;
     protected OnTimeListener mOnTimeListener;
 
     public TimeView(@NonNull Context context) {
@@ -56,7 +58,13 @@ public abstract class TimeView extends TextView {
     public void setFull(boolean full) {
         isFull = full;
     }
+    public boolean isThisDay() {
+        return isThisDay;
+    }
 
+    public void setThisDay(boolean thisDay) {
+        isThisDay = thisDay;
+    }
     /**
      * 显示日期选择对话框
      */
@@ -108,5 +116,27 @@ public abstract class TimeView extends TextView {
 
     public static interface OnTimeListener {
         void onTime(TimeView dateText, long millis);
+    }
+
+    public static boolean isTime(String format) {
+        if (TextUtils.equals(format, CalendarFormat.full)) {
+            return true;
+        }
+        if (TextUtils.equals(format, CalendarFormat.y_mo_d_h_m)) {
+            return true;
+        }
+        if (TextUtils.equals(format, CalendarFormat.y_mo_d_h)) {
+            return true;
+        }
+        if (TextUtils.equals(format, CalendarFormat.zh_full)) {
+            return true;
+        }
+        if (TextUtils.equals(format, CalendarFormat.zh_y_mo_d_h_m)) {
+            return true;
+        }
+        if (TextUtils.equals(format, CalendarFormat.zh_y_mo_d_h)) {
+            return true;
+        }
+        return false;
     }
 }
