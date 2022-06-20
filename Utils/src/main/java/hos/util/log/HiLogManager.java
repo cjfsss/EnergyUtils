@@ -1,6 +1,6 @@
 package hos.util.log;
 
-import androidx.annotation.NonNull;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class HiLogManager {
         return instance;
     }
 
-    public static void init(@NonNull HiLogConfig config, HiLogPrinter... printers) {
+    public static void init( HiLogConfig config, HiLogPrinter... printers) {
         instance = new HiLogManager(config, printers);
     }
 

@@ -2,9 +2,6 @@ package hos.util.dialog;
 
 import android.widget.ListAdapter;
 
-import androidx.annotation.ArrayRes;
-import androidx.annotation.StringRes;
-
 import hos.util.listener.OnTargetListener;
 import hos.util.utils.ResUtils;
 
@@ -19,7 +16,7 @@ import hos.util.utils.ResUtils;
  */
 public interface ChoiceDialogInterface<P extends ChoiceDialogInterface<P>> extends DialogInterface<P> {
 
-    P setItem(@ArrayRes int itemId);
+    P setItem( int itemId);
 
     P setItem(CharSequence[] items);
 
@@ -33,13 +30,13 @@ public interface ChoiceDialogInterface<P extends ChoiceDialogInterface<P>> exten
 
     P setConfirm(CharSequence confirm, final OnTargetListener<P> confirmFunction);
 
-    default P setConfirm(@StringRes int confirmId, final OnTargetListener<P> confirmFunction) {
+    default P setConfirm( int confirmId, final OnTargetListener<P> confirmFunction) {
         return setConfirm(ResUtils.getString(confirmId), confirmFunction);
     }
 
     P setCancel(CharSequence cancel, final OnTargetListener<P> cancelFunction);
 
-    default P setCancel(@StringRes int cancelId, final OnTargetListener<P> cancelFunction) {
+    default P setCancel( int cancelId, final OnTargetListener<P> cancelFunction) {
         return setCancel(ResUtils.getString(cancelId), cancelFunction);
     }
 

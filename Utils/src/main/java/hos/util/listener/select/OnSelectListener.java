@@ -1,7 +1,7 @@
 package hos.util.listener.select;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 /**
  * <p>Title: OnSelectListener </p>
@@ -14,5 +14,5 @@ import androidx.annotation.Nullable;
  */
 public interface OnSelectListener<V, T> {
 
-    void onSelect(@NonNull V target, @Nullable T data, int position);
+    void onSelect( V target,  T data, int position);
 }

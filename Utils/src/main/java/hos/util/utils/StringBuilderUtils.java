@@ -1,6 +1,6 @@
 package hos.util.utils;
 
-import androidx.annotation.NonNull;
+
 
 /**
  * <p>Title: StringBuilderUtils </p>
@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
  */
 public class StringBuilderUtils {
 
-    @NonNull
-    public static StringBuilder deleteEnd(@NonNull StringBuilder builder) {
+
+    public static StringBuilder deleteEnd( StringBuilder builder) {
         if (builder.length() > 1) {
             return builder.delete(builder.length() - 1, builder.length());
         }

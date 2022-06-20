@@ -1,6 +1,6 @@
 package hos.util.listener.select;
 
-import androidx.annotation.NonNull;
+
 
 import java.util.List;
 
@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface OnSelectFloatMultiListener<V> extends OnSelectMultiListener<V, Float> {
 
-    void onSelect(V target, @NonNull List<Float> selectList, @NonNull List<Integer> selectPositionList);
+    void onSelect(V target,  List<Float> selectList,  List<Integer> selectPositionList);
 }

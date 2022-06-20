@@ -1,6 +1,6 @@
 package hos.util.listener;
 
-import androidx.annotation.Nullable;
+
 
 /**
  * <p>Title: OnSearchListener </p>
@@ -13,5 +13,5 @@ import androidx.annotation.Nullable;
  */
 public interface OnSearchListener {
 
-    void onSearch(@Nullable CharSequence charSequence);
+    void onSearch( CharSequence charSequence);
 }

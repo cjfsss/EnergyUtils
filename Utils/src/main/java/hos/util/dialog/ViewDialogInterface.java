@@ -2,7 +2,6 @@ package hos.util.dialog;
 
 import android.view.View;
 
-import androidx.annotation.LayoutRes;
 
 /**
  * <p>Title: ViewDialogInterface </p>
@@ -17,5 +16,5 @@ public interface ViewDialogInterface<P extends ViewDialogInterface<P>> extends D
 
     P setView(View view);
 
-    P setView(@LayoutRes int layoutId);
+    P setView(int layoutId);
 }

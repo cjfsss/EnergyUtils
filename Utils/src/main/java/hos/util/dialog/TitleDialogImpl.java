@@ -1,6 +1,6 @@
 package hos.util.dialog;
 
-import androidx.annotation.Nullable;
+
 
 import hos.util.listener.OnTargetListener;
 
@@ -24,13 +24,13 @@ public abstract class TitleDialogImpl<P extends TitleDialogImpl<P>> extends Dial
     protected OnTargetListener<P>  leftFunction;
 
     @Override
-    public P setOnCancelListener(@Nullable OnTargetListener<P> cancelListener) {
+    public P setOnCancelListener( OnTargetListener<P> cancelListener) {
         this.cancelListener = cancelListener;
         return (P) this;
     }
 
     @Override
-    public P setOnDismissListener(@Nullable OnTargetListener<P> dismissListener) {
+    public P setOnDismissListener( OnTargetListener<P> dismissListener) {
         this.dismissListener = dismissListener;
         return (P) this;
     }

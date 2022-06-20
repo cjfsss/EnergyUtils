@@ -1,6 +1,6 @@
 package hos.util.listener;
 
-import androidx.annotation.NonNull;
+
 
 /**
  * <p>Title: IListener </p>
@@ -16,12 +16,12 @@ public interface IListener<LISTENER> {
     /**
      * 添加监听
      */
-    void addListener(@NonNull LISTENER listener);
+    void addListener( LISTENER listener);
 
     /**
      * 移除监听
      */
-    void removeListener(@NonNull LISTENER listener);
+    void removeListener( LISTENER listener);
 
     /**
      * 移除所有监听

@@ -1,6 +1,6 @@
 package hos.util.listener.select;
 
-import androidx.annotation.NonNull;
+
 
 import java.util.List;
 
@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface OnSelectBooleanMultiLevelListener<V> extends OnSelectMultiLevelListener<V, Boolean> {
 
-    void onSelect(V target, @NonNull List<Boolean> selectList, @NonNull List<Integer> selectPositionList, int level);
+    void onSelect(V target,  List<Boolean> selectList,  List<Integer> selectPositionList, int level);
 }

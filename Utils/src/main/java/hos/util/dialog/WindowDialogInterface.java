@@ -3,10 +3,6 @@ package hos.util.dialog;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StyleRes;
 
 /**
  * <p>Title: ProgressDialogListener </p>
@@ -21,13 +17,13 @@ public interface WindowDialogInterface<P extends WindowDialogInterface<P>> {
 
     void setCancelable(boolean cancelable);
 
-    P setStyle(@StyleRes int style);
+    P setStyle( int style);
 
-    P setContentView(@LayoutRes int layoutResID);
+    P setContentView( int layoutResID);
 
-    P setContentView(@NonNull View view);
+    P setContentView( View view);
 
-    P setContentView(@NonNull View view, @Nullable ViewGroup.LayoutParams params);
+    P setContentView( View view,  ViewGroup.LayoutParams params);
 
     P create();
 

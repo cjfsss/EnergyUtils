@@ -1,7 +1,7 @@
 package hos.util.cache;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.io.Serializable;
 
@@ -15,35 +15,35 @@ import java.io.Serializable;
  * @date : 2022/4/2 20:45
  */
 public class Cache implements Serializable {
-    @NonNull
+    
     private String key;
-    @Nullable
+    
     private byte[] data;
 
-    public Cache(@NonNull String key) {
+    public Cache( String key) {
         this.key = key;
     }
 
-    public Cache(@NonNull String key, @Nullable byte[] data) {
+    public Cache( String key,  byte[] data) {
         this.key = key;
         this.data = data;
     }
 
-    @NonNull
+    
     public String getKey() {
         return key;
     }
 
-    public void setKey(@NonNull String key) {
+    public void setKey( String key) {
         this.key = key;
     }
 
-    @Nullable
+    
     public byte[] getData() {
         return data;
     }
 
-    public void setData(@Nullable byte[] data) {
+    public void setData( byte[] data) {
         this.data = data;
     }
 }

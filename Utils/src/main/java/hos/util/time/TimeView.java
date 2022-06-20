@@ -6,8 +6,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import hos.util.compat.CalendarConvert;
 import hos.util.compat.CalendarFormat;
@@ -29,15 +29,15 @@ public abstract class TimeView extends TextView {
     private boolean isThisDay = false;
     protected OnTimeListener mOnTimeListener;
 
-    public TimeView(@NonNull Context context) {
+    public TimeView( Context context) {
         this(context, null);
     }
 
-    public TimeView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public TimeView( Context context,  AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public TimeView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public TimeView( Context context,  AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         setOnClickListener(new OnClickListener() {
             @Override

@@ -5,8 +5,8 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.view.WindowManager;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.util.Locale;
 
@@ -26,7 +26,7 @@ public class SafetyHelper {
      * @return true 真机 false 模拟器
      */
     public static boolean isRealPhone() {
-        @Nullable
+
         String arch = System.getProperties().getProperty("os.arch");
         if (arch == null) {
             return true;
@@ -44,7 +44,7 @@ public class SafetyHelper {
      *
      * @param activity 当前需要禁止录屏和截图的页面
      */
-    public static void removeScreen(@NonNull Activity activity) {
+    public static void removeScreen( Activity activity) {
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
     }
 
@@ -53,7 +53,7 @@ public class SafetyHelper {
      *
      * @param activity 当前需要录屏和截图的页面
      */
-    public static void openScreen(@NonNull Activity activity) {
+    public static void openScreen( Activity activity) {
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
     }
 
@@ -62,7 +62,7 @@ public class SafetyHelper {
      *
      * @param activity 当前需要一直亮着的页面
      */
-    public static void openBright(@NonNull Activity activity) {
+    public static void openBright( Activity activity) {
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
@@ -71,7 +71,7 @@ public class SafetyHelper {
      *
      * @param activity 当前需要不一直亮着的页面
      */
-    public static void removeBright(@NonNull Activity activity) {
+    public static void removeBright( Activity activity) {
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 }

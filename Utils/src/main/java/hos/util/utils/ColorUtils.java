@@ -2,7 +2,7 @@ package hos.util.utils;
 
 import android.graphics.Color;
 
-import androidx.annotation.NonNull;
+
 
 /**
  * <p>Title: ColorUtils </p>
@@ -42,7 +42,7 @@ public class ColorUtils {
      * @param color 颜色值 字符串
      * @return 转换后的 color
      */
-    public static int stringToColor(@NonNull String color) {
+    public static int stringToColor( String color) {
         return Color.parseColor(color);
     }
 }

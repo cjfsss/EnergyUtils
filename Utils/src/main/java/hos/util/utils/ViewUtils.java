@@ -16,8 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -57,7 +57,7 @@ public class ViewUtils {
         }
     }
 
-    public static void forTarget(@Nullable OnTargetListener<View> listener, @Nullable View... views) {
+    public static void forTarget( OnTargetListener<View> listener,  View... views) {
         if (views == null) {
             return;
         }
@@ -71,14 +71,14 @@ public class ViewUtils {
         }
     }
 
-    public static void setVisibility(int visibility, @Nullable View... views) {
+    public static void setVisibility(int visibility,  View... views) {
         setVisibility(null, visibility, views);
     }
 
-    public static void setVisibility(@Nullable OnTargetListener<View> listener, int visibility, @Nullable View... views) {
+    public static void setVisibility( OnTargetListener<View> listener, int visibility,  View... views) {
         forTarget(new OnTargetListener<View>() {
             @Override
-            public void onTarget(@NonNull View view) {
+            public void onTarget( View view) {
                 view.setVisibility(visibility);
                 if (listener != null) {
                     listener.onTarget(view);
@@ -87,14 +87,14 @@ public class ViewUtils {
         }, views);
     }
 
-    public static void gone(@Nullable View... views) {
+    public static void gone( View... views) {
         gone(null, views);
     }
 
-    public static void gone(@Nullable OnTargetListener<View> listener, @Nullable View... views) {
+    public static void gone( OnTargetListener<View> listener,  View... views) {
         forTarget(new OnTargetListener<View>() {
             @Override
-            public void onTarget(@NonNull View view) {
+            public void onTarget( View view) {
                 view.setVisibility(View.GONE);
                 if (listener != null) {
                     listener.onTarget(view);
@@ -103,14 +103,14 @@ public class ViewUtils {
         }, views);
     }
 
-    public static void visible(@Nullable View... views) {
+    public static void visible( View... views) {
         visible(null, views);
     }
 
-    public static void visible(@Nullable OnTargetListener<View> listener, @Nullable View... views) {
+    public static void visible( OnTargetListener<View> listener,  View... views) {
         forTarget(new OnTargetListener<View>() {
             @Override
-            public void onTarget(@NonNull View view) {
+            public void onTarget( View view) {
                 view.setVisibility(View.VISIBLE);
                 if (listener != null) {
                     listener.onTarget(view);
@@ -119,14 +119,14 @@ public class ViewUtils {
         }, views);
     }
 
-    public static void invisible(@Nullable View... views) {
+    public static void invisible( View... views) {
         invisible(null, views);
     }
 
-    public static void invisible(@Nullable OnTargetListener<View> listener, @Nullable View... views) {
+    public static void invisible( OnTargetListener<View> listener,  View... views) {
         forTarget(new OnTargetListener<View>() {
             @Override
-            public void onTarget(@NonNull View view) {
+            public void onTarget( View view) {
                 view.setVisibility(View.INVISIBLE);
                 if (listener != null) {
                     listener.onTarget(view);
@@ -135,14 +135,14 @@ public class ViewUtils {
         }, views);
     }
 
-    public static void setEnabled(boolean enable, @Nullable View... views) {
+    public static void setEnabled(boolean enable,  View... views) {
         setEnabled(null, enable, views);
     }
 
-    public static void setEnabled(@Nullable OnTargetListener<View> listener, boolean enable, @Nullable View... views) {
+    public static void setEnabled( OnTargetListener<View> listener, boolean enable,  View... views) {
         forTarget(new OnTargetListener<View>() {
             @Override
-            public void onTarget(@NonNull View view) {
+            public void onTarget( View view) {
                 view.setFocusable(enable);
                 view.setFocusableInTouchMode(enable);
                 view.setEnabled(enable);
@@ -161,30 +161,30 @@ public class ViewUtils {
     /**
      * 设置输入内容只能为数字或者字母
      */
-    public static void setNumberWord(@Nullable TextView... textView) {
+    public static void setNumberWord( TextView... textView) {
         TextViewContext.setNumberWord(textView);
     }
 
-    public static String getTextString(@Nullable TextView textView) {
+    public static String getTextString( TextView textView) {
         return TextViewContext.getTextString(textView);
     }
 
-    public static void clearText(@Nullable TextView... textView) {
+    public static void clearText( TextView... textView) {
         TextViewContext.clearText(textView);
     }
 
-    public static void clearHint(@Nullable TextView... textView) {
+    public static void clearHint( TextView... textView) {
         TextViewContext.clearHint(textView);
     }
 
-    public final static void clearClickListener(@Nullable View... views) {
+    public final static void clearClickListener( View... views) {
         clearClickListener(null, views);
     }
 
-    public final static void clearClickListener(@Nullable OnTargetListener<View> listener, @Nullable View... views) {
+    public final static void clearClickListener( OnTargetListener<View> listener,  View... views) {
         forTarget(new OnTargetListener<View>() {
             @Override
-            public void onTarget(@NonNull View view) {
+            public void onTarget( View view) {
                 view.setOnClickListener(null);
                 if (listener != null) {
                     listener.onTarget(view);
@@ -193,7 +193,7 @@ public class ViewUtils {
         }, views);
     }
 
-    public final static void setOnClickListener(@Nullable View.OnClickListener onClick, @Nullable View... views) {
+    public final static void setOnClickListener( View.OnClickListener onClick,  View... views) {
         if (views == null) {
             return;
         }
@@ -205,7 +205,7 @@ public class ViewUtils {
         }
     }
 
-    public final static void clearLongClickListener(@Nullable View... views) {
+    public final static void clearLongClickListener( View... views) {
         if (views == null) {
             return;
         }
@@ -217,7 +217,7 @@ public class ViewUtils {
         }
     }
 
-    public final static void setOnLongClickListener(@Nullable View.OnLongClickListener onClick, @Nullable View... views) {
+    public final static void setOnLongClickListener( View.OnLongClickListener onClick,  View... views) {
         if (views == null) {
             return;
         }
@@ -229,7 +229,7 @@ public class ViewUtils {
         }
     }
 
-    public static void toggleVisibility(@Nullable View... views) {
+    public static void toggleVisibility( View... views) {
         if (views == null) {
             return;
         }
@@ -242,25 +242,25 @@ public class ViewUtils {
         }
     }
 
-    public static void setCommonPaddingTopBottom(@NonNull View view) {
+    public static void setCommonPaddingTopBottom( View view) {
         int leftRight = (int) dp2px(view.getContext(), 0);
         int topBottom = (int) dp2px(view.getContext(), 8);
         setPadding(view, leftRight, topBottom);
     }
 
-    public static void setCommonPaddingLeftRight(@NonNull View view) {
+    public static void setCommonPaddingLeftRight( View view) {
         int leftRight = (int) dp2px(view.getContext(), 16);
         int topBottom = (int) dp2px(view.getContext(), 0);
         setPadding(view, leftRight, topBottom);
     }
 
-    public static void setCommonPadding(@NonNull View view) {
+    public static void setCommonPadding( View view) {
         int leftRight = (int) dp2px(view.getContext(), 16);
         int topBottom = (int) dp2px(view.getContext(), 8);
         setPadding(view, leftRight, topBottom);
     }
 
-    public static void setPadding(@NonNull View view, int leftRight, int topBottom) {
+    public static void setPadding( View view, int leftRight, int topBottom) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             view.setPaddingRelative(leftRight, topBottom, leftRight, topBottom);
         } else {
@@ -268,20 +268,20 @@ public class ViewUtils {
         }
     }
 
-    public static float dp2px(@NonNull View view, float i) {
+    public static float dp2px( View view, float i) {
         return dp2px(view.getContext(), i);
     }
 
-    public static float dp2px(@NonNull Context context, float i) {
+    public static float dp2px( Context context, float i) {
         return (int) TypedValue
                 .applyDimension(TypedValue.COMPLEX_UNIT_DIP, i, context.getResources().getDisplayMetrics());
     }
 
-    public static float sp2px(@NonNull View view, float i) {
+    public static float sp2px( View view, float i) {
         return sp2px(view.getContext(), i);
     }
 
-    public static float sp2px(@NonNull Context context, float i) {
+    public static float sp2px( Context context, float i) {
         return (int) TypedValue
                 .applyDimension(TypedValue.COMPLEX_UNIT_SP, i, context.getResources().getDisplayMetrics());
     }
@@ -291,7 +291,7 @@ public class ViewUtils {
      *
      * @param view The view.
      */
-    public static void addMarginHeight(@NonNull View view, int left, int top, int right, int bottom) {
+    public static void addMarginHeight( View view, int left, int top, int right, int bottom) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             return;
         }
@@ -305,11 +305,11 @@ public class ViewUtils {
         view.setTag(KEY_OFFSET, true);
     }
 
-    public static void addMarginTopHeight(@NonNull View view, int top) {
+    public static void addMarginTopHeight( View view, int top) {
         addMarginHeight(view, 0, top, 0, 0);
     }
 
-    public static void addMarginBottomHeight(@NonNull View view, int bottom) {
+    public static void addMarginBottomHeight( View view, int bottom) {
         addMarginHeight(view, 0, 0, 0, bottom);
     }
 
@@ -424,7 +424,7 @@ public class ViewUtils {
      *
      * @param targetValue 目标宽度
      */
-    public static void animateWidth(@NonNull View view, int targetValue, @Nullable Animator.AnimatorListener listener) {
+    public static void animateWidth( View view, int targetValue,  Animator.AnimatorListener listener) {
         animateWidth(view, targetValue, 400, listener, null);
     }
 
@@ -433,7 +433,7 @@ public class ViewUtils {
      *
      * @param targetValue 目标宽度
      */
-    public static void animateWidth(@NonNull View view, int targetValue, @Nullable ValueAnimator.AnimatorUpdateListener updateListener) {
+    public static void animateWidth( View view, int targetValue,  ValueAnimator.AnimatorUpdateListener updateListener) {
         animateWidth(view, targetValue, 400, null, updateListener);
     }
 
@@ -444,8 +444,8 @@ public class ViewUtils {
      * @param duration       时长
      * @param updateListener 可选行为
      */
-    public static void animateWidth(@NonNull View view, int targetValue, long duration, @Nullable Animator.AnimatorListener listener,
-                                    @Nullable ValueAnimator.AnimatorUpdateListener updateListener) {
+    public static void animateWidth( View view, int targetValue, long duration,  Animator.AnimatorListener listener,
+                                     ValueAnimator.AnimatorUpdateListener updateListener) {
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -473,7 +473,7 @@ public class ViewUtils {
      *
      * @param targetValue 目标宽度
      */
-    public static void animateHeight(@NonNull View view, int targetValue, @Nullable Animator.AnimatorListener listener) {
+    public static void animateHeight( View view, int targetValue,  Animator.AnimatorListener listener) {
         animateHeight(view, targetValue, 400, listener, null);
     }
 
@@ -482,7 +482,7 @@ public class ViewUtils {
      *
      * @param targetValue 目标宽度
      */
-    public static void animateHeight(@NonNull View view, int targetValue, @Nullable ValueAnimator.AnimatorUpdateListener updateListener) {
+    public static void animateHeight( View view, int targetValue,  ValueAnimator.AnimatorUpdateListener updateListener) {
         animateHeight(view, targetValue, 400, null, updateListener);
     }
 
@@ -493,8 +493,8 @@ public class ViewUtils {
      * @param duration       时长
      * @param updateListener 可选行为
      */
-    public static void animateHeight(@NonNull View view, int targetValue, long duration, @Nullable Animator.AnimatorListener listener,
-                                     @Nullable ValueAnimator.AnimatorUpdateListener updateListener) {
+    public static void animateHeight( View view, int targetValue, long duration,  Animator.AnimatorListener listener,
+                                      ValueAnimator.AnimatorUpdateListener updateListener) {
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -525,8 +525,8 @@ public class ViewUtils {
      * @param duration       时长
      * @param updateListener 可选行为
      */
-    public static void animateWidthAndHeight(View view, int targetWidth, int targetHeight, long duration, @Nullable Animator.AnimatorListener listener,
-                                             @Nullable ValueAnimator.AnimatorUpdateListener updateListener) {
+    public static void animateWidthAndHeight(View view, int targetWidth, int targetHeight, long duration,  Animator.AnimatorListener listener,
+                                              ValueAnimator.AnimatorUpdateListener updateListener) {
         view.post(new Runnable() {
             @Override
             public void run() {
@@ -556,7 +556,7 @@ public class ViewUtils {
      * 获取View的截图, 支持获取整个RecyclerView列表的长截图
      * 注意：调用该方法时，请确保View已经测量完毕，如果宽高为0，则将抛出异常
      */
-    public static Bitmap toBitmap(@NonNull View view) {
+    public static Bitmap toBitmap( View view) {
         int measuredWidth = view.getMeasuredWidth();
         int measuredHeight = view.getMeasuredHeight();
         if (measuredWidth == 0 || measuredHeight == 0) {
@@ -583,7 +583,7 @@ public class ViewUtils {
      * @param <T>
      * @return 指定类型的View
      */
-    public static <T> T findTypeView(@Nullable ViewGroup group, Class<T> cls) {
+    public static <T> T findTypeView( ViewGroup group, Class<T> cls) {
         if (group == null) {
             return null;
         }
@@ -614,7 +614,7 @@ public class ViewUtils {
         return true;
     }
 
-    @Nullable
+
     public static Activity findActivity(Context context) {
         if (context instanceof Activity) return (Activity) context;
         else if (context instanceof ContextWrapper) {

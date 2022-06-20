@@ -5,9 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 
-import androidx.annotation.IntRange;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,7 +110,7 @@ public abstract class CommonExpandableAdapter<T, M> extends BaseExpandableListAd
      *
      * @param data
      */
-    public void setNewData(@Nullable List<T> data, @Nullable List<List<M>> childList) {
+    public void setNewData( List<T> data,  List<List<M>> childList) {
         this.mParentList = data == null ? new ArrayList<T>() : data;
         this.mChildList = childList == null ? new ArrayList<List<M>>() : childList;
         notifyDataSetChanged();
@@ -120,7 +119,7 @@ public abstract class CommonExpandableAdapter<T, M> extends BaseExpandableListAd
     /**
      * add one new data
      */
-    public void addData(@NonNull T data, @Nullable List<M> childList) {
+    public void addData( T data,  List<M> childList) {
         this.mParentList.add(data);
         this.mChildList.add(childList);
         notifyDataSetChanged();
@@ -131,7 +130,7 @@ public abstract class CommonExpandableAdapter<T, M> extends BaseExpandableListAd
      *
      * @param position
      */
-    public void remove(@IntRange(from = 0) int position) {
+    public void remove( int position) {
         this.mParentList.remove(position);
         this.mChildList.remove(position);
         notifyDataSetChanged();
@@ -142,7 +141,7 @@ public abstract class CommonExpandableAdapter<T, M> extends BaseExpandableListAd
      *
      * @return 列表数据
      */
-    @NonNull
+
     public List<T> getParentList() {
         return mParentList;
     }
@@ -152,7 +151,7 @@ public abstract class CommonExpandableAdapter<T, M> extends BaseExpandableListAd
      *
      * @return 列表数据
      */
-    @NonNull
+
     public List<List<M>> getChildList() {
         return mChildList;
     }

@@ -2,13 +2,13 @@ package hos.util.log;
 
 import android.util.Log;
 
-import androidx.annotation.IntDef;
+
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 public class HiLogType {
-    @IntDef({V, D, I, W, E, A})
+//    @IntDef({V, D, I, W, E, A})
     @Retention(RetentionPolicy.SOURCE)
     public @interface TYPE {
     }

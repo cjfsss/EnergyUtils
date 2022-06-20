@@ -8,8 +8,8 @@ import android.util.AttributeSet;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.util.Calendar;
 
@@ -30,15 +30,15 @@ import hos.util.toast.ToastX;
  */
 public class DateText extends TimeView {
 
-    public DateText(@NonNull Context context) {
+    public DateText( Context context) {
         super(context);
     }
 
-    public DateText(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DateText( Context context,  AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DateText(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public DateText( Context context,  AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

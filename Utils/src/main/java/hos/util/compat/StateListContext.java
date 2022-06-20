@@ -5,10 +5,8 @@ import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
+
+
 
 /**
  * <p>Title: StateListUtils </p>
@@ -22,38 +20,38 @@ import androidx.annotation.NonNull;
 public class StateListContext {
 
     // 设置不同状态时其文字颜色。
-    @NonNull
-    public static ColorStateList createColorStateList(Context context, @ColorRes int color) {
+
+    public static ColorStateList createColorStateList(Context context,  int color) {
         return createColorStateList(ResContext.getColor(context, color));
     }
 
     // 设置不同状态时其文字颜色。
-    @NonNull
-    public static ColorStateList createColorStateList(Context context, @ColorRes int normal, @ColorRes int pressed) {
+
+    public static ColorStateList createColorStateList(Context context,  int normal,  int pressed) {
         return createColorStateList(ResContext.getColor(context, normal), ResContext.getColor(context, pressed));
     }
 
     // 设置不同状态时其文字颜色。
-    @NonNull
-    public static ColorStateList createColorStateList(Context context, @ColorRes int normal, @ColorRes int pressed, @ColorRes int unable) {
+
+    public static ColorStateList createColorStateList(Context context,  int normal,  int pressed,  int unable) {
         return createColorStateList(ResContext.getColor(context, normal), ResContext.getColor(context, pressed), ResContext.getColor(context, unable));
     }
 
     // 设置不同状态时其文字颜色。
-    @NonNull
-    public static ColorStateList createColorStateList(Context context, @ColorRes int normal, @ColorRes int pressed, @ColorRes int focused, @ColorRes int unable) {
+
+    public static ColorStateList createColorStateList(Context context,  int normal,  int pressed,  int focused,  int unable) {
         return createColorStateList(ResContext.getColor(context, normal), ResContext.getColor(context, pressed), ResContext.getColor(context, focused), ResContext.getColor(context, unable));
     }
 
     // 设置不同状态时其文字颜色。
-    @NonNull
-    public static ColorStateList createColorStateList(@ColorInt int color) {
+
+    public static ColorStateList createColorStateList( int color) {
         return ColorStateList.valueOf(color);
     }
 
     // 设置不同状态时其文字颜色。
-    @NonNull
-    public static ColorStateList createColorStateList(@ColorInt int normal, @ColorInt int pressed) {
+
+    public static ColorStateList createColorStateList( int normal,  int pressed) {
         int[] colors = new int[]{pressed, normal};
         int[][] states = new int[2][];
         states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
@@ -62,8 +60,8 @@ public class StateListContext {
     }
 
     // 设置不同状态时其文字颜色。
-    @NonNull
-    public static ColorStateList createColorStateList(@ColorInt int normal, @ColorInt int pressed, @ColorInt int unable) {
+
+    public static ColorStateList createColorStateList( int normal,  int pressed,  int unable) {
         int[] colors = new int[]{pressed, unable, normal};
         int[][] states = new int[6][];
         states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
@@ -73,8 +71,8 @@ public class StateListContext {
     }
 
     // 设置不同状态时其文字颜色。
-    @NonNull
-    public static ColorStateList createColorStateList(@ColorInt int normal, @ColorInt int pressed, @ColorInt int focused, @ColorInt int unable) {
+
+    public static ColorStateList createColorStateList( int normal,  int pressed,  int focused,  int unable) {
         int[] colors = new int[]{pressed, focused, normal, focused, unable, normal};
         int[][] states = new int[6][];
         states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
@@ -89,9 +87,9 @@ public class StateListContext {
     /**
      * 设置Selector。
      */
-    @NonNull
-    public static StateListDrawable createSelector(Context context, @DrawableRes int idNormal, @DrawableRes int idPressed, @DrawableRes int idFocused,
-                                                   @DrawableRes int idUnable) {
+
+    public static StateListDrawable createSelector(Context context,  int idNormal,  int idPressed,  int idFocused,
+                                                    int idUnable) {
 
         Drawable normal = idNormal == -1 ? null : ResContext.getDrawable(context, idNormal);
         Drawable pressed = idPressed == -1 ? null : ResContext.getDrawable(context, idPressed);
@@ -101,7 +99,7 @@ public class StateListContext {
     }
 
     // 设置Selector
-    @NonNull
+
     public static StateListDrawable createSelector(Drawable normal, Drawable pressed, Drawable focused, Drawable unable) {
         StateListDrawable bg = new StateListDrawable();
         // View.PRESSED_ENABLED_STATE_SET

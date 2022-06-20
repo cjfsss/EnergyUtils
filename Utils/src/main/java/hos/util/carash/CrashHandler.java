@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.annotation.NonNull;
+
 
 import java.io.File;
 
@@ -21,11 +21,11 @@ import hos.core.AppCompat;
  */
 public class CrashHandler {
 
-    public static void init(@NonNull String crashDir, @NonNull String prefix) {
+    public static void init( String crashDir,  String prefix) {
         Thread.setDefaultUncaughtExceptionHandler(new CaughtExceptionHandler(AppCompat.getApp(), crashDir, prefix));
     }
 
-    public static void init(@NonNull String prefix) {
+    public static void init( String prefix) {
         Thread.setDefaultUncaughtExceptionHandler(new CaughtExceptionHandler(AppCompat.getApp(), prefix));
     }
 

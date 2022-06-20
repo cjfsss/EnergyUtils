@@ -3,7 +3,7 @@ package hos.util.listener;
 import android.content.Context;
 import android.net.Uri;
 
-import androidx.annotation.NonNull;
+
 
 import java.io.File;
 
@@ -18,6 +18,6 @@ import java.io.File;
  */
 public interface UriCallback {
 
-    Uri getUriForFile(@NonNull Context context, @NonNull File file);
+    Uri getUriForFile( Context context,  File file);
 
 }

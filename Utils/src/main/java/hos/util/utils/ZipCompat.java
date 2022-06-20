@@ -2,7 +2,7 @@ package hos.util.utils;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
+
 
 import hos.util.listener.OnProgressUpdateListener;
 
@@ -44,7 +44,7 @@ public class ZipCompat {
      * @param file zip的路径
      * @return zip的大小
      */
-    public static long getZipSize(@NonNull File file) {
+    public static long getZipSize( File file) {
         return getZipSize(file.getAbsolutePath());
     }
     /**
@@ -53,7 +53,7 @@ public class ZipCompat {
      * @param filePath zip的路径
      * @return zip的大小
      */
-    public static long getZipSize(@NonNull String filePath) {
+    public static long getZipSize( String filePath) {
         long size = 0;
         ZipFile f;
         try {

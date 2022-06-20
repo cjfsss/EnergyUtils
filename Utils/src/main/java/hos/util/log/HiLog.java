@@ -1,6 +1,6 @@
 package hos.util.log;
 
-import androidx.annotation.NonNull;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -71,11 +71,11 @@ public class HiLog {
         log(type, HiLogManager.getInstance().getConfig().getGlobalTag(), contents);
     }
 
-    public static void log(@HiLogType.TYPE int type, @NonNull String tag, Object... contents) {
+    public static void log(@HiLogType.TYPE int type,  String tag, Object... contents) {
         log(HiLogManager.getInstance().getConfig(), type, tag, contents);
     }
 
-    public static void log(@NonNull HiLogConfig config, @HiLogType.TYPE int type, @NonNull String tag, Object... contents) {
+    public static void log( HiLogConfig config, @HiLogType.TYPE int type,  String tag, Object... contents) {
         if (!config.enable()) {
             return;
         }
@@ -106,7 +106,7 @@ public class HiLog {
     }
 
 
-    private static String parseBody(@NonNull Object[] contents, @NonNull HiLogConfig config) {
+    private static String parseBody( Object[] contents,  HiLogConfig config) {
         if (config.injectJsonParser() != null) {
             //只有一个数据且为String的情况下不再进行序列化
             if (contents.length == 1 && contents[0] instanceof String) {

@@ -1,7 +1,7 @@
 package hos.util.utils;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.util.List;
 import java.util.Map;
@@ -17,8 +17,8 @@ import java.util.Map;
  */
 public class JsonUtils {
 
-    @NonNull
-    public static String toJsonList(@Nullable List<Map<String, Object>> mapList) {
+
+    public static String toJsonList( List<Map<String, Object>> mapList) {
         if (mapList == null || mapList.isEmpty()) {
             return "[]";
         }
@@ -32,8 +32,8 @@ public class JsonUtils {
         return sb.toString();
     }
 
-    @NonNull
-    public static String toJson(@Nullable List<Object> list) {
+
+    public static String toJson( List<Object> list) {
         if (list == null || list.isEmpty()) {
             return "[]";
         }
@@ -61,8 +61,8 @@ public class JsonUtils {
         return sb.toString();
     }
 
-    @NonNull
-    public static String toJson(@Nullable Map<String, Object> mapList) {
+
+    public static String toJson( Map<String, Object> mapList) {
         if (mapList == null || mapList.isEmpty()) {
             return "{}";
         }

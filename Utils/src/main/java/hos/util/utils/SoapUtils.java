@@ -1,6 +1,6 @@
 package hos.util.utils;
 
-import androidx.annotation.Nullable;
+
 
 /**
  * <p>Title: SoapUtils </p>
@@ -13,8 +13,8 @@ import androidx.annotation.Nullable;
  */
 public class SoapUtils {
 
-    @Nullable
-    public static String clearXml(@Nullable String body) {
+
+    public static String clearXml( String body) {
         if (body == null || body.length() == 0) {
             return null;
         }

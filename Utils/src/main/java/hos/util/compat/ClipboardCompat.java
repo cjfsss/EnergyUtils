@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import androidx.annotation.NonNull;
+
 
 /**
  * <pre>
@@ -28,7 +28,7 @@ public final class ClipboardCompat {
      *
      * @param text 文本
      */
-    public static void copyText(@NonNull Context context,@NonNull final CharSequence text) {
+    public static void copyText( Context context, final CharSequence text) {
         ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         cm.setPrimaryClip(ClipData.newPlainText("text", text));
     }
@@ -38,7 +38,7 @@ public final class ClipboardCompat {
      *
      * @return 剪贴板的文本
      */
-    public static CharSequence getText(@NonNull Context context) {
+    public static CharSequence getText( Context context) {
         ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = cm.getPrimaryClip();
         if (clip != null && clip.getItemCount() > 0) {
@@ -52,7 +52,7 @@ public final class ClipboardCompat {
      *
      * @param uri uri
      */
-    public static void copyUri(@NonNull Context context,final Uri uri) {
+    public static void copyUri( Context context,final Uri uri) {
         ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         cm.setPrimaryClip(ClipData.newUri(context.getContentResolver(), "uri", uri));
     }
@@ -62,7 +62,7 @@ public final class ClipboardCompat {
      *
      * @return 剪贴板的uri
      */
-    public static Uri getUri(@NonNull Context context) {
+    public static Uri getUri( Context context) {
         ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = cm.getPrimaryClip();
         if (clip != null && clip.getItemCount() > 0) {
@@ -76,7 +76,7 @@ public final class ClipboardCompat {
      *
      * @param intent 意图
      */
-    public static void copyIntent(@NonNull Context context,final Intent intent) {
+    public static void copyIntent( Context context,final Intent intent) {
         ClipboardManager cm = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
         cm.setPrimaryClip(ClipData.newIntent("intent", intent));
     }
@@ -86,7 +86,7 @@ public final class ClipboardCompat {
      *
      * @return 剪贴板的意图
      */
-    public static Intent getIntent(@NonNull Context context) {
+    public static Intent getIntent( Context context) {
         ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = cm.getPrimaryClip();
         if (clip != null && clip.getItemCount() > 0) {

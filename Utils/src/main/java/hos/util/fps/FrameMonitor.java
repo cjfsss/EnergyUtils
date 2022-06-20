@@ -3,13 +3,11 @@ package hos.util.fps;
 import android.os.Build;
 import android.view.Choreographer;
 
-import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import hos.util.log.HiLog;
 
 /**
  * <p>Title: FrameMonitor </p>
@@ -20,7 +18,6 @@ import hos.util.log.HiLog;
  * @version : 1.0
  * @date : 2022/4/3 15:11
  */
-@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 class FrameMonitor implements Choreographer.FrameCallback {
     private Choreographer choreographer = Choreographer.getInstance();
     private long frameStartTime = 0;//这个是记录 上一针到达的时间戳

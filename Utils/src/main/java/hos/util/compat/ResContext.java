@@ -10,17 +10,6 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 
-import androidx.annotation.AnimatorRes;
-import androidx.annotation.ArrayRes;
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
-import androidx.annotation.DimenRes;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.annotation.StringRes;
-
 
 /**
  * <p>Title: ils </p>
@@ -37,7 +26,7 @@ public class ResContext {
     /**
      * 获取字符串
      */
-    public static String getString(Context context, @StringRes int id) {
+    public static String getString(Context context,  int id) {
         if (Build.VERSION.SDK_INT >= 23) {
             return context.getString(id);
         } else {
@@ -50,7 +39,7 @@ public class ResContext {
      *
      * @return
      */
-    public static String getString(Context context, @StringRes int id, Object... formatArgs) {
+    public static String getString(Context context,  int id, Object... formatArgs) {
         if (Build.VERSION.SDK_INT >= 23) {
             return context.getString(id, formatArgs);
         } else {
@@ -58,24 +47,24 @@ public class ResContext {
         }
     }
 
-    public static float getTextSize(Context context, @DimenRes int id) {
+    public static float getTextSize(Context context,  int id) {
         return context.getResources().getDimension(id);
     }
 
-    public static CharSequence[] getTextArray(Context context, @ArrayRes int id) {
+    public static CharSequence[] getTextArray(Context context,  int id) {
 
         return context.getResources().getTextArray(id);
     }
 
-    public static String[] getStringArray(Context context, @ArrayRes int id) {
+    public static String[] getStringArray(Context context,  int id) {
         return context.getResources().getStringArray(id);
     }
 
-    public static int[] getIntArray(Context context, @ArrayRes int id) {
+    public static int[] getIntArray(Context context,  int id) {
         return context.getResources().getIntArray(id);
     }
 
-    public static int[] getMipmapArray(Context context, @ArrayRes int id) {
+    public static int[] getMipmapArray(Context context,  int id) {
         @SuppressLint("Recycle") TypedArray array = context.getResources().obtainTypedArray(id);
         int len = array.length();
         int[] oaIcon = new int[len];
@@ -86,16 +75,16 @@ public class ResContext {
         return oaIcon;
     }
 
-    @Nullable
-    public static Drawable getDrawable(@NonNull Context context, @DrawableRes int id) {
+    
+    public static Drawable getDrawable( Context context,  int id) {
         if (Build.VERSION.SDK_INT >= 21) {
             return context.getDrawable(id);
         }
         return context.getResources().getDrawable(id);
     }
 
-    @Nullable
-    public static ColorStateList getColorStateList(@NonNull Context context, @ColorRes int id) {
+    
+    public static ColorStateList getColorStateList( Context context,  int id) {
         if (Build.VERSION.SDK_INT >= 23) {
             return context.getColorStateList(id);
         } else {
@@ -103,8 +92,8 @@ public class ResContext {
         }
     }
 
-    @ColorInt
-    public static int getColor(Context context, @ColorRes int id) {
+
+    public static int getColor(Context context,  int id) {
         if (Build.VERSION.SDK_INT >= 23) {
             return context.getColor(id);
         } else {
@@ -112,9 +101,11 @@ public class ResContext {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public static StateListAnimator getStateListAnimator(Context context, @AnimatorRes int id) {
-        return AnimatorInflater.loadStateListAnimator(context, id);
+    public static StateListAnimator getStateListAnimator(Context context,  int id) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return AnimatorInflater.loadStateListAnimator(context, id);
+        }
+        return null;
     }
 
     /**
@@ -122,7 +113,7 @@ public class ResContext {
      *
      * @return {@code true}: 是<br>{@code false}: 否
      */
-    public static boolean isTablet(@NonNull Context context) {
+    public static boolean isTablet( Context context) {
         return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >=
                 Configuration.SCREENLAYOUT_SIZE_LARGE;
     }

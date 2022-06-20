@@ -2,8 +2,8 @@ package hos.util.convert;
 
 import android.text.TextUtils;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,9 +46,9 @@ public abstract class DefaultConvertData extends DefaultConvert {
         this("0", "state", "message", "data");
     }
 
-    @Nullable
+
     @Override
-    public <R> R convertBody(@NonNull Object response, @NonNull String handleBody, @NonNull Type succeed) throws JSONException, IOException {
+    public <R> R convertBody( Object response,  String handleBody,  Type succeed) throws JSONException, IOException {
         JSONObject jsonObject = new JSONObject(handleBody);// 获取JSON中后端定义的错误码和错误信息
         if (TextUtils.equals(jsonObject.getString(this.code), success)) { // 对比后端自定义错误码
             return parseBody(StringUtils.toEmpty(jsonObject.get(data)), succeed);
@@ -57,7 +57,7 @@ public abstract class DefaultConvertData extends DefaultConvert {
         }
     }
 
-    @Nullable
-    public abstract <R> R parseBody(@NonNull String handleBody, @NonNull Type succeed);
+
+    public abstract <R> R parseBody( String handleBody,  Type succeed);
 }
 

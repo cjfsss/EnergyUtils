@@ -2,7 +2,7 @@ package hos.util.compat;
 
 import android.annotation.SuppressLint;
 
-import androidx.annotation.NonNull;
+
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -71,7 +71,7 @@ public class CalendarConvert {
      * @param format The format.
      * @return the current formatted time string
      */
-    public static String getNowString(@NonNull final String format) {
+    public static String getNowString( final String format) {
         return millis2String(System.currentTimeMillis(), format);
     }
 
@@ -103,7 +103,7 @@ public class CalendarConvert {
      * @param pattern The pattern of date format, such as yyyy/MM/dd HH:mm
      * @return the formatted time string
      */
-    public static String millis2String(long millis, @NonNull final String pattern) {
+    public static String millis2String(long millis,  final String pattern) {
         return millis2String(millis, getSafeDateFormat(pattern));
     }
 
@@ -122,7 +122,7 @@ public class CalendarConvert {
      * @param format The format.
      * @return the formatted time string
      */
-    public static String millis2String(final long millis, @NonNull final DateFormat format) {
+    public static String millis2String(final long millis,  final DateFormat format) {
         return format.format(new Date(millis));
     }
 
@@ -133,7 +133,7 @@ public class CalendarConvert {
      * @param calendar The milliseconds.
      * @return the formatted time string
      */
-    public static String calendar2String(final @NonNull Calendar calendar) {
+    public static String calendar2String(final  Calendar calendar) {
         return calendar2String(calendar, getDefaultFormat());
     }
 
@@ -144,7 +144,7 @@ public class CalendarConvert {
      * @param pattern  The pattern of date format, such as yyyy/MM/dd HH:mm
      * @return the formatted time string
      */
-    public static String calendar2String(final @NonNull Calendar calendar, @NonNull final String pattern) {
+    public static String calendar2String(final  Calendar calendar,  final String pattern) {
         return calendar2String(calendar, getSafeDateFormat(pattern));
     }
 
@@ -155,7 +155,7 @@ public class CalendarConvert {
      * @param format   The format.
      * @return the formatted time string
      */
-    public static String calendar2String(final @NonNull Calendar calendar, @NonNull final DateFormat format) {
+    public static String calendar2String(final  Calendar calendar,  final DateFormat format) {
         return millis2String(calendar.getTimeInMillis(), format);
     }
 
@@ -185,7 +185,7 @@ public class CalendarConvert {
      * @param pattern The pattern of date format, such as yyyy/MM/dd HH:mm
      * @return the milliseconds
      */
-    public static long string2Millis(final String time, @NonNull final String pattern) {
+    public static long string2Millis(final String time,  final String pattern) {
         return string2Millis(time, getSafeDateFormat(pattern));
     }
 
@@ -196,7 +196,7 @@ public class CalendarConvert {
      * @param format The format.
      * @return the milliseconds
      */
-    public static long string2Millis(final String time, @NonNull final DateFormat format) {
+    public static long string2Millis(final String time,  final DateFormat format) {
         try {
             return format.parse(time).getTime();
         } catch (ParseException e) {
@@ -212,7 +212,7 @@ public class CalendarConvert {
      * @param time The formatted time string.
      * @return the milliseconds
      */
-    @NonNull
+    
     public static Calendar string2Calendar(final String time) {
         return string2Calendar(time, getDefaultFormat());
     }
@@ -224,8 +224,8 @@ public class CalendarConvert {
      * @param pattern The pattern of date format, such as yyyy/MM/dd HH:mm
      * @return the milliseconds
      */
-    @NonNull
-    public static Calendar string2Calendar(final String time, @NonNull final String pattern) {
+    
+    public static Calendar string2Calendar(final String time,  final String pattern) {
         return string2Calendar(time, getSafeDateFormat(pattern));
     }
 
@@ -236,8 +236,8 @@ public class CalendarConvert {
      * @param format The format.
      * @return the milliseconds
      */
-    @NonNull
-    public static Calendar string2Calendar(final String time, @NonNull final DateFormat format) {
+    
+    public static Calendar string2Calendar(final String time,  final DateFormat format) {
         long string2Millis = string2Millis(time, format);
         if (string2Millis == -1) {
             return CalendarCompat.getCalendar();

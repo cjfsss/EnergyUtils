@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.util.List;
 
@@ -25,27 +25,27 @@ public class ArrayAdapterPro<T> extends ArrayAdapter<T> {
 
     private int mTextColor;
 
-    public ArrayAdapterPro(@NonNull Context context, int resource) {
+    public ArrayAdapterPro( Context context, int resource) {
         super(context, resource);
     }
 
-    public ArrayAdapterPro(@NonNull Context context, int resource, int textViewResourceId) {
+    public ArrayAdapterPro( Context context, int resource, int textViewResourceId) {
         super(context, resource, textViewResourceId);
     }
 
-    public ArrayAdapterPro(@NonNull Context context, int resource, @NonNull T[] objects) {
+    public ArrayAdapterPro( Context context, int resource,  T[] objects) {
         super(context, resource, objects);
     }
 
-    public ArrayAdapterPro(@NonNull Context context, int resource, int textViewResourceId, @NonNull T[] objects) {
+    public ArrayAdapterPro( Context context, int resource, int textViewResourceId,  T[] objects) {
         super(context, resource, textViewResourceId, objects);
     }
 
-    public ArrayAdapterPro(@NonNull Context context, int resource, @NonNull List<T> objects) {
+    public ArrayAdapterPro( Context context, int resource,  List<T> objects) {
         super(context, resource, objects);
     }
 
-    public ArrayAdapterPro(@NonNull Context context, int resource, int textViewResourceId, @NonNull List<T> objects) {
+    public ArrayAdapterPro( Context context, int resource, int textViewResourceId,  List<T> objects) {
         super(context, resource, textViewResourceId, objects);
     }
 
@@ -53,7 +53,7 @@ public class ArrayAdapterPro<T> extends ArrayAdapter<T> {
         this.mTextColor = mTextColor;
     }
 
-    public void setList(@NonNull List<T> objects) {
+    public void setList( List<T> objects) {
         clear();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             addAll(objects);
@@ -64,7 +64,7 @@ public class ArrayAdapterPro<T> extends ArrayAdapter<T> {
         }
     }
 
-    public void setList(@NonNull T[] objects) {
+    public void setList( T[] objects) {
         clear();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             addAll(objects);
@@ -75,9 +75,9 @@ public class ArrayAdapterPro<T> extends ArrayAdapter<T> {
         }
     }
 
-    @NonNull
+
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position,  View convertView,  ViewGroup parent) {
         View target = super.getView(position, convertView, parent);
         if (target instanceof TextView) {
             ((TextView) target).setTextColor(mTextColor);
@@ -86,7 +86,7 @@ public class ArrayAdapterPro<T> extends ArrayAdapter<T> {
     }
 
     @Override
-    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getDropDownView(int position,  View convertView,  ViewGroup parent) {
         View target = super.getDropDownView(position, convertView, parent);
         if (target instanceof TextView) {
             ((TextView) target).setTextColor(mTextColor);

@@ -1,7 +1,7 @@
 package hos.util.convert;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import org.json.JSONException;
 
@@ -24,14 +24,14 @@ import hos.util.utils.StringUtils;
  */
 public interface NetConverter {
 
-    @Nullable
-    <R> R onConvert(@Nullable Type succeed, @Nullable Object response) throws JSONException, IOException;
+
+    <R> R onConvert( Type succeed,  Object response) throws JSONException, IOException;
 
     class DEFAULT implements NetConverter {
 
         @SuppressWarnings("unchecked")
         @Override
-        public <R> R onConvert(@Nullable Type succeed, @Nullable Object response) throws JSONException, IOException {
+        public <R> R onConvert( Type succeed,  Object response) throws JSONException, IOException {
             if (response == null || handleBody(response) == null) {
                 return null;
             }
@@ -62,13 +62,13 @@ public interface NetConverter {
             return convertBody(response, Objects.requireNonNull(handleBody(response)), Objects.requireNonNull(succeed));
         }
 
-        @Nullable
-        public <R> R convertBody(@NonNull Object response, @NonNull String handleBody,@NonNull Type succeed) throws JSONException, IOException {
+
+        public <R> R convertBody( Object response,  String handleBody, Type succeed) throws JSONException, IOException {
             return null;
         }
 
-        @Nullable
-        public String handleBody(@Nullable Object body) {
+
+        public String handleBody( Object body) {
             return StringUtils.toNULL(body);
         }
     }

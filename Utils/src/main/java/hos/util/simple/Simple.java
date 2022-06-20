@@ -3,8 +3,8 @@ package hos.util.simple;
 import android.text.TextUtils;
 import android.util.Pair;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.io.Serializable;
 import java.util.List;
@@ -27,9 +27,9 @@ import hos.util.utils.StringUtils;
 public class Simple<DATA> implements Serializable {
 
     public int code;
-    @NonNull
+
     public String message;
-    @Nullable
+
     public DATA data;
 
     public Map<String, Object> param;
@@ -39,32 +39,32 @@ public class Simple<DATA> implements Serializable {
     private boolean isUpdate;
 
     @SafeVarargs
-    public Simple(int code, @NonNull String message, @Nullable Pair<String, Object>... pairs) {
+    public Simple(int code,  String message,  Pair<String, Object>... pairs) {
         this(code, message, null, 30, pairs);
     }
 
     @SafeVarargs
-    public Simple(int code, @NonNull String message, boolean isUpdate, @Nullable Pair<String, Object>... pairs) {
+    public Simple(int code,  String message, boolean isUpdate,  Pair<String, Object>... pairs) {
         this(code, message, null, 30, isUpdate, pairs);
     }
 
     @SafeVarargs
-    public Simple(int code, @NonNull String message, @Nullable DATA data, @Nullable Pair<String, Object>... pairs) {
+    public Simple(int code,  String message,  DATA data,  Pair<String, Object>... pairs) {
         this(code, message, data, 30, pairs);
     }
 
     @SafeVarargs
-    public Simple(int code, @NonNull String message, @Nullable DATA data, boolean isUpdate, @Nullable Pair<String, Object>... pairs) {
+    public Simple(int code,  String message,  DATA data, boolean isUpdate,  Pair<String, Object>... pairs) {
         this(code, message, data, 30, isUpdate, pairs);
     }
 
     @SafeVarargs
-    public Simple(int code, @NonNull String message, @Nullable DATA data, int pageSize, @Nullable Pair<String, Object>... pairs) {
+    public Simple(int code,  String message,  DATA data, int pageSize,  Pair<String, Object>... pairs) {
         this(code, message, data, pageSize, true, pairs);
     }
 
     @SafeVarargs
-    public Simple(int code, @NonNull String message, @Nullable DATA data, int pageSize, boolean isUpdate, @Nullable Pair<String, Object>... pairs) {
+    public Simple(int code,  String message,  DATA data, int pageSize, boolean isUpdate,  Pair<String, Object>... pairs) {
         this.code = code;
         this.message = message;
         this.data = data;
@@ -147,57 +147,57 @@ public class Simple<DATA> implements Serializable {
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> success(@NonNull String message, @NonNull DATA data, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> success( String message,  DATA data,  Pair<String, Object>... pairs) {
         return new Simple<>(200, message, data, pairs);
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> success(@NonNull String message, @NonNull DATA data, boolean isUpdate, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> success( String message,  DATA data, boolean isUpdate,  Pair<String, Object>... pairs) {
         return new Simple<>(200, message, data, isUpdate, pairs);
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> success(@NonNull String message, @NonNull DATA data, int pageSize, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> success( String message,  DATA data, int pageSize,  Pair<String, Object>... pairs) {
         return new Simple<>(200, message, data, pageSize, pairs);
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> success(@NonNull String message, @NonNull DATA data, int pageSize, boolean isUpdate, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> success( String message,  DATA data, int pageSize, boolean isUpdate,  Pair<String, Object>... pairs) {
         return new Simple<>(200, message, data, pageSize, isUpdate, pairs);
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> empty(@NonNull String message, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> empty( String message,  Pair<String, Object>... pairs) {
         return new Simple<>(300, message, pairs);
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> empty(@NonNull String message, boolean isUpdate, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> empty( String message, boolean isUpdate,  Pair<String, Object>... pairs) {
         return new Simple<>(300, message, isUpdate, pairs);
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> error(@NonNull String message, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> error( String message,  Pair<String, Object>... pairs) {
         return new Simple<>(404, message, pairs);
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> error(@NonNull String message, boolean isUpdate, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> error( String message, boolean isUpdate,  Pair<String, Object>... pairs) {
         return new Simple<>(404, message, isUpdate, pairs);
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> error(@Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> error( Pair<String, Object>... pairs) {
         return new Simple<>(404, NetConstant.SERVER_ERROR, pairs);
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> error(boolean isUpdate, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> error(boolean isUpdate,  Pair<String, Object>... pairs) {
         return new Simple<>(404, NetConstant.SERVER_ERROR, isUpdate, pairs);
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> error(Throwable throwable, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> error(Throwable throwable,  Pair<String, Object>... pairs) {
         String message = throwable.getMessage();
         if (TextUtils.isEmpty(message)) {
             return Simple.error(pairs);
@@ -206,7 +206,7 @@ public class Simple<DATA> implements Serializable {
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> error(Throwable throwable, boolean isUpdate, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> error(Throwable throwable, boolean isUpdate,  Pair<String, Object>... pairs) {
         String message = throwable.getMessage();
         if (TextUtils.isEmpty(message)) {
             return Simple.error(pairs);
@@ -215,7 +215,7 @@ public class Simple<DATA> implements Serializable {
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> net(Throwable throwable, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> net(Throwable throwable,  Pair<String, Object>... pairs) {
         String message = throwable.getMessage();
         if (TextUtils.isEmpty(message)) {
             return Simple.net(pairs);
@@ -224,7 +224,7 @@ public class Simple<DATA> implements Serializable {
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> net(Throwable throwable, boolean isUpdate, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> net(Throwable throwable, boolean isUpdate,  Pair<String, Object>... pairs) {
         String message = throwable.getMessage();
         if (TextUtils.isEmpty(message)) {
             return Simple.net(pairs);
@@ -233,12 +233,12 @@ public class Simple<DATA> implements Serializable {
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> net(@Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> net( Pair<String, Object>... pairs) {
         return new Simple<>(100, NetConstant.NETWORK_ERROR, pairs);
     }
 
     @SafeVarargs
-    public static <DATA> Simple<DATA> net(boolean isUpdate, @Nullable Pair<String, Object>... pairs) {
+    public static <DATA> Simple<DATA> net(boolean isUpdate,  Pair<String, Object>... pairs) {
         return new Simple<>(100, NetConstant.NETWORK_ERROR, isUpdate, pairs);
     }
 }

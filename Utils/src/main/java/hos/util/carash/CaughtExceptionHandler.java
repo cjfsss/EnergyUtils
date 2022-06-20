@@ -10,8 +10,8 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.text.format.Formatter;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,19 +39,19 @@ import hos.util.log.HiLog;
  */
 class CaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
 
-    @NonNull
+    
     private final Context context;
-    @NonNull
+    
     private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.CHINA);
-    @NonNull
+    
     private final String LAUNCH_TIME = formatter.format(new Date());
     private final Thread.UncaughtExceptionHandler defaultExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
-    @NonNull
+    
     private final String crashDir;
-    @NonNull
+    
     private final String prefix;
 
-    CaughtExceptionHandler(@NonNull Context context, @NonNull String crashDir, @NonNull String prefix) {
+    CaughtExceptionHandler( Context context,  String crashDir,  String prefix) {
         this.context = context;
         this.crashDir = crashDir;
         this.prefix = prefix;
@@ -63,16 +63,16 @@ class CaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
         }
     }
 
-    CaughtExceptionHandler(@NonNull Context context, @NonNull String prefix) {
+    CaughtExceptionHandler( Context context,  String prefix) {
         this(context, context.getCacheDir().getAbsolutePath() + File.separator + "log", prefix);
     }
 
-    CaughtExceptionHandler(@NonNull Context context) {
+    CaughtExceptionHandler( Context context) {
         this(context, "e");
     }
 
     @Override
-    public void uncaughtException(@NonNull Thread t, @NonNull Throwable e) {
+    public void uncaughtException( Thread t,  Throwable e) {
         if (!handleException(e) && defaultExceptionHandler != null) {
             defaultExceptionHandler.uncaughtException(t, e);
         }
@@ -89,7 +89,7 @@ class CaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
         System.exit(0);
     }
 
-    private boolean handleException(@Nullable Throwable e) {
+    private boolean handleException( Throwable e) {
         if (e == null) return false;
         String log = collectDeviceInfo(e);
         if (BuildConfig.DEBUG) {
@@ -100,7 +100,7 @@ class CaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    private void saveCrashInfo2File(@NonNull String log) {
+    private void saveCrashInfo2File( String log) {
         File crashDir = new File(this.crashDir);
         if (!crashDir.exists()) {
             crashDir.mkdirs();
@@ -128,8 +128,8 @@ class CaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
      * 设备类型、OS本版、线程名、前后台、使用时长、App版本、升级渠道
      * CPU架构、内存信息、存储信息、permission权限
      */
-    @NonNull
-    private String collectDeviceInfo(@NonNull Throwable e) {
+    
+    private String collectDeviceInfo( Throwable e) {
         StringBuilder sb = new StringBuilder();
         sb.append("brand=").append(Build.BRAND).append("\n");// huawei,xiaomi
         sb.append("rom=").append(Build.MODEL).append("\n"); //sm-G9550

@@ -10,9 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.DimenRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import hos.util.listener.OnTargetListener;
 import hos.util.utils.StringUtils;
@@ -29,15 +28,15 @@ import hos.util.utils.ViewUtils;
  */
 public final class TextViewContext {
 
-    public static void setTextSizeRes(@DimenRes int id, @NonNull TextView... textView) {
+    public static void setTextSizeRes( int id,  TextView... textView) {
         setTextSizeRes(null, id, textView);
     }
 
-    public static void setTextSizeRes(@Nullable OnTargetListener<TextView> listener,
-                                      @DimenRes int id, @NonNull TextView... textView) {
+    public static void setTextSizeRes( OnTargetListener<TextView> listener,
+                                       int id,  TextView... textView) {
         ViewUtils.forTarget(new OnTargetListener<View>() {
             @Override
-            public void onTarget(@NonNull View view) {
+            public void onTarget( View view) {
                 TextView targetView = (TextView) view;
                 targetView.setTextSize(TypedValue.COMPLEX_UNIT_PX, ResContext.getTextSize(view.getContext(), id));
                 if (listener != null) {
@@ -47,15 +46,15 @@ public final class TextViewContext {
         }, textView);
     }
 
-    public static void setTextSize(float size, @NonNull TextView... textView) {
+    public static void setTextSize(float size,  TextView... textView) {
         setTextSize(null, size, textView);
     }
 
-    public static void setTextSize(@Nullable OnTargetListener<TextView> listener,
-                                   float size, @NonNull TextView... textView) {
+    public static void setTextSize( OnTargetListener<TextView> listener,
+                                   float size,  TextView... textView) {
         ViewUtils.forTarget(new OnTargetListener<View>() {
             @Override
-            public void onTarget(@NonNull View view) {
+            public void onTarget( View view) {
                 TextView targetView = (TextView) view;
                 targetView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
                 if (listener != null) {
@@ -81,7 +80,7 @@ public final class TextViewContext {
         textView.setSelection(textView.getText().length());
     }
 
-    public static void setNumberWord(@Nullable TextView... textView) {
+    public static void setNumberWord( TextView... textView) {
         setNumberWord(null, textView);
     }
 
@@ -89,10 +88,10 @@ public final class TextViewContext {
      * 设置输入内容只能为数字或者字母
      */
     @SuppressWarnings("SpellCheckingInspection")
-    public static void setNumberWord(@Nullable OnTargetListener<TextView> listener, @Nullable TextView... textView) {
+    public static void setNumberWord( OnTargetListener<TextView> listener,  TextView... textView) {
         ViewUtils.forTarget(new OnTargetListener<View>() {
             @Override
-            public void onTarget(@NonNull View view) {
+            public void onTarget( View view) {
                 TextView targetView = (TextView) view;
                 targetView.setKeyListener(
                         DigitsKeyListener.getInstance("0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM"));
@@ -111,14 +110,14 @@ public final class TextViewContext {
         return StringUtils.toEmpty(textView.getText().toString());
     }
 
-    public static void clearText(@Nullable TextView... textView) {
+    public static void clearText( TextView... textView) {
         clearText(null, textView);
     }
 
-    public static void clearText(@Nullable OnTargetListener<TextView> listener, @Nullable TextView... textView) {
+    public static void clearText( OnTargetListener<TextView> listener,  TextView... textView) {
         ViewUtils.forTarget(new OnTargetListener<View>() {
             @Override
-            public void onTarget(@NonNull View view) {
+            public void onTarget( View view) {
                 TextView targetView = (TextView) view;
                 targetView.setText("");
                 if (listener != null) {
@@ -128,14 +127,14 @@ public final class TextViewContext {
         }, textView);
     }
 
-    public static void clearHint(@Nullable TextView... textView) {
+    public static void clearHint( TextView... textView) {
         clearHint(null, textView);
     }
 
-    public static void clearHint(@Nullable OnTargetListener<TextView> listener, @Nullable TextView... textView) {
+    public static void clearHint( OnTargetListener<TextView> listener,  TextView... textView) {
         ViewUtils.forTarget(new OnTargetListener<View>() {
             @Override
-            public void onTarget(@NonNull View view) {
+            public void onTarget( View view) {
                 TextView targetView = (TextView) view;
                 targetView.setHint("");
                 if (listener != null) {

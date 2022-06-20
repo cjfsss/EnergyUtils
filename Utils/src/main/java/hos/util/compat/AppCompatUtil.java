@@ -1,10 +1,6 @@
 package hos.util.compat;
 
 import android.app.Application;
-import android.os.Build;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
 import hos.core.ActivityManager;
 import hos.core.AppCompat;
@@ -25,8 +21,7 @@ import hos.util.log.HiLogPrinter;
  */
 public class AppCompatUtil {
 
-    @RequiresApi(api = Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-    public static void init(@NonNull Application application, HiLogConfig.JsonParser jsonParser) {
+    public static void init( Application application, HiLogConfig.JsonParser jsonParser) {
         AppCompat.init(application);
         ActivityManager.init(application);
         CrashHandler.init();

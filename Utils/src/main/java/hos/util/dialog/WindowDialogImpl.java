@@ -3,8 +3,8 @@ package hos.util.dialog;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 /**
  * <p>Title: WindowDialogImpl </p>
@@ -40,13 +40,13 @@ public abstract class WindowDialogImpl<P extends WindowDialogImpl<P>> implements
     }
 
     @Override
-    public P setContentView(@NonNull  View view) {
+    public P setContentView(  View view) {
         this.view = view;
         return (P) this;
     }
 
     @Override
-    public P setContentView(@NonNull  View view, @Nullable  ViewGroup.LayoutParams params) {
+    public P setContentView(  View view,   ViewGroup.LayoutParams params) {
         this.view = view;
         this.params = params;
         return (P) this;

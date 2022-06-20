@@ -1,7 +1,5 @@
 package hos.util.dialog;
 
-import androidx.annotation.StringRes;
-import androidx.annotation.StyleRes;
 
 import hos.util.utils.ResUtils;
 
@@ -18,9 +16,9 @@ public interface DialogInterface<P extends DialogInterface<P>> {
 
     void setCancelable(boolean cancelable);
 
-    P setStyle(@StyleRes int style);
+    P setStyle(int style);
 
-    default P setTitle(@StringRes int title) {
+    default P setTitle( int title) {
         return setTitle(ResUtils.getString(title));
     }
 
@@ -28,7 +26,7 @@ public interface DialogInterface<P extends DialogInterface<P>> {
 
     P setContent(CharSequence content);
 
-    default P setContent(@StringRes int contentId) {
+    default P setContent( int contentId) {
         return setContent(ResUtils.getString(contentId));
     }
 

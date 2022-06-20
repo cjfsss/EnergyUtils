@@ -5,8 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.TypedValue;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import hos.util.R;
 
@@ -28,8 +28,8 @@ public class ResAttributeContext {
      * @param resId 资源ID
      * @return
      */
-    @NonNull
-    public static TypedValue getAttribute(@NonNull Context context, int resId) {
+
+    public static TypedValue getAttribute( Context context, int resId) {
         TypedValue typedValue = new TypedValue();
         context.getTheme().resolveAttribute(resId, typedValue, true);
         return typedValue;
@@ -41,7 +41,7 @@ public class ResAttributeContext {
      * @param resId 资源ID
      * @return
      */
-    public static int getAttributeRes(@NonNull Context context, int resId) {
+    public static int getAttributeRes( Context context, int resId) {
         try {
             return getAttribute(context, resId).resourceId;
         } catch (Exception e) {
@@ -49,7 +49,7 @@ public class ResAttributeContext {
         }
     }
 
-//    public static int getColorPrimary(@NonNull Context context) {
+//    public static int getColorPrimary( Context context) {
 //        return getAttribute(context, R.attr.colorPrimary).data;
 //    }
 
@@ -59,8 +59,8 @@ public class ResAttributeContext {
      * @param resId 资源ID
      * @return
      */
-    @Nullable
-    public static String getAttributeString(@NonNull Context context, int resId) {
+
+    public static String getAttributeString( Context context, int resId) {
         try {
             return String.valueOf(getAttribute(context, resId).coerceToString());
         } catch (Exception e) {
@@ -75,8 +75,8 @@ public class ResAttributeContext {
      * @param resId 资源ID
      * @return
      */
-    @Nullable
-    public static Bitmap getAttributeBitmap(@NonNull Context context, int resId) {
+
+    public static Bitmap getAttributeBitmap( Context context, int resId) {
         try {
             return getBitmap(context, getAttributeRes(context, resId));
         } catch (Exception e) {
@@ -84,8 +84,8 @@ public class ResAttributeContext {
         }
     }
 
-    @NonNull
-    private static Bitmap getBitmap(@NonNull Context context, int id) {
+
+    private static Bitmap getBitmap( Context context, int id) {
         return BitmapFactory.decodeResource(context.getResources(), id);
     }
 

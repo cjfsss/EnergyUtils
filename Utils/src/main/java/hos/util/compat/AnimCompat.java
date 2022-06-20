@@ -7,7 +7,7 @@ import android.content.res.Resources;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import androidx.annotation.NonNull;
+
 
 /**
  * <p>Title: AnimUtils </p>
@@ -20,7 +20,7 @@ import androidx.annotation.NonNull;
  */
 public class AnimCompat {
 
-    public static Animation loadAnimation(@NonNull Context context, int nextAnim) {
+    public static Animation loadAnimation( Context context, int nextAnim) {
         if (nextAnim <= 0) {
             return null;
         }
@@ -41,7 +41,7 @@ public class AnimCompat {
         return null;
     }
 
-    public static Animator loadAnimator(@NonNull Context context, int nextAnim) {
+    public static Animator loadAnimator( Context context, int nextAnim) {
         if (nextAnim <= 0) {
             return null;
         }

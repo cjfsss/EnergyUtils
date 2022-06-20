@@ -2,13 +2,13 @@ package hos.util.log;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
+
 
 
 public class HiConsolePrinter implements HiLogPrinter {
 
     @Override
-    public void print(@NonNull HiLogConfig config, int level, String tag, @NonNull String printString) {
+    public void print( HiLogConfig config, int level, String tag,  String printString) {
         int len = printString.length();
         int countOfSub = len / HiLogConfig.MAX_LEN;
         if (countOfSub > 0) {

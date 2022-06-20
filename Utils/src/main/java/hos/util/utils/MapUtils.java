@@ -2,8 +2,8 @@ package hos.util.utils;
 
 import android.util.Pair;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,8 +31,8 @@ public class MapUtils {
      *
      * @return List
      */
-    @NonNull
-    public static <K, V> List<K> toListKey(@Nullable Map<K, V> map) {
+
+    public static <K, V> List<K> toListKey( Map<K, V> map) {
         if (map == null || map.isEmpty()) {
             return new LinkedList<>();
         }
@@ -45,8 +45,8 @@ public class MapUtils {
      *
      * @return List
      */
-    @NonNull
-    public static <K, V> List<V> toListValue(@Nullable Map<K, V> map) {
+
+    public static <K, V> List<V> toListValue( Map<K, V> map) {
         if (map == null || map.isEmpty()) {
             return new ArrayList<V>();
         }
@@ -74,20 +74,20 @@ public class MapUtils {
         return list;
     }
 
-    @Nullable
-    public static <K, V> String toNull(@Nullable Map<K, V> map, @NonNull String key) {
+
+    public static <K, V> String toNull( Map<K, V> map,  String key) {
         if (map == null) {
             return null;
         }
-        @Nullable Object object = map.get(key);
+         Object object = map.get(key);
         if (object == null) {
             return null;
         }
         return StringUtils.toNULL(object);
     }
 
-    @Nullable
-    public static <K, V> String get(@Nullable Map<K, V> map, @NonNull String key, @Nullable String value) {
+
+    public static <K, V> String get( Map<K, V> map,  String key,  String value) {
         String toNull = get(map, key);
         if (toNull == null) {
             return value;
@@ -95,13 +95,13 @@ public class MapUtils {
         return toNull;
     }
 
-    @Nullable
-    public static <K, V> String get(@Nullable Map<K, V> map, @NonNull String key) {
+
+    public static <K, V> String get( Map<K, V> map,  String key) {
         return toNull(map, key);
     }
 
-    @NonNull
-    public static <K, V> String getEmpty(@Nullable Map<K, V> map, @NonNull String key, @Nullable String value) {
+
+    public static <K, V> String getEmpty( Map<K, V> map,  String key,  String value) {
         String toNull = get(map, key, value);
         if (toNull == null) {
             return value == null ? "" : value;
@@ -109,12 +109,12 @@ public class MapUtils {
         return toNull;
     }
 
-    @NonNull
-    public static <K, V> String getEmpty(@Nullable Map<K, V> map, @NonNull String key) {
+
+    public static <K, V> String getEmpty( Map<K, V> map,  String key) {
         return getEmpty(map, key, "");
     }
 
-    public static <K, V> int getInt(@Nullable Map<K, V> map, @NonNull String key, int value) {
+    public static <K, V> int getInt( Map<K, V> map,  String key, int value) {
         String toNull = get(map, key);
         if (toNull == null) {
             return value;
@@ -126,11 +126,11 @@ public class MapUtils {
         }
     }
 
-    public static <K, V> int getInt(@Nullable Map<K, V> map, @NonNull String key) {
+    public static <K, V> int getInt( Map<K, V> map,  String key) {
         return getInt(map, key, 0);
     }
 
-    public static <K, V> long getLong(@Nullable Map<K, V> map, @NonNull String key, long value) {
+    public static <K, V> long getLong( Map<K, V> map,  String key, long value) {
         String toNull = get(map, key);
         if (toNull == null) {
             return value;
@@ -142,11 +142,11 @@ public class MapUtils {
         }
     }
 
-    public static <K, V> long getLong(@Nullable Map<K, V> map, @NonNull String key) {
+    public static <K, V> long getLong( Map<K, V> map,  String key) {
         return getLong(map, key, 0L);
     }
 
-    public static <K, V> double getDouble(@Nullable Map<K, V> map, @NonNull String key, double value) {
+    public static <K, V> double getDouble( Map<K, V> map,  String key, double value) {
         String toNull = get(map, key);
         if (toNull == null) {
             return value;
@@ -158,12 +158,12 @@ public class MapUtils {
         }
     }
 
-    public static <K, V> double getDouble(@Nullable Map<K, V> map, @NonNull String key) {
+    public static <K, V> double getDouble( Map<K, V> map,  String key) {
         return getDouble(map, key, 0D);
     }
 
-    @NonNull
-    public static <K, V> String getRate(@Nullable Map<K, V> map, @NonNull String key, @Nullable String defaultValue) {
+
+    public static <K, V> String getRate( Map<K, V> map,  String key,  String defaultValue) {
         String value = toNull(map, key);
         if (value == null) {
             if (defaultValue == null || defaultValue.length() == 0) {
@@ -177,13 +177,13 @@ public class MapUtils {
         return StringUtils.deleteEndZero(value) + "%";
     }
 
-    @NonNull
-    public static <K, V> String getRate(@Nullable Map<K, V> map, @NonNull String key) {
+
+    public static <K, V> String getRate( Map<K, V> map,  String key) {
         return getRate(map, key, "-");
     }
 
-    @Nullable
-    public static <K, V> String getTime(@Nullable Map<K, V> map, @NonNull String key, @Nullable String defaultValue) {
+
+    public static <K, V> String getTime( Map<K, V> map,  String key,  String defaultValue) {
         String value = toNull(map, key);
         if (value == null) {
             return defaultValue;
@@ -191,13 +191,13 @@ public class MapUtils {
         return StringUtils.toTime(value);
     }
 
-    @Nullable
-    public static <K, V> String getTime(@Nullable Map<K, V> map, @NonNull String key) {
+
+    public static <K, V> String getTime( Map<K, V> map,  String key) {
         return getTime(map, key, null);
     }
 
-    @Nullable
-    public static List<Pair<String, Object>> toPair(@Nullable Map<String, Object> map) {
+
+    public static List<Pair<String, Object>> toPair( Map<String, Object> map) {
         if (map == null) {
             return null;
         }
@@ -210,8 +210,8 @@ public class MapUtils {
     }
 
     @SafeVarargs
-    @Nullable
-    public static Map<String, Object> toMap(@Nullable Pair<String, Object>... pairs) {
+
+    public static Map<String, Object> toMap( Pair<String, Object>... pairs) {
         if (pairs == null) {
             return null;
         }

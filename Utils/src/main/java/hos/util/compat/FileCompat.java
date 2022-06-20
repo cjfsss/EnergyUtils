@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.io.File;
 
@@ -166,8 +166,8 @@ public class FileCompat {
         }
     }
 
-    public static boolean openTargetFile(@NonNull Context context, @NonNull final String pkgName,
-                                         @Nullable final String filePath, @NonNull UriCallback callback) {
+    public static boolean openTargetFile( Context context,  final String pkgName,
+                                          final String filePath,  UriCallback callback) {
         try {
             Intent launchOpenFile = IntentCompat.getLaunchTargetOpenFile(context, pkgName, filePath, callback);
             context.startActivity(launchOpenFile);
@@ -178,8 +178,8 @@ public class FileCompat {
         }
     }
 
-    public static boolean openTargetFile(@NonNull Context context, @NonNull final String pkgName,
-                                         @Nullable final File file, @NonNull UriCallback callback) {
+    public static boolean openTargetFile( Context context,  final String pkgName,
+                                          final File file,  UriCallback callback) {
         try {
             Intent launchOpenFile = IntentCompat.getLaunchTargetOpenFile(context, pkgName, file, callback);
             context.startActivity(launchOpenFile);
@@ -190,7 +190,7 @@ public class FileCompat {
         }
     }
 
-    public static boolean openFile(@NonNull Context context, @Nullable String filePath, @NonNull UriCallback callback) {
+    public static boolean openFile( Context context,  String filePath,  UriCallback callback) {
         try {
             Intent launchOpenFile = IntentCompat.getLaunchOpenFile(context, filePath, callback);
             context.startActivity(launchOpenFile);
@@ -201,7 +201,7 @@ public class FileCompat {
         }
     }
 
-    public static boolean openFile(@NonNull Context context, @NonNull File file, @NonNull UriCallback callback) {
+    public static boolean openFile( Context context,  File file,  UriCallback callback) {
         try {
             Intent launchOpenFile = IntentCompat.getLaunchOpenFile(context, file, callback);
             context.startActivity(launchOpenFile);
@@ -213,7 +213,7 @@ public class FileCompat {
     }
 
 
-    public static boolean openWPS(@NonNull Context context, @Nullable String filePath, @NonNull UriCallback callback) {
+    public static boolean openWPS( Context context,  String filePath,  UriCallback callback) {
         try {
             context.startActivity(IntentCompat.getLaunchOpenWPS(context, filePath, callback));
             return true;
@@ -224,7 +224,7 @@ public class FileCompat {
     }
 
 
-    public static boolean openWPS(@NonNull Context context, @NonNull File file, @NonNull UriCallback callback) {
+    public static boolean openWPS( Context context,  File file,  UriCallback callback) {
         try {
             context.startActivity(IntentCompat.getLaunchOpenWPS(context, file, callback));
             return true;
@@ -235,7 +235,7 @@ public class FileCompat {
     }
 
 
-    public static boolean openBrowser(@NonNull Context context, @NonNull String url) {
+    public static boolean openBrowser( Context context,  String url) {
         try {
             context.startActivity(IntentCompat.getLaunchUrl(url));
             return true;
@@ -245,7 +245,7 @@ public class FileCompat {
         }
     }
 
-    public static boolean openMarket(@NonNull Context context, @NonNull String packageName) {
+    public static boolean openMarket( Context context,  String packageName) {
         try {
             context.startActivity(IntentCompat.getLaunchMarket(packageName));
             return true;
@@ -255,40 +255,40 @@ public class FileCompat {
         }
     }
 
-    public static boolean openTargetFile(@NonNull final String pkgName,
-                                         @Nullable final String filePath, @NonNull UriCallback callback) {
+    public static boolean openTargetFile( final String pkgName,
+                                          final String filePath,  UriCallback callback) {
         return openTargetFile(AppCompat.getApp(), pkgName, filePath, callback);
     }
 
-    public static boolean openTargetFile(@NonNull final String pkgName,
-                                         @Nullable final File file, @NonNull UriCallback callback) {
+    public static boolean openTargetFile( final String pkgName,
+                                          final File file,  UriCallback callback) {
         return openTargetFile(AppCompat.getApp(), pkgName, file, callback);
     }
 
-    public static boolean openFile(@Nullable String filePath, @NonNull UriCallback callback) {
+    public static boolean openFile( String filePath,  UriCallback callback) {
         return openFile(AppCompat.getApp(), filePath, callback);
     }
 
-    public static boolean openFile(@NonNull File file, @NonNull UriCallback callback) {
+    public static boolean openFile( File file,  UriCallback callback) {
         return openFile(AppCompat.getApp(), file, callback);
     }
 
 
-    public static boolean openWPS(@Nullable String filePath, @NonNull UriCallback callback) {
+    public static boolean openWPS( String filePath,  UriCallback callback) {
         return openWPS(AppCompat.getApp(), filePath, callback);
     }
 
 
-    public static boolean openWPS(@NonNull File file, @NonNull UriCallback callback) {
+    public static boolean openWPS( File file,  UriCallback callback) {
         return openWPS(AppCompat.getApp(), file, callback);
     }
 
 
-    public static boolean openBrowser(@NonNull String url) {
+    public static boolean openBrowser( String url) {
         return openBrowser(AppCompat.getApp(), url);
     }
 
-    public static boolean openMarket(@NonNull String packageName) {
+    public static boolean openMarket( String packageName) {
         return openMarket(AppCompat.getApp(), packageName);
     }
 

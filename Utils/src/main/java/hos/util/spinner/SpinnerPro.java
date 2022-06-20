@@ -1,18 +1,14 @@
 package hos.util.spinner;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
+
+
 
 import java.util.List;
 
@@ -33,7 +29,6 @@ public class SpinnerPro extends Spinner {
         super(context);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     public SpinnerPro(Context context, int mode) {
         super(context, mode);
     }
@@ -46,44 +41,33 @@ public class SpinnerPro extends Spinner {
         super(context, attrs, defStyleAttr);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public SpinnerPro(Context context, AttributeSet attrs, int defStyleAttr, int mode) {
         super(context, attrs, defStyleAttr, mode);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public SpinnerPro(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes, int mode) {
-        super(context, attrs, defStyleAttr, defStyleRes, mode);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public SpinnerPro(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes, int mode, Resources.Theme popupTheme) {
-        super(context, attrs, defStyleAttr, defStyleRes, mode, popupTheme);
-    }
-
-    public <T> SpinnerPro bind(@NonNull List<T> objects, int resource) {
+    public <T> SpinnerPro bind( List<T> objects, int resource) {
         return bind(objects, resource, 0);
     }
 
-    public <T> SpinnerPro bind(@NonNull T[] objects, int resource) {
+    public <T> SpinnerPro bind( T[] objects, int resource) {
         return bind(objects, resource, 0);
     }
 
-    public <T> SpinnerPro bind(@NonNull List<T> objects, int resource, @ColorInt int color) {
+    public <T> SpinnerPro bind( List<T> objects, int resource,  int color) {
         ArrayAdapterPro<T> adapterPro = new ArrayAdapterPro<>(getContext(), resource, objects);
         adapterPro.setTextColor(color);
         setAdapter(adapterPro);
         return this;
     }
 
-    public <T> SpinnerPro bind(@NonNull T[] objects, int resource, @ColorInt int color) {
+    public <T> SpinnerPro bind( T[] objects, int resource,  int color) {
         ArrayAdapterPro<T> adapterPro = new ArrayAdapterPro<>(getContext(), resource, objects);
         adapterPro.setTextColor(color);
         setAdapter(adapterPro);
         return this;
     }
 
-    public <T> void setList(@NonNull List<T> objects) {
+    public <T> void setList( List<T> objects) {
         SpinnerAdapter spinnerAdapter = getAdapter();
         if (spinnerAdapter instanceof ArrayAdapterPro) {
             ArrayAdapterPro<T> adapter = (ArrayAdapterPro<T>) getAdapter();
@@ -91,7 +75,7 @@ public class SpinnerPro extends Spinner {
         }
     }
 
-    public <T> void setList(@NonNull T[] objects) {
+    public <T> void setList( T[] objects) {
         SpinnerAdapter spinnerAdapter = getAdapter();
         if (spinnerAdapter instanceof ArrayAdapterPro) {
             ArrayAdapterPro<T> adapter = (ArrayAdapterPro<T>) getAdapter();
@@ -99,7 +83,7 @@ public class SpinnerPro extends Spinner {
         }
     }
 
-    public void setOnItemClickListener(@Nullable OnItemClickListener listener) {
+    public void setOnItemClickListener( OnItemClickListener listener) {
         if (listener == null) {
             setOnItemSelectedListener(null);
             return;

@@ -3,8 +3,8 @@ package hos.util.cache;
 import android.os.Parcelable;
 import android.util.Base64;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 /**
  * <p>Title: FileStorage </p>
@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
  * @date : 2022/4/2 18:17
  */
 public class StorageSp {
-    public static <T> boolean saveCache(@NonNull String key, T body) {
+    public static <T> boolean saveCache( String key, T body) {
         if (body == null) {
             return true;
         }
@@ -35,8 +35,8 @@ public class StorageSp {
         return cacheDao.saveCache(cache);
     }
 
-    @Nullable
-    public static <T> T getCache(@NonNull String key, final Parcelable.Creator<T> creator) {
+    
+    public static <T> T getCache( String key, final Parcelable.Creator<T> creator) {
         CacheDao cacheDao = CacheDaoFile.get();
         Cache cache = cacheDao.getCache(key);
         if (cache == null || cache.getData() == null) {
@@ -50,8 +50,8 @@ public class StorageSp {
     }
 
     @SuppressWarnings("unchecked")
-    @Nullable
-    public static <T> T getCache(@NonNull String key) {
+    
+    public static <T> T getCache( String key) {
         CacheDao cacheDao = CacheDaoSharedPreferences.get();
         Cache cache = cacheDao.getCache(key);
         if (cache == null || cache.getData() == null) {
@@ -64,12 +64,12 @@ public class StorageSp {
         return (T) CacheUtils.toObject(decode);
     }
 
-    public static boolean deleteCache(@NonNull Cache cache) {
+    public static boolean deleteCache( Cache cache) {
         CacheDao cacheDao = CacheDaoSharedPreferences.get();
         return cacheDao.deleteCache(cache);
     }
 
-    public static boolean deleteCache(@NonNull String key) {
+    public static boolean deleteCache( String key) {
         CacheDao cacheDao = CacheDaoSharedPreferences.get();
         return cacheDao.deleteCache(key);
     }

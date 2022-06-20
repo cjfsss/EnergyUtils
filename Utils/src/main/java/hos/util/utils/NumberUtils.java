@@ -1,7 +1,5 @@
 package hos.util.utils;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.Random;
 import java.util.UUID;
@@ -114,60 +112,13 @@ public class NumberUtils {
         }
         return sb.toString();
     }
-    public static String uuid16() {
-        String uuid = UUID.randomUUID().toString();
-        char[] cs = new char[32];
-        char c = 0;
-        for (int i = uuid.length() / 2, j = 1; i-- > 0; ) {
-            if ((c = uuid.charAt(i)) != '-') {
-                cs[j++] = c;
-            }
-        }
-        return String.valueOf(cs);
-    }
 
-    /**
-     * 返回一个UUID
-     *
-     * @return 小写的UUID
-     */
-    public static String uuid() {
-        return UUID.randomUUID().toString();
-
-    }
-
-    /**
-     * 返回一个UUID
-     *
-     * @return 大写的UUID
-     */
-    public static String UUID() {
-        return UUID.randomUUID().toString().toUpperCase();
-    }
-
-    /**
-     * 返回一个有序列的uuid编码
-     * 前11位为时间(毫秒)
-     * 中间4位为主机特征码
-     * 剩下的保证其唯一性
-     *
-     * @param hostFeature 主机特征码建议设置4位
-     * @return
-     */
-    public static String squid(String hostFeature) {
-        long date = System.currentTimeMillis();
-        String s = UUID.randomUUID().toString();
-        String str = Long.toHexString(date);
-        String result = str + hostFeature
-                + s.substring(17, 18) + s.substring(19, 23) + s.substring(24);
-        return result.toUpperCase();
-    }
     /**
      * 将Double转换为double类型
      *
      * @param value 目标值
      */
-    public static double toDoubleZero(@Nullable final Double value) {
+    public static double toDoubleZero(final Double value) {
         if (value == null) {
             return 0.0D;
         }
@@ -180,7 +131,7 @@ public class NumberUtils {
      * 3.40->3.4
      * 3.0->3
      */
-    public static double toDecimalFormat(@Nullable final Double number) {
+    public static double toDecimalFormat(final Double number) {
         return Double.parseDouble(StringUtils.toDecimalFormat(number));
     }
 
@@ -190,12 +141,12 @@ public class NumberUtils {
      * 3.40->3.4
      * 3.0->3
      */
-    public static double toDecimalFormat(@NonNull final String pattern, @Nullable final Double number) {
+    public static double toDecimalFormat(final String pattern, final Double number) {
         return Double.parseDouble(StringUtils.toDecimalFormat(pattern, number));
     }
 
-    @NonNull
-    public static String noData_(@Nullable Double target) {
+
+    public static String noData_(Double target) {
         if (target == null) {
             return "-";
         }
@@ -208,7 +159,7 @@ public class NumberUtils {
      *
      * @param value 目标值
      */
-    public static float toFloatZero(@Nullable final Float value) {
+    public static float toFloatZero(final Float value) {
         if (value == null) {
             return 0f;
         }
@@ -221,7 +172,7 @@ public class NumberUtils {
      * 3.40->3.4
      * 3.0->3
      */
-    public static float toDecimalFormat(@Nullable final Float number) {
+    public static float toDecimalFormat(final Float number) {
         return Float.parseFloat(StringUtils.toDecimalFormat(number));
     }
 
@@ -231,12 +182,12 @@ public class NumberUtils {
      * 3.40->3.4
      * 3.0->3
      */
-    public static float toDecimalFormat(@NonNull final String pattern, @Nullable final Float number) {
+    public static float toDecimalFormat(final String pattern, final Float number) {
         return Float.parseFloat(StringUtils.toDecimalFormat(pattern, number));
     }
 
-    @NonNull
-    public static String noData_(@Nullable Float target) {
+
+    public static String noData_(Float target) {
         if (target == null) {
             return "-";
         }
@@ -248,34 +199,35 @@ public class NumberUtils {
      *
      * @param value 目标值
      */
-    public static int toIntZero(@Nullable final Integer value) {
+    public static int toIntZero(final Integer value) {
         if (value == null) {
             return 0;
         }
         return value;
     }
 
-    @NonNull
-    public static String noData_(@Nullable Integer target) {
+
+    public static String noData_(Integer target) {
         if (target == null) {
             return "-";
         }
         return String.valueOf(toIntZero(target));
     }
+
     /**
      * 将Long转换为long类型
      *
      * @param value 目标值
      */
-    public static long toLongZero(@Nullable final Long value) {
+    public static long toLongZero(final Long value) {
         if (value == null) {
             return 0L;
         }
         return value;
     }
 
-    @NonNull
-    public static String noData_(@Nullable Long target) {
+
+    public static String noData_(Long target) {
         if (target == null) {
             return "-";
         }

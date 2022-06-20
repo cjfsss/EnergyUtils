@@ -2,11 +2,6 @@ package hos.util.toast;
 
 import android.view.View;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 
 /**
  * <p>Title: PrintToast </p>
@@ -162,7 +157,7 @@ public class ToastX {
      *
      * @param backgroundColor The color of background.
      */
-    public static void setBgColor(@ColorInt final int backgroundColor) {
+    public static void setBgColor( final int backgroundColor) {
         if (DELEGETE != null) {
             DELEGETE.setBgColor(backgroundColor);
         }
@@ -173,7 +168,7 @@ public class ToastX {
      *
      * @param bgResource The resource of background.
      */
-    public static void setBgResource(@DrawableRes final int bgResource) {
+    public static void setBgResource( final int bgResource) {
         if (DELEGETE != null) {
             DELEGETE.setBgResource(bgResource);
         }
@@ -184,7 +179,7 @@ public class ToastX {
      *
      * @param msgColor The color of message.
      */
-    public static void setMsgColor(@ColorInt final int msgColor) {
+    public static void setMsgColor( final int msgColor) {
         if (DELEGETE != null) {
             DELEGETE.setMsgColor(msgColor);
         }
@@ -206,7 +201,7 @@ public class ToastX {
      *
      * @param text The text.
      */
-    public static void showShort(@NonNull final CharSequence text) {
+    public static void showShort( final CharSequence text) {
         if (DELEGETE != null) {
             DELEGETE.showShort(text);
         }
@@ -217,7 +212,7 @@ public class ToastX {
      *
      * @param resId The resource id for text.
      */
-    public static void showShort(@StringRes final int resId) {
+    public static void showShort( final int resId) {
         if (DELEGETE != null) {
             DELEGETE.showShort(resId);
         }
@@ -229,7 +224,7 @@ public class ToastX {
      * @param resId The resource id for text.
      * @param args  The args.
      */
-    public static void showShort(@StringRes final int resId, final Object... args) {
+    public static void showShort( final int resId, final Object... args) {
         if (DELEGETE != null) {
             DELEGETE.showShort(resId, args);
         }
@@ -241,7 +236,7 @@ public class ToastX {
      * @param format The format.
      * @param args   The args.
      */
-    public static void showShort(@NonNull final String format, final Object... args) {
+    public static void showShort( final String format, final Object... args) {
         if (DELEGETE != null) {
             DELEGETE.showShort(format, args);
         }
@@ -252,7 +247,7 @@ public class ToastX {
      *
      * @param text The text.
      */
-    public static void showLong(@NonNull final CharSequence text) {
+    public static void showLong( final CharSequence text) {
         if (DELEGETE != null) {
             DELEGETE.showLong(text);
         }
@@ -263,7 +258,7 @@ public class ToastX {
      *
      * @param resId The resource id for text.
      */
-    public static void showLong(@StringRes final int resId) {
+    public static void showLong( final int resId) {
         if (DELEGETE != null) {
             DELEGETE.showLong(resId);
         }
@@ -275,7 +270,7 @@ public class ToastX {
      * @param resId The resource id for text.
      * @param args  The args.
      */
-    public static void showLong(@StringRes final int resId, final Object... args) {
+    public static void showLong( final int resId, final Object... args) {
         if (DELEGETE != null) {
             DELEGETE.showLong(resId, args);
         }
@@ -287,7 +282,7 @@ public class ToastX {
      * @param format The format.
      * @param args   The args.
      */
-    public static void showLong(@NonNull final String format, final Object... args) {
+    public static void showLong( final String format, final Object... args) {
         if (DELEGETE != null) {
             DELEGETE.showLong(format, args);
         }
@@ -298,7 +293,7 @@ public class ToastX {
      *
      * @param layoutId ID for an XML layout resource to load.
      */
-    public static View showCustomShort(@LayoutRes final int layoutId) {
+    public static View showCustomShort( final int layoutId) {
         if (DELEGETE != null) {
             return DELEGETE.showCustomShort(layoutId);
         }
@@ -310,7 +305,7 @@ public class ToastX {
      *
      * @param layoutId ID for an XML layout resource to load.
      */
-    public static View showCustomLong(@LayoutRes final int layoutId) {
+    public static View showCustomLong( final int layoutId) {
         if (DELEGETE != null) {
             return DELEGETE.showCustomLong(layoutId);
         }

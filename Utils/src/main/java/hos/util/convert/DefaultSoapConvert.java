@@ -2,8 +2,8 @@ package hos.util.convert;
 
 import android.text.TextUtils;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,9 +40,9 @@ public abstract class DefaultSoapConvert extends DefaultConvert {
         super();
     }
 
-    @Nullable
+
     @Override
-    public <R> R convertBody(@NonNull Object response, @NonNull String handleBody, @NonNull Type succeed) throws JSONException, IOException {
+    public <R> R convertBody( Object response,  String handleBody,  Type succeed) throws JSONException, IOException {
         JSONObject jsonObject = new JSONObject(handleBody);// 获取JSON中后端定义的错误码和错误信息
         if (TextUtils.equals(jsonObject.getString(this.code), success)) { // 对比后端自定义错误码
             return parseBody(handleBody, succeed);
@@ -51,13 +51,13 @@ public abstract class DefaultSoapConvert extends DefaultConvert {
         }
     }
 
-    @Nullable
-    public abstract <R> R parseBody(@NonNull String handleBody, @NonNull Type succeed);
+
+    public abstract <R> R parseBody( String handleBody,  Type succeed);
 
 
-    @Nullable
+
     @Override
-    public String handleBody(@Nullable Object body) {
+    public String handleBody( Object body) {
         return SoapUtils.clearXml(super.handleBody(body));
     }
 }

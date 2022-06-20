@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(activityMainBinding.getRoot());
         locationSource = new LocationSourceAndroidDataCache(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            FpsMonitor.toggle();
+//            FpsMonitor.toggle();
         }
         activityMainBinding.btn1.setOnClickListener(new View.OnClickListener() {
             @Override

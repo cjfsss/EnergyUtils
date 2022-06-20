@@ -1,6 +1,6 @@
 package hos.util.log;
 
-import androidx.annotation.NonNull;
+
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -57,7 +57,7 @@ public class HiFilePrinter implements HiLogPrinter {
 
 
     @Override
-    public void print(@NonNull HiLogConfig config, int level, String tag, @NonNull String printString) {
+    public void print( HiLogConfig config, int level, String tag,  String printString) {
         long timeMillis = System.currentTimeMillis();
         if (!worker.isRunning()) {
             worker.start();

@@ -14,8 +14,6 @@ import android.view.Gravity;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
-
 import java.text.DecimalFormat;
 
 import hos.core.ActivityManager;
@@ -32,7 +30,6 @@ import hos.util.utils.ResUtils;
  * @version : 1.0
  * @date : 2022/4/3 15:13
  */
-@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class FpsMonitor {
 
     @SuppressLint("StaticFieldLeak")
@@ -50,7 +47,6 @@ public class FpsMonitor {
         void onFrame(Double fps);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private static class FpsViewer {
         private final WindowManager.LayoutParams params = new WindowManager.LayoutParams();
         private boolean isPlaying = false;

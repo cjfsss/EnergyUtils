@@ -11,9 +11,7 @@ import android.text.style.ForegroundColorSpan;
 import android.util.ArrayMap;
 import android.util.Base64;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 
 import java.io.UnsupportedEncodingException;
 import java.math.RoundingMode;
@@ -50,7 +48,6 @@ public class StringUtils {
     public static final Pattern PATTER_BLANK_CODE = Pattern.compile("\\s*|\t|\r|\n");
 
     @SuppressLint({"HardwareIds", "MissingPermission"})
-    @NonNull
     public static String getUUIDByPhoneInfo() {
         String serial;
         String m_szDevIDShort = "35" +
@@ -87,19 +84,19 @@ public class StringUtils {
     /**
      * 获取md5的UUID
      */
-    @NonNull
+
     public static String getUUID() {
         return UUID.randomUUID().toString();
     }
 
-    @NonNull
+
     public static String getyyyyMMdd() {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat formatDate = new SimpleDateFormat("yyyyMMdd");
         return formatDate.format(new Date());
     }
 
     @SuppressWarnings("SpellCheckingInspection")
-    @NonNull
+
     public static String getyyyyMMddHHmmssSSSS() {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat formatDate = new SimpleDateFormat("yyyyMMddHHmmssSSSS");
         return formatDate.format(new Date());
@@ -125,8 +122,8 @@ public class StringUtils {
     /**
      * 获取已,隔开的第一个
      */
-    @NonNull
-    public static String getFirstSplit(@NonNull String target) {
+
+    public static String getFirstSplit( String target) {
         if (toNULL(target) == null) {
             return "";
         }
@@ -141,7 +138,7 @@ public class StringUtils {
      *
      * @param target 目标字符串
      */
-    public static String getExcludeFirstSplit(@NonNull String target) {
+    public static String getExcludeFirstSplit( String target) {
         if (toNULL(target) == null) {
             return "";
         }
@@ -240,13 +237,13 @@ public class StringUtils {
      * @param target 目标
      * @return
      */
-    @NonNull
-    public static CharSequence toBase64Encoder(@Nullable CharSequence target) {
+
+    public static CharSequence toBase64Encoder( CharSequence target) {
         target = toEmpty(target);
         if (TextUtils.isEmpty(target)) {
             return target;
         }
-        return Base64.encodeToString(target.toString().getBytes(Charset.defaultCharset()), Base64.NO_WRAP);
+        return Base64.encodeToString(target.toString().getBytes(Charset.defaultCharset()), Base64.DEFAULT);
     }
 
     /**
@@ -255,13 +252,13 @@ public class StringUtils {
      * @param target 目标值
      * @return
      */
-    @NonNull
-    public static CharSequence toBase64Decoder(@Nullable CharSequence target) {
+
+    public static CharSequence toBase64Decoder( CharSequence target) {
         target = toEmpty(target);
         if (TextUtils.isEmpty(target)) {
             return target;
         }
-        return new String(Base64.decode(target.toString().getBytes(Charset.defaultCharset()), Base64.NO_WRAP), Charset.defaultCharset());
+        return new String(Base64.decode(target.toString().getBytes(Charset.defaultCharset()), Base64.DEFAULT), Charset.defaultCharset());
     }
 
     /**
@@ -270,13 +267,13 @@ public class StringUtils {
      * @param target 目标
      * @return
      */
-    @NonNull
-    public static CharSequence toBase64UrlEncoder(@Nullable CharSequence target) {
+
+    public static CharSequence toBase64UrlEncoder( CharSequence target) {
         target = toEmpty(target);
         if (TextUtils.isEmpty(target)) {
             return target;
         }
-        final String base64 = Base64.encodeToString(target.toString().getBytes(Charset.defaultCharset()), Base64.NO_WRAP);
+        final String base64 = Base64.encodeToString(target.toString().getBytes(Charset.defaultCharset()), Base64.DEFAULT);
         try {
             return URLEncoder.encode(base64, Charset.defaultCharset().name());
         } catch (UnsupportedEncodingException e) {
@@ -291,15 +288,15 @@ public class StringUtils {
      * @param target 目标值
      * @return
      */
-    @NonNull
-    public static CharSequence toUrlBase64Decoder(@Nullable CharSequence target) {
+
+    public static CharSequence toUrlBase64Decoder( CharSequence target) {
         target = toEmpty(target);
         if (TextUtils.isEmpty(target)) {
             return target;
         }
         try {
             final String base64 = URLDecoder.decode(target.toString(), Charset.defaultCharset().name());
-            return new String(Base64.decode(base64.getBytes(Charset.defaultCharset()), Base64.NO_WRAP), Charset.defaultCharset());
+            return new String(Base64.decode(base64.getBytes(Charset.defaultCharset()), Base64.DEFAULT), Charset.defaultCharset());
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -312,8 +309,8 @@ public class StringUtils {
      *
      * @param time 时间
      */
-    @NonNull
-    public static String toTime(@Nullable String time) {
+
+    public static String toTime( String time) {
         if (time == null || TextUtils.isEmpty(time)) {
             return "";
         }
@@ -337,8 +334,8 @@ public class StringUtils {
      *
      * @param time 时间
      */
-    @NonNull
-    public static String toTimeN(@Nullable String time) {
+
+    public static String toTimeN( String time) {
         String toTime = toTime(time);
         if (TextUtils.isEmpty(toTime)) {
             return toTime;
@@ -352,8 +349,8 @@ public class StringUtils {
         return toTime.substring(0, toTime.lastIndexOf("."));
     }
 
-    @NonNull
-    public static String toStringZero(@Nullable String value) {
+
+    public static String toStringZero( String value) {
         if (value == null || TextUtils.isEmpty(toNULL(value))) {
             return "0";
         }
@@ -369,7 +366,7 @@ public class StringUtils {
      *
      * @param value 目标值
      */
-    public static long toLongZero(@Nullable final String value) {
+    public static long toLongZero( final String value) {
         if (value == null || TextUtils.isEmpty(toNULL(value))) {
             return 0L;
         }
@@ -381,7 +378,7 @@ public class StringUtils {
      *
      * @param value 目标值
      */
-    public static int toIntZero(@Nullable final String value) {
+    public static int toIntZero( final String value) {
         if (value == null || TextUtils.isEmpty(toNULL(value))) {
             return 0;
         }
@@ -393,7 +390,7 @@ public class StringUtils {
      *
      * @param value 目标值
      */
-    public static float toFloatZero(@Nullable final String value) {
+    public static float toFloatZero( final String value) {
         if (value == null || TextUtils.isEmpty(toNULL(value))) {
             return 0f;
         }
@@ -405,7 +402,7 @@ public class StringUtils {
      *
      * @param value 目标值
      */
-    public static double toDoubleZero(@Nullable final String value) {
+    public static double toDoubleZero( final String value) {
         if (value == null || TextUtils.isEmpty(toNULL(value))) {
             return 0.0D;
         }
@@ -418,8 +415,8 @@ public class StringUtils {
      *
      * @param html 目标
      */
-    @NonNull
-    public static String htmlDeleteSpace(@NonNull String html) {
+
+    public static String htmlDeleteSpace( String html) {
         if (TextUtils.isEmpty(html)) {
             return "";
         }
@@ -434,7 +431,7 @@ public class StringUtils {
      *
      * @param url 访问地址
      */
-    public static String getGetUrl(@NonNull String url) {
+    public static String getGetUrl( String url) {
         if (TextUtils.isEmpty(url)) {
             return "";
         }
@@ -449,7 +446,7 @@ public class StringUtils {
      *
      * @param url 访问地址
      */
-    public static Map<String, String> getGetUrlParams(@NonNull String url) {
+    public static Map<String, String> getGetUrlParams( String url) {
         Map<String, String> map = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             map = new ArrayMap<>();
@@ -510,8 +507,8 @@ public class StringUtils {
         return map;
     }
 
-    @Nullable
-    public static String toNULL(@Nullable Object target) {
+
+    public static String toNULL( Object target) {
         if (target == null) {
             return null;
         }
@@ -567,8 +564,8 @@ public class StringUtils {
         return target.toString();
     }
 
-    @NonNull
-    public static String toEmpty(@Nullable Object target) {
+
+    public static String toEmpty( Object target) {
         String toNULL = toNULL(target);
         if (toNULL == null) {
             return "";
@@ -576,8 +573,8 @@ public class StringUtils {
         return toNULL;
     }
 
-    @NonNull
-    public static String trimNR(@Nullable String target) {
+
+    public static String trimNR( String target) {
         if (target == null || TextUtils.isEmpty(toNULL(target))) {
             return "";
         }
@@ -586,8 +583,8 @@ public class StringUtils {
                 .replaceAll("\r", "").trim();
     }
 
-    @NonNull
-    public static String noData(@Nullable CharSequence target) {
+
+    public static String noData( CharSequence target) {
         CharSequence toNULL = toNULL(target);
         if (toNULL == null) {
             return "暂无";
@@ -595,8 +592,8 @@ public class StringUtils {
         return toNULL.toString();
     }
 
-    @NonNull
-    public static String noData_(@Nullable CharSequence target) {
+
+    public static String noData_( CharSequence target) {
         CharSequence toNULL = toNULL(target);
         if (toNULL == null) {
             return "-";
@@ -604,8 +601,8 @@ public class StringUtils {
         return toNULL.toString();
     }
 
-    @NonNull
-    public static String noDataTime(@Nullable CharSequence target) {
+
+    public static String noDataTime( CharSequence target) {
         CharSequence toNULL = toNULL(target);
         if (toNULL == null) {
             return "暂无";
@@ -613,8 +610,8 @@ public class StringUtils {
         return toTime(toNULL.toString());
     }
 
-    @NonNull
-    public static String noDataTimeN(@Nullable CharSequence target) {
+
+    public static String noDataTimeN( CharSequence target) {
         CharSequence toNULL = toNULL(target);
         if (toNULL == null) {
             return "暂无";
@@ -622,8 +619,8 @@ public class StringUtils {
         return toTimeN(toNULL.toString());
     }
 
-    @NonNull
-    public static String deleteZeroNoData_(@Nullable CharSequence target) {
+
+    public static String deleteZeroNoData_( CharSequence target) {
         CharSequence toNULL = toNULL(target);
         if (toNULL == null || TextUtils.equals(toNULL, "-99")) {
             return "-";
@@ -635,8 +632,8 @@ public class StringUtils {
         return deleteEndZero;
     }
 
-    @NonNull
-    public static String deleteZeroDecimalNoData_(@Nullable CharSequence target) {
+
+    public static String deleteZeroDecimalNoData_( CharSequence target) {
         CharSequence toNULL = toNULL(target);
         if (toNULL == null) {
             return "-";
@@ -648,8 +645,8 @@ public class StringUtils {
         return deleteEndZero;
     }
 
-    @NonNull
-    public static String deleteZeroDecimalNoData_(@NonNull final String pattern, @Nullable CharSequence target) {
+
+    public static String deleteZeroDecimalNoData_( final String pattern,  CharSequence target) {
         CharSequence toNULL = toNULL(target);
         if (toNULL == null) {
             return "-";
@@ -661,8 +658,8 @@ public class StringUtils {
         return deleteEndZero;
     }
 
-    @NonNull
-    public static String deleteEndZero(@Nullable CharSequence target) {
+
+    public static String deleteEndZero( CharSequence target) {
         String str = toEmpty(target).toString();
         if (str.indexOf(".") > 0) {
             // 去掉多余的0
@@ -679,8 +676,8 @@ public class StringUtils {
      * 3.40->3.4
      * 3.0->3
      */
-    @NonNull
-    public static String toDecimalFormat(@Nullable final Object number) {
+
+    public static String toDecimalFormat( final Object number) {
         return toDecimalFormat("0.##", number);
     }
 
@@ -690,26 +687,28 @@ public class StringUtils {
      * 3.40->3.4
      * 3.0->3
      */
-    @NonNull
-    public static String toDecimalFormat(@NonNull final String pattern, @Nullable final Object number) {
+
+    public static String toDecimalFormat( final String pattern,  final Object number) {
         if (number == null) {
             return "0";
         }
         DecimalFormat format = new DecimalFormat(pattern);
         //未保留小数的舍弃规则，RoundingMode.FLOOR表示直接舍弃。
-        format.setRoundingMode(RoundingMode.FLOOR);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            format.setRoundingMode(RoundingMode.FLOOR);
+        }
         return format.format(number);
     }
 
-    @NonNull
-    public static SpannableStringBuilder color(@NonNull String start, @NonNull String content,
-                                               @ColorInt int colorContent) {
+
+    public static SpannableStringBuilder color( String start,  String content,
+                                                int colorContent) {
         return color(start, content, null, colorContent);
     }
 
-    @NonNull
-    public static SpannableStringBuilder color(@NonNull String start, @NonNull String content,
-                                               @Nullable String end, @ColorInt int colorContent) {
+
+    public static SpannableStringBuilder color( String start,  String content,
+                                                String end,  int colorContent) {
         final String text = start + content + toEmpty(end);
         // 设置文字的颜色
         SpannableStringBuilder textBuilder = new SpannableStringBuilder(content);
@@ -721,7 +720,7 @@ public class StringUtils {
         return textBuilder;
     }
 
-    @NonNull
+
     public static String convertUnicode(String ori) {
         if (ori == null) {
             return "";
@@ -791,21 +790,21 @@ public class StringUtils {
         return outBuffer.toString();
     }
 
-    @NonNull
-    public static Spanned fromHtml(@NonNull String source) {
+
+    public static Spanned fromHtml( String source) {
         return Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY);
     }
 
-    @NonNull
-    public static CharSequence like(@Nullable CharSequence charSequence) {
+
+    public static CharSequence like( CharSequence charSequence) {
         if (toNULL(charSequence) == null) {
             return "%%";
         }
         return "%" + charSequence + "%";
     }
 
-    @NonNull
-    public static String urlHttp(@Nullable String url) {
+
+    public static String urlHttp( String url) {
         url = toEmpty(url);
         if (url.length() == 0) {
             return "";
@@ -816,8 +815,8 @@ public class StringUtils {
         return "http://" + url;
     }
 
-    @NonNull
-    public static String urlHttps(@Nullable String url) {
+
+    public static String urlHttps( String url) {
         url = toEmpty(url);
         if (url.length() == 0) {
             return "";
@@ -845,8 +844,8 @@ public class StringUtils {
     }
 
 
-    @NonNull
-    public static String getEmpty(@NonNull String target, @Nullable String value) {
+
+    public static String getEmpty( String target,  String value) {
         String toNull = toNULL(target);
         if (toNull == null) {
             return value == null ? "" : value;
@@ -854,12 +853,12 @@ public class StringUtils {
         return toNull;
     }
 
-    @NonNull
-    public static String getEmpty(@NonNull String target) {
+
+    public static String getEmpty( String target) {
         return getEmpty(target, "");
     }
 
-    public static int getInt(@NonNull String target, int value) {
+    public static int getInt( String target, int value) {
         String toNull = toNULL(target);
         if (toNull == null) {
             return value;
@@ -871,11 +870,11 @@ public class StringUtils {
         }
     }
 
-    public static int getInt(@NonNull String target) {
+    public static int getInt( String target) {
         return getInt(target, 0);
     }
 
-    public static long getLong(@NonNull String target, long value) {
+    public static long getLong( String target, long value) {
         String toNull = toNULL(target);
         if (toNull == null) {
             return value;
@@ -887,11 +886,11 @@ public class StringUtils {
         }
     }
 
-    public static long getLong(@NonNull String target) {
+    public static long getLong( String target) {
         return getLong(target, 0L);
     }
 
-    public static double getDouble(@NonNull String target, double value) {
+    public static double getDouble( String target, double value) {
         String toNull = toNULL(target);
         if (toNull == null) {
             return value;
@@ -903,12 +902,12 @@ public class StringUtils {
         }
     }
 
-    public static double getDouble(@NonNull String target) {
+    public static double getDouble( String target) {
         return getDouble(target, 0D);
     }
 
-    @NonNull
-    public static String getRate(@NonNull String target, @Nullable String defaultValue) {
+
+    public static String getRate( String target,  String defaultValue) {
         String value = toNULL(target);
         if (value == null) {
             if (defaultValue == null || defaultValue.length() == 0) {
@@ -922,8 +921,8 @@ public class StringUtils {
         return StringUtils.deleteEndZero(value) + "%";
     }
 
-    @NonNull
-    public static String getRate(@NonNull String target) {
+
+    public static String getRate( String target) {
         return getRate(target, "-");
     }
 

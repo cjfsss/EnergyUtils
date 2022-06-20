@@ -1,6 +1,6 @@
 package hos.util.listener;
 
-import androidx.annotation.NonNull;
+
 
 /**
  * <p>Title: OnTargetListener </p>
@@ -13,5 +13,5 @@ import androidx.annotation.NonNull;
  */
 public interface OnTargetListener<TARGET> {
 
-    void onTarget(@NonNull TARGET target);
+    void onTarget( TARGET target);
 }

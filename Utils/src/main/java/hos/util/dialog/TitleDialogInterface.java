@@ -1,7 +1,6 @@
 package hos.util.dialog;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
+
 
 import hos.util.listener.OnTargetListener;
 import hos.util.utils.ResUtils;
@@ -17,9 +16,9 @@ import hos.util.utils.ResUtils;
  */
 public interface TitleDialogInterface<P extends TitleDialogInterface<P>> extends DialogInterface<P> {
 
-    P setOnCancelListener(@Nullable final OnTargetListener<P> cancelListener);
+    P setOnCancelListener( final OnTargetListener<P> cancelListener);
 
-    P setOnDismissListener(@Nullable final OnTargetListener<P> dismissListener);
+    P setOnDismissListener( final OnTargetListener<P> dismissListener);
 
     P setConfirm(CharSequence confirm, final OnTargetListener<P> confirmFunction);
 
@@ -31,19 +30,19 @@ public interface TitleDialogInterface<P extends TitleDialogInterface<P>> extends
         return setCancel("取消", cancelFunction);
     }
 
-    default P setConfirm(@StringRes int confirmId, final OnTargetListener<P> confirmFunction) {
+    default P setConfirm( int confirmId, final OnTargetListener<P> confirmFunction) {
         return setConfirm(ResUtils.getString(confirmId), confirmFunction);
     }
 
     P setCancel(CharSequence cancel, final OnTargetListener<P> cancelFunction);
 
-    default P setCancel(@StringRes int cancelId, final OnTargetListener<P> cancelFunction) {
+    default P setCancel( int cancelId, final OnTargetListener<P> cancelFunction) {
         return setCancel(ResUtils.getString(cancelId), cancelFunction);
     }
 
     P setLeftButton(CharSequence left, final OnTargetListener<P> leftFunction);
 
-    default P setLeftButton(@StringRes int leftId, final OnTargetListener<P> leftFunction) {
+    default P setLeftButton( int leftId, final OnTargetListener<P> leftFunction) {
         return setLeftButton(ResUtils.getString(leftId), leftFunction);
     }
 
@@ -51,7 +50,7 @@ public interface TitleDialogInterface<P extends TitleDialogInterface<P>> extends
         return setTitle(title).setConfirm(confirmFunction);
     }
 
-    default P showTip(@StringRes int title, final OnTargetListener<P> confirmFunction) {
+    default P showTip( int title, final OnTargetListener<P> confirmFunction) {
         return setTitle(title).setConfirm(confirmFunction);
     }
 
@@ -59,7 +58,7 @@ public interface TitleDialogInterface<P extends TitleDialogInterface<P>> extends
         return setTitle(title).setContent(content).setConfirm(confirmFunction);
     }
 
-    default P showContent(@StringRes int title, @StringRes int contentId, final OnTargetListener<P> confirmFunction) {
+    default P showContent( int title,  int contentId, final OnTargetListener<P> confirmFunction) {
         return setTitle(title).setContent(contentId).setConfirm(confirmFunction);
     }
 
@@ -67,7 +66,7 @@ public interface TitleDialogInterface<P extends TitleDialogInterface<P>> extends
         return setTitle("温馨提示").setContent(content).setConfirm(confirmFunction);
     }
 
-    default P showContent(@StringRes int contentId, final OnTargetListener<P> confirmFunction) {
+    default P showContent( int contentId, final OnTargetListener<P> confirmFunction) {
         return setTitle("温馨提示").setContent(contentId).setConfirm(confirmFunction);
     }
 
@@ -75,7 +74,7 @@ public interface TitleDialogInterface<P extends TitleDialogInterface<P>> extends
         return setTitle(title).setConfirm(confirmFunction).setCancel(cancelFunction);
     }
 
-    default P showTip(@StringRes int title, final OnTargetListener<P> confirmFunction, final OnTargetListener<P> cancelFunction) {
+    default P showTip( int title, final OnTargetListener<P> confirmFunction, final OnTargetListener<P> cancelFunction) {
         return setTitle(title).setConfirm(confirmFunction).setCancel(cancelFunction);
     }
 
@@ -83,7 +82,7 @@ public interface TitleDialogInterface<P extends TitleDialogInterface<P>> extends
         return setTitle(title).setContent(content).setConfirm(confirmFunction).setCancel(cancelFunction);
     }
 
-    default P showContent(@StringRes int title, @StringRes int contentId, final OnTargetListener<P> confirmFunction, final OnTargetListener<P> cancelFunction) {
+    default P showContent( int title,  int contentId, final OnTargetListener<P> confirmFunction, final OnTargetListener<P> cancelFunction) {
         return setTitle(title).setContent(contentId).setConfirm(confirmFunction).setCancel(cancelFunction);
     }
 
@@ -91,7 +90,7 @@ public interface TitleDialogInterface<P extends TitleDialogInterface<P>> extends
         return setTitle("温馨提示").setContent(content).setConfirm(confirmFunction).setCancel(cancelFunction);
     }
 
-    default P showContent(@StringRes int contentId, final OnTargetListener<P> confirmFunction, final OnTargetListener<P> cancelFunction) {
+    default P showContent( int contentId, final OnTargetListener<P> confirmFunction, final OnTargetListener<P> cancelFunction) {
         return setTitle("温馨提示").setContent(contentId).setConfirm(confirmFunction).setCancel(cancelFunction);
     }
 }

@@ -1,7 +1,7 @@
 package hos.util.utils;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import hos.util.listener.bean.BeanEnd;
 import hos.util.listener.bean.BeanExpand;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class ListUtils {
 
-    public static <T> String split(@Nullable List<T> list, @NonNull String split) {
+    public static <T> String split( List<T> list,  String split) {
         if (list == null || list.isEmpty()) {
             return "";
         }
@@ -35,7 +35,7 @@ public class ListUtils {
         return builder.toString();
     }
 
-    public static <T> String split(@Nullable T[] list, @NonNull String split) {
+    public static <T> String split( T[] list,  String split) {
         if (list == null || list.length == 0) {
             return "";
         }
@@ -50,7 +50,7 @@ public class ListUtils {
         return builder.toString();
     }
 
-    public static <T> void appendPosition(@Nullable List<T> list, int groupPosition) {
+    public static <T> void appendPosition( List<T> list, int groupPosition) {
         if (list == null || list.isEmpty()) {
             return;
         }

@@ -8,9 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import androidx.annotation.IntRange;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,7 +32,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
         this.mDataList = data;
     }
 
-    public @NonNull
+    public
     Context getContext() {
         return mContext;
     }
@@ -43,7 +42,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
      *
      * @param data
      */
-    public void setNewData(@Nullable List<T> data) {
+    public void setNewData( List<T> data) {
         this.mDataList = data == null ? new ArrayList<T>() : data;
         notifyDataSetChanged();
     }
@@ -54,7 +53,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
      *
      * @param position
      */
-    public void addData(@IntRange(from = 0) int position, @NonNull T data) {
+    public void addData(int position,  T data) {
         this.mDataList.add(position, data);
         notifyDataSetChanged();
     }
@@ -62,7 +61,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     /**
      * add one new data
      */
-    public void addData(@NonNull T data) {
+    public void addData( T data) {
         this.mDataList.add(data);
         notifyDataSetChanged();
     }
@@ -72,7 +71,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
      *
      * @param position
      */
-    public void remove(@IntRange(from = 0) int position) {
+    public void remove( int position) {
         this.mDataList.remove(position);
         notifyDataSetChanged();
     }
@@ -80,7 +79,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     /**
      * change data
      */
-    public void setData(@IntRange(from = 0) int index, @NonNull T data) {
+    public void setData( int index,  T data) {
         this.mDataList.set(index, data);
         notifyDataSetChanged();
     }
@@ -91,7 +90,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
      * @param position the insert position
      * @param newData  the new data collection
      */
-    public void addData(@IntRange(from = 0) int position, @NonNull Collection<? extends T> newData) {
+    public void addData( int position,  Collection<? extends T> newData) {
         this.mDataList.addAll(position, newData);
         notifyDataSetChanged();
     }
@@ -101,7 +100,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
      *
      * @param newData the new data collection
      */
-    public void addData(@NonNull Collection<? extends T> newData) {
+    public void addData( Collection<? extends T> newData) {
         this.mDataList.addAll(newData);
         notifyDataSetChanged();
     }
@@ -111,7 +110,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
      *
      * @return 列表数据
      */
-    @NonNull
+
     public List<T> getDataList() {
         return mDataList;
     }
@@ -128,8 +127,8 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
      *                 data set.
      * @return The data at the specified position.
      */
-    @Nullable
-    public T getItem(@IntRange(from = 0) int position) {
+
+    public T getItem( int position) {
         if (mDataList == null || position >= mDataList.size()) {
             return null;
         }

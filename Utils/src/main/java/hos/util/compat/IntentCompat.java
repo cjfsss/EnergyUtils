@@ -9,8 +9,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 
 import java.io.File;
 import java.util.List;
@@ -36,8 +36,8 @@ public class IntentCompat {
      * @param pkg The name of the package.
      * @return the name of launcher activity
      */
-    @NonNull
-    public static String getLauncherActivity(@NonNull Context context, @NonNull final String pkg) {
+
+    public static String getLauncherActivity( Context context,  final String pkg) {
         if (StringUtils.isSpace(pkg)) return "";
         Intent intent = new Intent(Intent.ACTION_MAIN, null);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -56,8 +56,8 @@ public class IntentCompat {
      * @param pkgName The name of the package.
      * @return the intent of launch app
      */
-    @Nullable
-    public static Intent getLaunchAppIntent(@NonNull Context context, final String pkgName) {
+
+    public static Intent getLaunchAppIntent( Context context, final String pkgName) {
         String launcherActivity = getLauncherActivity(context, pkgName);
         if (StringUtils.isSpace(launcherActivity)) return null;
         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -72,7 +72,7 @@ public class IntentCompat {
      * @param pkgName The name of the package.
      * @return the intent of launch app details settings
      */
-    @NonNull
+
     public static Intent getLaunchAppDetailsSettingsIntent(final String pkgName) {
         return getLaunchAppDetailsSettingsIntent(pkgName, false);
     }
@@ -83,30 +83,30 @@ public class IntentCompat {
      * @param pkgName The name of the package.
      * @return the intent of launch app details settings
      */
-    @NonNull
+
     public static Intent getLaunchAppDetailsSettingsIntent(final String pkgName, final boolean isNewTask) {
         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.setData(Uri.parse("package:" + pkgName));
         return getIntent(intent, isNewTask);
     }
 
-    @NonNull
+
     private static Intent getIntent(final Intent intent, final boolean isNewTask) {
         return isNewTask ? intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) : intent;
     }
 
-    @Nullable
-    public static Intent getLaunchTargetOpenFile(@NonNull Context context, @NonNull final String pkgName,
-                                                 @Nullable final String filePath, @NonNull UriCallback callback) {
+
+    public static Intent getLaunchTargetOpenFile( Context context,  final String pkgName,
+                                                  final String filePath,  UriCallback callback) {
         if (StringUtils.toNULL(filePath) == null) {
             return null;
         }
         return getLaunchTargetOpenFile(context, pkgName, new File(filePath), callback);
     }
 
-    @Nullable
-    public static Intent getLaunchTargetOpenFile(@NonNull Context context, @NonNull final String pkgName,
-                                                 @Nullable final File file, @NonNull UriCallback callback) {
+
+    public static Intent getLaunchTargetOpenFile( Context context,  final String pkgName,
+                                                  final File file,  UriCallback callback) {
         if (file == null) {
             return null;
         }
@@ -130,16 +130,16 @@ public class IntentCompat {
         return intent;
     }
 
-    @Nullable
-    public static Intent getLaunchOpenFile(@NonNull Context context, @Nullable String filePath, @NonNull UriCallback callback) {
+
+    public static Intent getLaunchOpenFile( Context context,  String filePath,  UriCallback callback) {
         if (StringUtils.toNULL(filePath) == null) {
             return null;
         }
         return getLaunchOpenFile(context, new File(filePath), callback);
     }
 
-    @NonNull
-    public static Intent getLaunchOpenFile(@NonNull Context context, @NonNull File file, @NonNull UriCallback callback) {
+
+    public static Intent getLaunchOpenFile( Context context,  File file,  UriCallback callback) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         String type = FileCompat.getFileTypeString(file.getAbsolutePath());
         final Uri uri;
@@ -156,16 +156,16 @@ public class IntentCompat {
         return intent;
     }
 
-    @Nullable
-    public static Intent getLaunchOpenWPS(@NonNull Context context, @Nullable String filePath, @NonNull UriCallback callback) {
+
+    public static Intent getLaunchOpenWPS( Context context,  String filePath,  UriCallback callback) {
         if (StringUtils.toNULL(filePath) == null) {
             return null;
         }
         return getLaunchOpenWPS(context, new File(filePath), callback);
     }
 
-    @Nullable
-    public static Intent getLaunchOpenWPS(@NonNull Context context, @NonNull File file, @NonNull UriCallback callback) {
+
+    public static Intent getLaunchOpenWPS( Context context,  File file,  UriCallback callback) {
         // wps存在,打开WPS
         Intent intent = IntentCompat.getLaunchTargetOpenFile(
                 context, WpsParams.PackageName.NORMAL, file, callback);
@@ -198,8 +198,8 @@ public class IntentCompat {
      * @param packageName 要打开应用的包名
      * @return
      */
-    @NonNull
-    public static Intent getLaunchMarket(@NonNull String packageName) {
+
+    public static Intent getLaunchMarket( String packageName) {
         return new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName));
     }
 
@@ -209,8 +209,8 @@ public class IntentCompat {
      * @param url 访问地址
      * @return
      */
-    @NonNull
-    public static Intent getLaunchUrl(@NonNull String url) {
+
+    public static Intent getLaunchUrl( String url) {
         Uri uri = Uri.parse(url);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         //这个目的是为了 防止在部分机型上面 拉不起浏览器，，比说华为

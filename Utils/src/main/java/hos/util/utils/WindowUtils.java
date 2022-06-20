@@ -4,8 +4,6 @@ import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.annotation.StyleRes;
-
 /**
  * <p>Title: WindowUtils </p>
  * <p>Description:  </p>
@@ -31,7 +29,7 @@ public class WindowUtils {
      *
      * @param window 框口
      */
-    public static void applyBottom(Window window, @StyleRes int resId) {
+    public static void applyBottom(Window window,  int resId) {
         // 设置宽度为屏宽、位置靠近屏幕底部
         window.setBackgroundDrawableResource(android.R.color.white);
         window.getDecorView().setPadding(0, 0, 0, 0);
@@ -60,7 +58,7 @@ public class WindowUtils {
      *
      * @param window 框口
      */
-    public static void applyTop(Window window, @StyleRes int resId) {
+    public static void applyTop(Window window,  int resId) {
         // 设置宽度为屏宽、位置靠近屏幕底部
         window.setBackgroundDrawableResource(android.R.color.white);
         window.getDecorView().setPadding(0, 0, 0, 0);
@@ -98,7 +96,7 @@ public class WindowUtils {
      *
      * @param window 框口
      */
-    public static void applyRight(Window window, @StyleRes int resId, int width) {
+    public static void applyRight(Window window,  int resId, int width) {
         // 设置宽度为屏宽、位置靠近屏幕底部
         window.setBackgroundDrawableResource(android.R.color.white);
         window.getDecorView().setPadding(0, 0, 0, 0);
@@ -127,7 +125,7 @@ public class WindowUtils {
     /**
      * @param window 框口
      */
-    public static void applyFull(Window window, @StyleRes int resId) {
+    public static void applyFull(Window window,  int resId) {
         // 设置宽度为屏宽、位置靠近屏幕底部
         window.setBackgroundDrawableResource(android.R.color.white);
         window.getDecorView().setPadding(0, 0, 0, 0);

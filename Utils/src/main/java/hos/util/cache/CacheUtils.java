@@ -9,7 +9,7 @@ import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
+
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -428,7 +428,7 @@ public class CacheUtils {
         return new byte[]{};
     }
 
-    @Nullable
+    
     public static Object toObject(byte[] data) {
         if (data == null) {
             return null;
