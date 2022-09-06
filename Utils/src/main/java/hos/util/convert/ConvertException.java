@@ -1,7 +1,6 @@
 package hos.util.convert;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * <p>Title: ConvertException </p>

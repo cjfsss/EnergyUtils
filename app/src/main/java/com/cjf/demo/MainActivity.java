@@ -8,16 +8,14 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
 
 import com.cjf.demo.databinding.ActivityMainBinding;
 
+import hos.cache.StorageFile;
+import hos.cache.StorageSp;
 import hos.location.LocationSource;
 import hos.location.LocationSourceAndroidData;
 import hos.location.LocationSourceAndroidDataCache;
-import hos.util.cache.StorageFile;
-import hos.util.cache.StorageSp;
-import hos.util.fps.FpsMonitor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String value = StorageFile.getCache("file");
+                String value = StorageFile.getData("file");
                 Toast.makeText(MainActivity.this, "结果：" + value, Toast.LENGTH_SHORT).show();
             }
         });
@@ -70,11 +68,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 long start = System.currentTimeMillis();
-                LocationSource.Location value = StorageFile.getCache("location", LocationSource.Location.CREATOR);
+                LocationSource.Location value = StorageFile.getData("location", LocationSource.Location.CREATOR);
                 long end = System.currentTimeMillis();
                 Log.i("TAG", "time: " + (end - start));
                 if (value != null) {
-                    android.location.Location androidLocation = StorageFile.getCache("androidLocation", android.location.Location.CREATOR);
+                    android.location.Location androidLocation = StorageFile.getData("androidLocation", android.location.Location.CREATOR);
                     if (androidLocation == null) {
                         value = new LocationSourceAndroidData.LocationData(value);
                     } else {
@@ -101,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 long start = System.currentTimeMillis();
-                User value = StorageSp.getCache("userSP");
+                User value = StorageSp.getData("userSP");
                 long end = System.currentTimeMillis();
                 Log.i("TAG", "time: " + (end - start));
                 if (value != null) {

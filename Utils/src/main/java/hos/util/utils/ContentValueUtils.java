@@ -3,12 +3,11 @@ package hos.util.utils;
 import android.content.ContentValues;
 import android.text.TextUtils;
 
-
-
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import hos.util.listener.bean.BeanEnd;
@@ -31,7 +30,7 @@ public class ContentValueUtils {
      * @return List
      */
 
-    public static List<String> toListKey( ContentValues map) {
+    public static List<String> toListKey(ContentValues map) {
         if (map == null || map.size() == 0) {
             return new LinkedList<>();
         }
@@ -45,7 +44,7 @@ public class ContentValueUtils {
      * @return List
      */
 
-    public static List<Object> toListValue( ContentValues map) {
+    public static List<Object> toListValue(ContentValues map) {
         if (map == null || map.size() == 0) {
             return new ArrayList<>();
         }
@@ -74,11 +73,11 @@ public class ContentValueUtils {
     }
 
 
-    public static String toNull( ContentValues map,  String key) {
+    public static String toNull(ContentValues map, String key) {
         if (map == null) {
             return null;
         }
-         Object object = map.get(key);
+        Object object = map.get(key);
         if (object == null) {
             return null;
         }
@@ -90,7 +89,7 @@ public class ContentValueUtils {
     }
 
 
-    public static String get( ContentValues map,  String key,  String value) {
+    public static String get(ContentValues map, String key, String value) {
         String toNull = get(map, key);
         if (toNull == null) {
             return value;
@@ -99,12 +98,12 @@ public class ContentValueUtils {
     }
 
 
-    public static String get( ContentValues map,  String key) {
+    public static String get(ContentValues map, String key) {
         return toNull(map, key);
     }
 
 
-    public static String getEmpty( ContentValues map,  String key,  String value) {
+    public static String getEmpty(ContentValues map, String key, String value) {
         String toNull = get(map, key, "");
         if (toNull == null) {
             return value == null ? "" : value;
@@ -113,11 +112,11 @@ public class ContentValueUtils {
     }
 
 
-    public static String getEmpty( ContentValues map,  String key) {
+    public static String getEmpty(ContentValues map, String key) {
         return getEmpty(map, key, "");
     }
 
-    public static int getInt( ContentValues map,  String key, int value) {
+    public static int getInt(ContentValues map, String key, int value) {
         String toNull = get(map, key);
         if (toNull == null) {
             return value;
@@ -129,11 +128,11 @@ public class ContentValueUtils {
         }
     }
 
-    public static int getInt( ContentValues map,  String key) {
+    public static int getInt(ContentValues map, String key) {
         return getInt(map, key, 0);
     }
 
-    public static long getLong( ContentValues map,  String key, long value) {
+    public static long getLong(ContentValues map, String key, long value) {
         String toNull = get(map, key);
         if (toNull == null) {
             return value;
@@ -145,11 +144,11 @@ public class ContentValueUtils {
         }
     }
 
-    public static long getLong( ContentValues map,  String key) {
+    public static long getLong(ContentValues map, String key) {
         return getLong(map, key, 0L);
     }
 
-    public static double getDouble( ContentValues map,  String key, double value) {
+    public static double getDouble(ContentValues map, String key, double value) {
         String toNull = get(map, key);
         if (toNull == null) {
             return value;
@@ -161,12 +160,12 @@ public class ContentValueUtils {
         }
     }
 
-    public static double getDouble( ContentValues map,  String key) {
+    public static double getDouble(ContentValues map, String key) {
         return getDouble(map, key, 0D);
     }
 
 
-    public static String getRate( ContentValues map,  String key,  String defaultValue) {
+    public static String getRate(ContentValues map, String key, String defaultValue) {
         String value = toNull(map, key);
         if (value == null) {
             if (defaultValue == null || defaultValue.length() == 0) {
@@ -181,12 +180,12 @@ public class ContentValueUtils {
     }
 
 
-    public static String getRate( ContentValues map,  String key) {
+    public static String getRate(ContentValues map, String key) {
         return getRate(map, key, "-");
     }
 
 
-    public static String getTime( ContentValues map,  String key,  String defaultValue) {
+    public static String getTime(ContentValues map, String key, String defaultValue) {
         String value = toNull(map, key);
         if (value == null) {
             return defaultValue;
@@ -195,7 +194,36 @@ public class ContentValueUtils {
     }
 
 
-    public static String getTime( ContentValues map,  String key) {
+    public static String getTime(ContentValues map, String key) {
         return getTime(map, key, null);
+    }
+
+    /**
+     * 将ContentValues转换成Map
+     *
+     * @param map
+     * @return
+     */
+    public static Map<String, Object> convert(ContentValues values) {
+        Map<String, Object> map = new HashMap<>();
+        Set<String> keySet = values.keySet();
+        for (String key : keySet) {
+            map.put(key, getEmpty(values, key));
+        }
+        return map;
+    }
+    /**
+     * 将ContentValues转换成Map
+     *
+     * @param map
+     * @return
+     */
+    public static Map<String, String> convertString(ContentValues values) {
+        Map<String, String> map = new HashMap<>();
+        Set<String> keySet = values.keySet();
+        for (String key : keySet) {
+            map.put(key, getEmpty(values, key));
+        }
+        return map;
     }
 }

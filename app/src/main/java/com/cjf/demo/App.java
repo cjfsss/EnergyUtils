@@ -27,17 +27,17 @@ public class App extends Application {
         super.onCreate();
         AppCompat.init(this);
         ActivityManager.init(this);
-        CrashHandler.init();
-        HiLogManager.init(new HiLogConfig() {
-            @Override
-            public JsonParser injectJsonParser() {
-                return new JsonParser() {
-                    @Override
-                    public String toJson(Object src) {
-                        return new Gson().toJson(src);
-                    }
-                };
-            }
-        },new HiConsolePrinter());
+//        CrashHandler.init();
+//        HiLogManager.init(new HiLogConfig() {
+//            @Override
+//            public JsonParser injectJsonParser() {
+//                return new JsonParser() {
+//                    @Override
+//                    public String toJson(Object src) {
+//                        return new Gson().toJson(src);
+//                    }
+//                };
+//            }
+//        },new HiConsolePrinter());
     }
 }

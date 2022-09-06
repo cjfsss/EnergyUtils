@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
-    compileOnly 'com.github.cjfsss:EnergyCore:0.0.5'
+    compileOnly 'com.github.cjfsss:EnergyCore:0.0.6'
 }
 
 apply plugin: 'maven'
